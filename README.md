@@ -58,10 +58,10 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |		                |	          |Entwickler       |  	kilian1008      |Feature14             |			
 |		                |	          |Entwickler       |         |Feature15             |			
 |		                |	          |	                |		      |		                   |				
-|**Wirtschaft**	    |Menü WI    |Teamkoordinator  |	        |WIEntwicklung,Feature16|				
-|		                |           |Entwickler       |         |Feature17             |		
-|		                |	          |Entwickler       |		      |Feature18             |		
-|		                |	          |Entwickler       |         |Feature19             |	
+|**Wirtschaft**	    |Menü WI    |Teamkoordinator  |selimAP  |WIEntwicklung,Feature16|				
+|		                |           |Entwickler       |bezo786  |Feature17             |		
+|		                |	          |Entwickler       |Garuk13  |Feature18             |		
+|		                |	          |Entwickler       |MaryamAmiri20 |Feature19        |	
 |		                |	          |Entwickler       |	        |Feature20             |	
 |		                |	          |	              	|		      |                   	 |					
 |**Mathematik**	    |Menü MT    |Teamkoordinator  | WireWale        |MAEntwicklung,Feature21|				
