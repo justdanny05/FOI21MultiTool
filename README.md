@@ -67,7 +67,7 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |**Mathematik**	    |Menü MT    |Teamkoordinator  | WireWale        |MAEntwicklung,Feature21|				
 |		                |           |Entwickler       | Kohano        |Feature22             |		
 |		                |           |Entwickler       | JonathanJostar05        |Feature23             |		
-|		                |           |Entwickler       |  	      |Feature24             |
+|		                |           |Entwickler       | qwni 	      |Feature24             |
 |		                |           |Entwickler	      |       	|Feature25             |
 
 
