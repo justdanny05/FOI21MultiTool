@@ -38,7 +38,7 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 
 | Bereich     	    | Feature 	|Rolle		        |Username	|Branch		             |
 | --------------- 	| -------- 	|------		        |--------	|-----------	         |
-|**Administration**	|Release    |Administrator		|     	  |Release, main         |
+|**Administration**	|Release    |Administrator		|   AI-Assistant  	  |Release, main         |
 |		                |	          |		              |      		|		                   |		
 |**Elektrotechnik**	|Menü ET    |Teamkoordinator  |         |ETEntwicklung,Feature1|
 |                   |           |Entwickler       |         |Feature2              |
