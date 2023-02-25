@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Figgle;
+﻿using Figgle;
 
-namespace MultiTool
+namespace WIKlassenBibliothek
 {
-    internal class Hauptmenue
+    public class WIMenue
     {
-        public static void HauptmenueAufruf()
+        public static void WI_Menue()
         {
             bool Exit = false;
 
@@ -28,10 +23,11 @@ namespace MultiTool
                 Console.Title = "FOIMultiTool";
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                  "                              >>> Hauptmenü <<<\n" +
+                                  "                              >>> Wirtschafts Submenu<<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
                 Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
+                Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
                 //Beschreibung der Software.
                 Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
@@ -43,8 +39,8 @@ namespace MultiTool
 
                 //Eingabeaufforderung 
                 Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
-                Console.WriteLine("\te - Elektrotechnik");
-                Console.WriteLine("\ti - Informatik");
+                Console.WriteLine("\t1 - Währungsrechner");
+                Console.WriteLine("\t2 - Informatik");
                 Console.WriteLine("\tm - Mathematik");
                 Console.WriteLine("\tp - Physik");
                 Console.WriteLine("\tw - Wirtschaft\n");
@@ -53,7 +49,7 @@ namespace MultiTool
 
                 switch (HauptAusw)
                 {
-                    case "e":
+                    case "1":
                         Console.Clear();
                         //Hier das Etechnikmenü aufrufen
                         break;
@@ -75,11 +71,15 @@ namespace MultiTool
 
                     case "w":
                         Console.Clear();
-                        WIKlassenBibliothek.WIMenue.WI_Menue();
+                        //Hier das Wirtschaftsmenü aufrufen
+                        break;
+                    case "subexit":
+                        Exit = true;
+                        Console.Clear();
                         break;
 
                     case "exit":
-                        Exit = true;
+                        Environment.Exit(0);
                         break;
                     default:
 
@@ -94,8 +94,6 @@ namespace MultiTool
                 }
 
             } while (!Exit);
-
-
         }
     }
 }
