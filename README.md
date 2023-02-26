@@ -92,7 +92,7 @@ Einstellungen oder Dateien dieser bereits in den Branches existierenden Projekte
 1. Der Teamkoordinator euren Pull-Request nicht merged (Code des Entwicklers wird nicht in das Projekt eingebunden).
 2. Der Admin euren Team-Pull-Request nicht merged (Code des Teams wird nicht in das Projekt eingebunden).
 
-@GSO-SW/teamkoordinatorenbft12  achtet darauf das die Richtlinien eingehalten werden. 🦅 
+Die Teamkoordinatoren achten darauf, dass die Richtlinien eingehalten werden. 🦅 
 
 
 ### Organisation
