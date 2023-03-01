@@ -47,10 +47,10 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |                   |           |Entwickler       |         |Feature5              |
 |		                |	          |              		|		      |		                   |		
 |**Physik**	        |Menü PY 	  |Teamkoordinator  |CallmeBabygirl|PHEntwicklung	,Feature6|
-|		                |           |Entwickler	      |CallmeBabygirl|Feature7              |		
-|		                |	          |Entwickler	      |nahehs        |Feature8              |
-|		                |           |Entwickler	      |Nextsuki      |Feature9              |
-|		                |           |Entwickler       |simoqn        |Feature10             |		
+|		                |           |Entwickler	      |nahehs   |Feature7              |		
+|		                |	          |Entwickler	      |Nextsuki |Feature8              |
+|		                |           |Entwickler	      |simqn    |Feature9              |
+|		                |           |Entwickler       |         |Feature10             |		
 |		                |	          |                 |         |                      |				
 |**Informatik**	    |Menü IT    |Teamkoordinator  |   snwster      |ITEntwicklung,Feature11|				
 |		                |	          |Entwickler       |		nacelol      |Feature12             |		
