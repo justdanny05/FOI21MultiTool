@@ -40,9 +40,9 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 | --------------- 	| -------- 	|------		        |--------	|-----------	         |
 |**Administration**	|Release    |Administrator		|   AI-Assistant  	  |Release, main         |
 |		                |	          |		              |      		|		                   |		
-|**Elektrotechnik**	|Menü ET    |Teamkoordinator  |         |ETEntwicklung,Feature1|
-|                   |           |Entwickler       |         |Feature2              |
-|                   |           |Entwickler       |         |Feature3              |
+|**Elektrotechnik**	|Menü ET    |Teamkoordinator  |YjduBlqvrcc|ETEntwicklung,Feature1|
+|                   |           |Entwickler       |Ero500|Feature2              |
+|                   |           |Entwickler       |PRODRIPSAW|Feature3              |
 |                   |           |Entwickler       |         |Feature4              |
 |                   |           |Entwickler       |         |Feature5              |
 |		                |	          |              		|		      |		                   |		
