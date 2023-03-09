@@ -53,8 +53,8 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |		                |           |Entwickler       |         |Feature10             |		
 |		                |	          |                 |         |                      |				
 |**Informatik**	    |Menü IT    |Teamkoordinator  |   snwster      |ITEntwicklung,Feature11|				
-|		                |	          |Entwickler       |		nacelol      |Feature12             |		
-|		                |	          |Entwickler       |   K923ai      |Feature13             |	
+|		                |Passwortgenerator	          |Entwickler       |		nacelol      |Feature12             |		
+|		                |Byterechner	          |Entwickler       |   K923ai      |Feature13             |	
 |		                |	          |Entwickler       |  	kilian1008      |Feature14             |			
 |		                |	          |Entwickler       |         |Feature15             |			
 |		                |	          |	                |		      |		                   |				
