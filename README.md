@@ -46,7 +46,7 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |                   |           |Entwickler       |         |Feature4              |
 |                   |           |Entwickler       |         |Feature5              |
 |		                |	          |              		|		      |		                   |		
-|**Physik**	        |Menü PY 	  |Teamkoordinator  |CallmeBabygirl|PHEntwicklung	,Feature6|
+|**Physik**	        |Menü PY / Gravitation 	  |Teamkoordinator  |CallmeBabygirl|PHEntwicklung	,Feature6|
 |		                |           |Entwickler	      |nahehs   |Feature7              |		
 |		                |	          |Entwickler	      |Nextsuki |Feature8              |
 |		                |           |Entwickler	      |simqn    |Feature9              |
