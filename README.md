@@ -47,9 +47,9 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |                   |           |Entwickler       |         |Feature5              |
 |		                |	          |              		|		      |		                   |		
 |**Physik**	        |Menü PY / Gravitation 	  |Teamkoordinator  |CallmeBabygirl|PHEntwicklung	,Feature6|
-|		                |           |Entwickler	      |nahehs   |Feature7              |		
-|		                |	          |Entwickler	      |Nextsuki |Feature8              |
-|		                |           |Entwickler	      |simqn    |Feature9              |
+|		                | Lichtbrechung          |Entwickler	      |nahehs   |Feature7              |		
+|		                |	  Lautstärke & Schall        |Entwickler	      |Nextsuki |Feature8              |
+|		                |  Geschwindigkeit         |Entwickler	      |simqn    |Feature9              |
 |		                |           |Entwickler       |         |Feature10             |		
 |		                |	          |                 |         |                      |				
 |**Informatik**	    |Menü IT    |Teamkoordinator  |   snwster      |ITEntwicklung,Feature11|				
