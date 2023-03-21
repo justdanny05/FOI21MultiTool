@@ -46,6 +46,7 @@ namespace PHKlassenBibliothek
                         case 1:
                             Console.Clear();
                             //Feature 1 Danny CallmeBabygirl
+                            Feature6.Feature_6();
                             break;
 
                         case 2:
@@ -64,7 +65,7 @@ namespace PHKlassenBibliothek
                             break;
                     }
                 }
-                if (eingabe == "subexit")
+                else if (eingabe == "subexit")
                 {
                     //Zurück zum Hauptmenü
                     Console.Clear();
