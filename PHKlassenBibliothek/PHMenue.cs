@@ -8,6 +8,7 @@ namespace PHKlassenBibliothek
             bool subexit = false;
             do
             {
+                Console.Clear();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("----------------------------------------------------------------------------------------------------------");
                 Console.WriteLine("----             -----      ---      --     -------      ---          ----      ----      ----      ------");
