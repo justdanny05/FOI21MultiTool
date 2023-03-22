@@ -62,6 +62,7 @@ namespace PHKlassenBibliothek
                         case 4:
                             Console.Clear();
                             //Feature 4 Simon simqn
+                            Feature9.Feature_9();
                             break;
                     }
                 }
