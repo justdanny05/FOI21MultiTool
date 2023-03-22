@@ -58,6 +58,7 @@ namespace PHKlassenBibliothek
                         case 3:
                             Console.Clear();
                             //Feature 3 Cihan Nextsuki
+                            Feature8.Feature_8();
                             break;
 
                         case 4:
