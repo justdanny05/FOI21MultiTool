@@ -10,20 +10,10 @@ namespace PHKlassenBibliothek
     {
         internal static void Feature_6()
         {
-            bool anziehungskraft_rechner = false;
             bool exit = false;
             do
             {
                 bool back = false;
-
-                if (anziehungskraft_rechner == true)
-                {
-                    //Rechner Sonnensystem
-
-                    anziehungskraft_rechner = false;  //Am Ende dieses durchlaufs die variable wieder zurücksetzen!!! 
-                }
-                else
-                {
                     Console.Clear();
                     Console.Title = "Gravitation\n";
 
@@ -350,26 +340,7 @@ namespace PHKlassenBibliothek
                                 } while (!back);
                                 break;
                         }
-
-                    }
-                    else if (eingabe_1 == "exit")
-                    {
-                        //Zurück ins Untermenü PH
-                        Console.WriteLine("Ich hoffe es hat ihnen gefallen\n" +
-                            "Tschüss");
-                        exit = true;
-                        Console.ReadKey();
-                    }
-
-                    else
-                    {
-                        //Erneute Eingabeaufforderung, wegen falscher Eingabe
-                        Console.WriteLine("Falsche Eingabe erkannt.\nBitte eine der Angegebenen Zahlen eingeben um fortfahren zu können\n");
-                        Console.ReadKey();
-                    }
                 }
-
-            } while (!exit);
         }
     }
 }
