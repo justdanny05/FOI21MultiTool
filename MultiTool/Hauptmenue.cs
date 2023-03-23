@@ -56,6 +56,7 @@ namespace MultiTool
                     case "e":
                         Console.Clear();
                         //Hier das Etechnikmenü aufrufen
+                        ETKlassenBibliothek.ETMenu.ET_Menu();
                         break;
 
                     case "i":
