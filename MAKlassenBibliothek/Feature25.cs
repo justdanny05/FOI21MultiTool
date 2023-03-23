@@ -99,7 +99,7 @@ namespace MAKlassenBibliothek
                     double hoehekreis = Convert.ToDouble(Console.ReadLine());
 
                     double umfang = a + b + c;
-                    double flaeche = 0.5 * c * höhekreis;
+                    double flaeche = 0.5 * c * hoehekreis;
 
                     Console.WriteLine($"{"Flächeninhalt des Dreiecks: "}{flaeche}cm²");
                     Console.WriteLine($"{"Umfang des Dreiecks: "}{umfang}cm");
@@ -200,7 +200,7 @@ namespace MAKlassenBibliothek
                     double hoehe_q = Convert.ToDouble(Console.ReadLine());
 
                     double volumen_q = laenge * breite * hoehe_q;
-                    double oberflaeche_q = 2 * (laenge * breite + breite * hoehe_q + hoehe_q * laenge);
+                    double oberflaeche_q = 2 * (laenge* breite + breite * hoehe_q + hoehe_q * laenge);
 
                     Console.WriteLine($"{"Volumen des Quaders: "}{volumen_q}cm³");
                     Console.WriteLine($"{"Oberfläche des Quaders: "}{oberflaeche_q}cm²");
