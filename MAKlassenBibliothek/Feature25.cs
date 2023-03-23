@@ -98,11 +98,11 @@ namespace MAKlassenBibliothek
                     Console.Write("Höhe des Dreiecks: ");
                     double hoehekreis = Convert.ToDouble(Console.ReadLine());
 
-                    double umfang = a + b + c;
-                    double flaeche = 0.5 * c * hoehekreis;
+                    double dreieckUmfang = a + b + c;
+                    double dreieckFlaeche = 0.5 * c * hoehekreis;
 
-                    Console.WriteLine($"{"Flächeninhalt des Dreiecks: "}{flaeche}cm²");
-                    Console.WriteLine($"{"Umfang des Dreiecks: "}{umfang}cm");
+                    Console.WriteLine($"{"Flächeninhalt des Dreiecks: "}{dreieckFlaeche}cm²");
+                    Console.WriteLine($"{"Umfang des Dreiecks: "}{dreieckUmfang}cm");
                     break;
 
                 case 5:
@@ -143,13 +143,13 @@ namespace MAKlassenBibliothek
                     Console.Write("Höhe des Zylinders: ");
                     double hoehe_zylinder = Convert.ToDouble(Console.ReadLine());
 
-                    double volumen = Math.PI * radius * radius * hoehe_zylinder;
-                    double mantelflaeche = 2 * Math.PI * radius * hoehe_zylinder;
-                    double oberflaeche = 2 * Math.PI * radius * (radius + hoehe_zylinder);
+                    double zylinderVolumen = Math.PI * radius * radius * hoehe_zylinder;
+                    double zylinderMantelflaeche = 2 * Math.PI * radius * hoehe_zylinder;
+                    double zylinderOberflaeche = 2 * Math.PI * radius * radius + zylinderMantelflaeche;
 
-                    Console.WriteLine($"{"Volumen des Zylinders: "}{volumen}cm³");
-                    Console.WriteLine($"{"Mantelfläche des Zylinders: "}{mantelflaeche}cm²");
-                    Console.WriteLine($"{"Oberfläche des Zylinders: "}{oberflaeche}cm²");
+                    Console.WriteLine($"{"Volumen des Zylinders: "}{zylinderVolumen}cm³");
+                    Console.WriteLine($"{"Mantelfläche des Zylinders: "}{zylinderMantelflaeche}cm²");
+                    Console.WriteLine($"{"Oberfläche des Zylinders: "}{zylinderOberflaeche}cm²");
                     break;
 
                 case 7:
