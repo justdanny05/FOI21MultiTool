@@ -73,6 +73,7 @@ namespace MAKlassenBibliothek
                         break;
 
                     case "subexit":
+                        Console.Clear();
                         Exit = true;
                         break;
                     default:
