@@ -10,9 +10,8 @@ Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
 //Schriftfarbe wird auf Grün gesetzt.
 Console.ForegroundColor = ConsoleColor.Green;
 
-
-
 Init();
+
 void Init()
 {
     bool exitGenerator = false;
