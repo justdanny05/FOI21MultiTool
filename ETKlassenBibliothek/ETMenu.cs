@@ -19,8 +19,7 @@ namespace ETKlassenBibliothek
                 (int, int) cPosBM = Console.GetCursorPosition();
                 Console.SetCursorPosition(0, 0);
                 //ASCII art Logo wird erzeugt.
-                Console.WriteLine
-                    (FiggleFonts.Slant.Render("FOIMultiTool"));
+                Console.WriteLine(FiggleFonts.Slant.Render("FOIMultiTool"));
 
                 //Konsolentitel wird geändert.
                 Console.Title = "FOIMultiTool";

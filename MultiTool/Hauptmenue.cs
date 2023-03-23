@@ -21,8 +21,7 @@ namespace MultiTool
                 Console.WriteLine();
 
                 //ASCII art Logo wird erzeugt.
-                Console.WriteLine
-                    (FiggleFonts.Slant.Render("FOIMultiTool"));
+                Console.WriteLine(FiggleFonts.Slant.Render("FOIMultiTool"));
 
                 //Konsolentitel wird geändert.
                 Console.Title = "FOIMultiTool";
