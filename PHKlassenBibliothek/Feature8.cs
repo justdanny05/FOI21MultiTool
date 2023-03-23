@@ -8,5 +8,9 @@ namespace PHKlassenBibliothek
 {
     internal class Feature8
     {
+        internal static void Feature_8()
+        {
+
+        }
     }
 }
