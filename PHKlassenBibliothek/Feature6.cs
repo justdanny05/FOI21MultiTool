@@ -119,7 +119,7 @@ namespace PHKlassenBibliothek
                                                         case 1:
                                                             //Zum Rechner
                                                             Console.Clear();
-                                                            anziehungskraft_rechner = true;
+                                                            Anziehungskraft_Rechner();
                                                             break;
 
                                                         case 2:
@@ -178,7 +178,7 @@ namespace PHKlassenBibliothek
                                             $"{case1} ist keine korrekte Eingabe, versuchen Sie es mit den vorgegebenen Zahlen nocheinmal.");
                                         Console.ReadKey();
                                     }
-                                } while (!back | !anziehungskraft_rechner);
+                                } while (!back);
                                 break;
 
                             case 2:
@@ -233,92 +233,6 @@ namespace PHKlassenBibliothek
 
                                             case 3:
                                                 //Gewicht auf unterschiedlichen Planeten
-                                                do
-                                                {
-                                                    Console.Clear();
-                                                    Console.WriteLine("3. Gewicht auf unterschiedlichen Planeten\n");
-
-                                                    Console.WriteLine("Hier können Sie ausrechnen, wie schwer Sie auf unterschiedlichen Planeten in unserem Sonnensystem wären.\n" +
-                                                        "Wählen Sie einfach nur einen der Planeten aus und geben Sie ihr Gewicht an und finden Sie es heraus :)\n");
-
-                                                    Console.Write("Tabelle: ");
-                                                    Console.WriteLine($"{"----------------------------------",35}");
-                                                    Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
-                                                    Console.WriteLine($"{"----------------------------------",44}");
-                                                    Console.WriteLine($"{"-- 1. Sonne                     --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 2. Merkur                    --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 3. Venus                     --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 4. Mond                      --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 5. Mars                      --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 6. Jupiter                   --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 7. Saturn                    --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 8. Uranus                    --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"-- 9. Neptun                    --",44}");
-                                                    Console.WriteLine($"{"--                              --",44}");
-                                                    Console.WriteLine($"{"--10. Pluto                     --",44}");
-                                                    Console.WriteLine($"{"----------------------------------\n",44}");
-
-                                                    Console.Write("Wählen Sie einen Planeten: ");                                   //Planet wird gewählt
-                                                    string planet = Console.ReadLine();
-                                                    Console.WriteLine("-------------------------------------------");
-                                                    Console.WriteLine("Geben Sie ihr Gewicht in Kilogramm an: ");                   //Gewicht wird erfragt
-                                                    double gewicht = Convert.ToDouble(Console.ReadLine());
-                                                    if (planet == "1" | planet == "2" | planet == "3" | planet == "4" | planet == "5" | planet == "6" | planet == "7" | planet == "8" | planet == "9" | planet == "10")
-                                                    {
-                                                        int i_planet = int.Parse(planet);
-                                                        switch (i_planet)
-                                                        {
-                                                            case 1:
-                                                                //Sonne 274 m/s²
-                                                                break;
-
-                                                            case 2:
-                                                                //Merkur 3,7 m/s²
-                                                                break;
-
-                                                            case 3:
-                                                                //Venus 8,87 m/s² 
-                                                                break;
-
-                                                            case 4:
-                                                                //Mond  1,62 m/s²            
-                                                                break;
-
-                                                            case 5:
-                                                                //Mars 3,721 m/s²
-                                                                break;
-
-                                                            case 6:
-                                                                //Jupiter 24,79 m/s²        
-                                                                break;
-
-                                                            case 7:
-                                                                //Saturn 10,44 m/s²
-                                                                break;
-
-                                                            case 8:
-                                                                //Uranus 8,87 m/s²
-                                                                break;
-
-                                                            case 9:
-                                                                //Neptun 11,15 m/s² 
-                                                                break;
-
-                                                            case 10:
-                                                                //Pluto 0,62 m/s²
-                                                                break;
-                                                        }
-                                                    }
-
-                                                } while (!r_leave);
                                                 break;
                                         }
                                     }
@@ -340,6 +254,209 @@ namespace PHKlassenBibliothek
                                 } while (!back);
                                 break;
                         }
+
+                    }
+                    else if (eingabe_1 == "exit")
+                    {
+                        //Zurück ins Untermenü PH
+                        Console.WriteLine("Ich hoffe es hat ihnen gefallen\n" +
+                            "Tschüss");
+                        exit = true;
+                        Console.ReadKey();
+                    }
+
+                    else
+                    {
+                        //Erneute Eingabeaufforderung, wegen falscher Eingabe
+                        Console.WriteLine("Falsche Eingabe erkannt.\nBitte eine der Angegebenen Zahlen eingeben um fortfahren zu können\n");
+                        Console.ReadKey();
+                    }
+
+            } while (!exit);
+        }
+        internal static void Anziehungskraft_Rechner()
+        {
+        //Gewicht auf unterschiedlichen Planeten
+                Console.Clear();
+                Console.WriteLine("3. Gewicht auf unterschiedlichen Planeten\n");
+
+                Console.WriteLine("Hier können Sie ausrechnen, wie schwer Sie auf unterschiedlichen Planeten in unserem Sonnensystem wären.\n" +
+                    "Wählen Sie einfach nur einen der Planeten aus und geben Sie ihr Gewicht an und finden Sie es heraus :)\n");
+
+                Console.Write("Tabelle: ");
+                Console.WriteLine($"{"----------------------------------",35}");
+                Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
+                Console.WriteLine($"{"----------------------------------",44}");
+                Console.WriteLine($"{"-- 1. Sonne                     --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 2. Merkur                    --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 3. Venus                     --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 4. Mond                      --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 5. Mars                      --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 6. Jupiter                   --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 7. Saturn                    --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 8. Uranus                    --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"-- 9. Neptun                    --",44}");
+                Console.WriteLine($"{"--                              --",44}");
+                Console.WriteLine($"{"--10. Pluto                     --",44}");
+                Console.WriteLine($"{"----------------------------------\n",44}");
+
+                Console.Write("Wählen Sie einen Planeten aus: ");                                   //Planet wird gewählt
+                string planet = Console.ReadLine();
+                double gewicht = Convert.ToDouble(Console.ReadLine());
+                if (planet == "1" | planet == "2" | planet == "3" | planet == "4" | planet == "5" | planet == "6" | planet == "7" | planet == "8" | planet == "9" | planet == "10")
+                {
+                double Erdgewicht, Planetgrafitation, Planetgewicht;
+                    int i_planet = int.Parse(planet);
+                    switch (i_planet)
+                    {
+                        case 1:
+                        //Sonne 274 m/s²
+                        Planetgrafitation = 274;
+                        Console.WriteLine("Gewichtausrechnung auf der Sonne\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 2:
+                        //Merkur 3,7 m/s²
+                        Planetgrafitation = 3.7;
+                        Console.WriteLine("Gewichtausrechnung auf dem Merkur\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 3:
+                        //Venus 8,87 m/s² 
+                        Planetgrafitation = 8.87;
+                        Console.WriteLine("Gewichtausrechnung auf der Venus\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 4:
+                        //Mond  1,62 m/s²
+                        Planetgrafitation = 1.62;
+                        Console.WriteLine("Gewichtausrechnung auf dem Mond\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 5:
+                        //Mars 3,721 m/s²
+                        Planetgrafitation = 3.721;
+                        Console.WriteLine("Gewichtausrechnung auf dem Mars\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 6:
+                        //Jupiter 24,79 m/s²
+                        Planetgrafitation = 24.79;
+                        Console.WriteLine("Gewichtausrechnung auf dem Jupiter\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 7:
+                        //Saturn 10,44 m/s²
+                        Planetgrafitation = 10.44;
+                        Console.WriteLine("Gewichtausrechnung auf dem Saturn\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 8:
+                        //Uranus 8,87 m/s²
+                        Planetgrafitation = 8.87;
+                        Console.WriteLine("Gewichtausrechnung auf dem Uranus\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 9:
+                        //Neptun 11,15 m/s² 
+                        Planetgrafitation = 11.15;
+                        Console.WriteLine("Gewichtausrechnung auf dem Neptun\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+
+                        case 10:
+                        //Pluto 0,62 m/s²
+                        Planetgrafitation = 0.62;
+                        Console.WriteLine("Gewichtausrechnung auf dem Pluto\n");
+                        // Gewicht der Person auf der Erde abfragen
+                        Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");
+                        Erdgewicht = double.Parse(Console.ReadLine());
+                        // Berechnung des Gewichts auf dem Planeten
+                        Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;
+                        // Ergebnis ausgeben
+                        Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");
+                        Console.ReadKey();
+                        break;
+                    }
                 }
         }
     }
