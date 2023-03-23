@@ -22,57 +22,57 @@ namespace MAKlassenBibliothek
                 Console.Title = "FOIMultiTool";
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                  "                              >>> Hauptmenü <<<\n" +
+                                  "                              >>> Mathematik <<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
                 Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
 
                 //Beschreibung der Software.
-                Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
-                                  "Aufgabenaus dem schulischen Kontext erleichtert oder gelöst werden. Diese Aufgaben\n" +
-                                  "ergeben sich aus den Problemstellungen aus dem Unterricht der Berufsfachschule für Technik.\n\n");
+                Console.WriteLine("\n\nWilkommen im Mathematik-Submenü! Hier können sie\n" +
+                                  "verschiedene Features aufrufen und diese benutzen\n\n");
 
                 string HauptAusw;
 
 
                 //Eingabeaufforderung 
                 Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
-                Console.WriteLine("\te - Elektrotechnik");
-                Console.WriteLine("\ti - Informatik");
-                Console.WriteLine("\tm - Mathematik");
-                Console.WriteLine("\tp - Physik");
-                Console.WriteLine("\tw - Wirtschaft\n");
+                Console.WriteLine("\t1 - Feature 1");
+                Console.WriteLine("\t2 - Feature 2");
+                Console.WriteLine("\t3 - Feature 3");
+                Console.WriteLine("\t4 - Feature 4");
+                Console.WriteLine("\t5 - Feature 5\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
 
                 switch (HauptAusw)
                 {
-                    case "e":
+
+                    case "1":
                         Console.Clear();
-                        //Hier das Etechnikmenü aufrufen
+                        //Hier Feature schreiben
                         break;
 
-                    case "i":
+                    case "2":
                         Console.Clear();
-                        //Hier das Informationstechnikmenü aufrufen
+                        //Hier Feature schreiben
                         break;
 
-                    case "m":
+                    case "3":
                         Console.Clear();
-                        //Hier das Mathematikmenü aufrufen
+                        //Hier Feature schreiben
                         break;
 
-                    case "p":
+                    case "4":
                         Console.Clear();
-                        //Hier das Physikmenü aufrufen
+                        //Hier Feature schreiben
                         break;
 
-                    case "w":
+                    case "5": 
                         Console.Clear();
-                        //Hier das Wirtschaftsmenü aufrufen
+                        //Hier Feature schreiben
                         break;
 
-                    case "exit":
+                    case "subexit":
                         Exit = true;
                         break;
                     default:
