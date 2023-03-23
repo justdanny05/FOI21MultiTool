@@ -35,7 +35,7 @@ namespace WIKlassenBibliothek
                 string HauptAusw;
 
 
-                //Eingabeaufforderung 
+                //Eingabeaufforderung
                 Console.WriteLine("Wählen Sie eine der folgenden Tools:\n");
                 Console.WriteLine("\t1 - Währungsrechner");
                 Console.WriteLine("\t2 - Lohnabrechnung");
@@ -49,7 +49,6 @@ namespace WIKlassenBibliothek
                 {
                     case "1":
                         Console.Clear();
-                        Feature16.Feature_16();
                         break;
 
                     case "2":
