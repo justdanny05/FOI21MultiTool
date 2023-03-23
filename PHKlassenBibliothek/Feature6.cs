@@ -118,7 +118,6 @@ namespace PHKlassenBibliothek
                                                     {
                                                         case 1:
                                                             //Zum Rechner
-                                                            Console.Clear();
                                                             Anziehungskraft_Rechner();
                                                             break;
 
