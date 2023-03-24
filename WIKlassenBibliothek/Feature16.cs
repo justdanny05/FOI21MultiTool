@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Net.Http;
-using Figgle;
-using System.Xml.Linq;
+using RestSharp;
 using Newtonsoft.Json.Linq;
+using Figgle;
 
 namespace WIKlassenBibliothek
 {
     internal class Feature16
     {
-        internal static async void Feature_16()
+        internal static void Feature_16()
         {
             Console.BackgroundColor = ConsoleColor.Blue;
             Console.CursorSize = 100;
@@ -45,23 +44,32 @@ namespace WIKlassenBibliothek
 
                 // API request to Fixer.io
 
-                var url = $"https://api.apilayer.com/convert?access_key=11jkM650waV1JUSKCDDDzUXqGHHoHHRI&from={Währung1}&to={Währung2}&amount={betrag}";
-                var httpClient = new HttpClient();
+                // API request to Fixer.io
+                var client = new RestClient($"https://api.apilayer.com/fixer/convert?from={Währung1}&to={Währung2}&amount={betrag}");
+                client.Timeout = -1;
+                var request = new RestRequest(Method.GET);
+                request.AddHeader("apikey", "11jkM650waV1JUSKCDDDzUXqGHHoHHRI");
+                IRestResponse response = client.Execute(request);
 
-                var responseString = await httpClient.GetStringAsync(url);
-
-                var data = JObject.Parse(responseString);
-
-                if (data["success"].ToObject<bool>())
+                if (response.IsSuccessful)
                 {
-                    double result = (double)data["result"];
+                    var data = JObject.Parse(response.Content);
 
-                    Console.WriteLine("\nErgebnis: " + result.ToString());
+                    if (data["success"].ToObject<bool>())
+                    {
+                        double result = (double)data["result"];
+                        Console.WriteLine($"\n{betrag} {Währung1} entspricht {result} {Währung2}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("\nFehler beim Abrufen der Wechselkurse.");
+                    }
                 }
                 else
                 {
-                    Console.WriteLine("\nFehler beim Abrufen der Wechselkurse.");
+                    Console.WriteLine($"\nFehler beim Abrufen der Wechselkurse. Status code: {response.StatusCode}");
                 }
+
 
                 Console.WriteLine("\nDrücken Sie eine beliebige Taste, um fortzufahren...");
                 Console.ReadKey();
