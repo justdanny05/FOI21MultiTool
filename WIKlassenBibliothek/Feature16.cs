@@ -13,11 +13,11 @@ namespace WIKlassenBibliothek
             bool Exit = false;
 
             string username;
-            Console.WriteLine("Geben Sie Ihren Namen ein:");
+            Console.WriteLine("Gebe dein Namen ein:");
             username = Console.ReadLine();
 
 
-            Console.WriteLine("Geben Sie 'start' ein, um den Währungsrechner zu starten. Geben Sie 'exit' ein, um das tool zu schliessen.");
+            Console.WriteLine("Gebe 'start' ein, um den Währungsrechner zu starten. Gebe 'exit' ein, um das tool zu schliessen.");
             do
             {
                 string input = Console.ReadLine();
@@ -32,19 +32,19 @@ namespace WIKlassenBibliothek
                         Console.Title = "Währungsrechner";
                         Console.WriteLine("------------------------------------------------------------------------------------\n");
                         Console.WriteLine("Taste: e\t->\tbeendet das Programm");
-                        Console.WriteLine("\n\nHi " + username + ", ich wurde von Selim programmiert und ich rechne für Sie Währungen um.\n\n");
+                        Console.WriteLine("\n\nHi " + username + ", ich wurde von Selim programmiert und ich rechne für dich Währungen um.\n\n");
 
                         string Währung1;
                         string Währung2;
                         double betrag;
 
 
-                        Console.WriteLine("Die erste Währung, die Sie eingeben, wird in die zweite umgerechnet.\n");
-                        Console.Write("Geben Sie die erste Währung (z.B. USD): ");
+                        Console.WriteLine("Die erste Währung, die du eingibst, wird in die zweite umgerechnet.\n");
+                        Console.Write("Gebe die erste Währung ein(z.B. USD): ");
                         Währung1 = Console.ReadLine().ToUpper();
-                        Console.Write("Geben Sie die zweite Währung (z.B. EUR): ");
+                        Console.Write("Gebe die zweite Währung ein (z.B. EUR): ");
                         Währung2 = Console.ReadLine().ToUpper();
-                        Console.Write("Geben Sie den Betrag ein, der umgerechnet werden soll: ");
+                        Console.Write("Gebe den Betrag ein, der umgerechnet werden soll: ");
                         betrag = Convert.ToDouble(Console.ReadLine());
 
 
@@ -76,14 +76,24 @@ namespace WIKlassenBibliothek
                         Console.WriteLine();
                         Console.WriteLine("Danke " + username + " Das du mein tool genutzt hast!");
                         Console.WriteLine();
-                        Console.WriteLine("\nWenn du das Programm beenden möchtest, drücke 'e'. Wenn du Fortsetzen möchtest drücke eine beliebige andere taste.");
+
+                        Console.WriteLine("Wenn du das Programm beenden möchtest, drücke 'e'. Wenn du Fortsetzen möchtest drücke eine beliebige andere taste.");
+                        Console.WriteLine("Wenn du dir paar beispiel währungen anschauen möchtest drücke 't'.");
                         string userInput = Console.ReadLine().ToLower();
                         if (userInput == "e")
                         {
                             Exit = true;
                             Console.Clear();
                         }
+                        else if (userInput == "t")
+                        {
+                            Console.Clear();
+                            Console.WriteLine("| Währung | ISO-Code |\r\n|------------------|----------|\r\n| US-Dollar | USD |\r\n| Euro | EUR |\r\n| Japanischer Yen | JPY |\r\n| Britisches Pfund | GBP |\r\n| Schweizer Franken| CHF |\r\n| Kanadischer Dollar| CAD |\r\n| Australischer Dollar| AUD |\r\n| Neuseeland-Dollar| NZD |\r\n| Chinesischer Yuan | CNY |\r\n| Russischer Rubel | RUB |\r\n| Südkoreanischer Won | KRW |\r\n| Singapur-Dollar | SGD |\r\n| Indische Rupie | INR |\r\n| Südafrikanischer Rand | ZAR|\r\n| Mexikanischer Peso | MXN |\r\n| Brasilianischer Real | BRL |\r\n| Türkische Lira | TRY |\r\n| Norwegische Krone | NOK |\r\n| Schwedische Krone | SEK |\r\n| Dänische Krone | DKK |\r\n| Hongkong-Dollar | HKD |\r\n| Indonesische Rupiah | IDR |\r\n| Malaysischer Ringgit | MYR |\r\n| Philippinischer Peso | PHP |\r\n| Thailändischer Baht | THB |\r\n| Taiwan-Dollar | TWD | \n");
+                            Console.WriteLine("Drücke eine Beliebige taste um zurückzukehren");
 
+                            Console.ReadKey();
+                            Console.Clear();
+                        }
 
                     } while (!Exit);
                 }
@@ -94,11 +104,13 @@ namespace WIKlassenBibliothek
                 }
                 else
                 {
-                    Console.WriteLine("Ungültige Eingabe. Geben Sie 'start' ein, um den Währungsrechner zu starten. Geben Sie 'exit' ein, um das tool zu schliessen");
+                    Console.WriteLine("Ungültige Eingabe. Gebe 'start' ein, um den Währungsrechner zu starten. Gebe 'exit' ein, um das tool zu schliessen.");
                 }
             } while (!Exit);
 
-
+            Console.WriteLine("Das Programm wurde beendet. Drücke eine beliebige Taste zum schliessen.");
+            Console.ReadKey();
+            Console.Clear();
 
         }
     }
