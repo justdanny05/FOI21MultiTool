@@ -165,7 +165,6 @@ namespace PHKlassenBibliothek
                                     else if (case1 == "back")
                                     {
                                         //Zurück zum Untermenü Gravitationen
-                                        Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
                                         back = true;
                                         Console.ReadKey();
                                     }
@@ -280,30 +279,6 @@ namespace PHKlassenBibliothek
                 Console.WriteLine("Hier können Sie ausrechnen, wie schwer Sie auf unterschiedlichen Planeten in unserem Sonnensystem wären.\n" +
                     "Wählen Sie einfach nur einen der Planeten aus und geben Sie ihr Gewicht an und finden Sie es heraus :)\n");
 
-                Console.Write("Tabelle: ");
-                Console.WriteLine($"{"----------------------------------",35}");
-                Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
-                Console.WriteLine($"{"----------------------------------",44}");
-                Console.WriteLine($"{"-- 1. Sonne                     --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 2. Merkur                    --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 3. Venus                     --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 4. Mond                      --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 5. Mars                      --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 6. Jupiter                   --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 7. Saturn                    --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 8. Uranus                    --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"-- 9. Neptun                    --",44}");
-                Console.WriteLine($"{"--                              --",44}");
-                Console.WriteLine($"{"--10. Pluto                     --",44}");
-                Console.WriteLine($"{"----------------------------------\n",44}");
 
                 Console.Write("Wählen Sie nun einen Planeten aus: ");                                   //Planet wird gewählt
                 string planet = Console.ReadLine();
