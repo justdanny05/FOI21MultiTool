@@ -221,12 +221,6 @@ namespace PHKlassenBibliothek
 
                                             case 2:
                                                 //Gewichtskraft auf der Erdoberfläche 
-                                                do
-                                                {
-                                                    Console.Clear();
-                                                    Console.WriteLine("2. Gewichtskraft auf der Erdoberfläche\n");
-
-                                                } while (!r_leave);
                                                 break;
 
                                             case 3:
@@ -313,7 +307,6 @@ namespace PHKlassenBibliothek
 
                 Console.Write("Wählen Sie nun einen Planeten aus: ");                                   //Planet wird gewählt
                 string planet = Console.ReadLine();
-                double gewicht = Convert.ToDouble(Console.ReadLine());
                 if (planet == "1" | planet == "2" | planet == "3" | planet == "4" | planet == "5" | planet == "6" | planet == "7" | planet == "8" | planet == "9" | planet == "10")
                 {
                     double Erdgewicht, Planetgrafitation, Planetgewicht;
