@@ -68,6 +68,7 @@ namespace PHKlassenBibliothek
                 if (eingabe == "subexit")
                 {
                     //Zurück zum Hauptmenü
+                    Console.Clear();
                     Console.WriteLine("Sie kehren jetzt zum Hauptmenü zurück.\nViel Erfolg weiterhin.");
                     subexit = true;
                     Console.WriteLine("Um fortzufahren eine beliebige Taste drücken.");
