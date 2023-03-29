@@ -1,6 +1,7 @@
 ﻿using Figgle;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace WIKlassenBibliothek
         {
 
             //-----------------------------------------------------------------------------
-            //---------------------------Array Tabelle für Zahlen--------------------------
+            //---------------------------Array Tabelle für Namen---------------------------
             //-----------------------------------------------------------------------------
 
             string[] namenswert = new string[12];
@@ -49,9 +50,31 @@ namespace WIKlassenBibliothek
             zahlenwert[10] = 0;
             zahlenwert[11] = 0;
 
+            //-----------------------------------------------------------------------------
+
             bool wiederholen = true;
             bool flag = false;
-            double gesamtzahl = 0;
+
+            //Fixe Kosten------------------------------------------------------------------
+
+            double kalkulatorischeAbschreibung = 0;
+            double kalkulatorischeZinsen = 0;
+            double kalkulatoricheMiete = 0;   
+            double versicherungskosten = 0;
+            double wartungskosten = 0;
+
+            double gesamteFixkostenProJahr = 0;
+
+            //Variable Kosten-------------------------------------------------------------
+
+            double lohnkosten = 0;
+            double werkzeugkosten = 0;
+
+            double gesamteVariableKostenProJahr = 0;
+
+            double gesamtkostenProJahr = 0;
+
+            //----------------------------------------------------------------------------
 
             while (wiederholen)
             {
@@ -401,13 +424,36 @@ namespace WIKlassenBibliothek
 
 
                 //------------------------------------------------------------------------
-
-                gesamtzahl = zahlenwert[0] + zahlenwert[1];
-
-                Console.WriteLine($"Gesamtzahl: {gesamtzahl}\n");
-
+                //                           RECHNUNGSWEGEN
                 //------------------------------------------------------------------------
 
+                //----------------------------Fixe Kosten--------------------------------- 
+                kalkulatorischeAbschreibung = (zahlenwert[0] - zahlenwert[2]) / zahlenwert[1];
+                kalkulatorischeZinsen = (zahlenwert[0] - zahlenwert[2]) / zahlenwert[1];
+                kalkulatorischeZinsen *= 5 / 100;
+                kalkulatoricheMiete = zahlenwert[5] * zahlenwert[6] * 12;
+                versicherungskosten = zahlenwert[8];
+                wartungskosten = zahlenwert[9];
+                 
+                gesamteFixkostenProJahr= kalkulatorischeAbschreibung + kalkulatorischeZinsen + kalkulatoricheMiete + versicherungskosten + wartungskosten;
+
+                //---------------------------Vriable Kosten-------------------------------
+                lohnkosten = zahlenwert[10] * zahlenwert[7];
+                werkzeugkosten= zahlenwert[11] * zahlenwert[7];
+
+                gesamteVariableKostenProJahr = lohnkosten + werkzeugkosten;
+
+                // Gesamtkosten
+                gesamtkostenProJahr = gesamteFixkostenProJahr + gesamteVariableKostenProJahr;
+
+
+
+
+
+
+
+
+                //-----------------------------------------------------------------------
                 Console.Write("Möchten Sie das Programm beenden? (true/false)");
                 bool beenden = Convert.ToBoolean(Console.ReadLine());
 
