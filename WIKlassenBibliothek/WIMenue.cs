@@ -41,7 +41,7 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("\t2 - Informatik");
                 Console.WriteLine("\tm - Mathematik");
                 Console.WriteLine("\tp - Physik");
-                Console.WriteLine("\tw - Wirtschaft\n");
+                Console.WriteLine("\t5 - Kassensystem\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
 
@@ -67,9 +67,9 @@ namespace WIKlassenBibliothek
                         //Hier das Physikmenü aufrufen
                         break;
 
-                    case "w":
+                    case "5":
                         Console.Clear();
-                        //Hier das Wirtschaftsmenü aufrufen
+                        Feature20.Feature_20();
                         break;
                     case "subexit":
                         Exit = true;
