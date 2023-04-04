@@ -16,8 +16,4 @@
     <ProjectReference Include="..\KonsolenExtrasBibliothek\KonsolenExtrasBibliothek.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="template\" />
-  </ItemGroup>
-
 </Project>

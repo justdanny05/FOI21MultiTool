@@ -199,21 +199,18 @@ namespace WIKlassenBibliothek
 
                 Directory.CreateDirectory(kategorieOrdnerPfad); // Verzeichnis erstellen, falls es noch nicht existiert
 
-                string imagePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "template", "test.jpg");
-                Bitmap bmp = new Bitmap(imagePath);
+                Bitmap bmp = new Bitmap(@"C:\Users\Janluca\source\repos\FOI21MultiTool\WIKlassenBibliothek\template\temp.PNG");
                 Graphics g = Graphics.FromImage(bmp);
-                System.Drawing.Font font = new System.Drawing.Font("Courier New", 16, FontStyle.Bold);
-                System.Drawing.Font fonts = new System.Drawing.Font("Arial", 16, FontStyle.Bold);
+                System.Drawing.Font font = new System.Drawing.Font("Bahnschrift SemiBold", 16);
+                //lINKS Breite RECHTS Höhe
                 SolidBrush brush = new SolidBrush(System.Drawing.Color.Black);
-                g.DrawString($"Produkt: {produkt.Name}", font, brush, new System.Drawing.PointF(550, 102));
-                g.DrawString($"Datum: {datum}\n", font, brush, new System.Drawing.PointF(550, 153));
-                g.DrawString($"Preis: {produkt.Preis}\n", font, brush, new System.Drawing.PointF(550, 205));
+                g.DrawString($"{quittungsId}\n", font, brush, new System.Drawing.PointF(443, 387));
+                g.DrawString($" {produkt.Name}", font, brush, new System.Drawing.PointF(160, 464));
+                g.DrawString($" {produkt.Preis}€\n", font, brush, new System.Drawing.PointF(140, 538));
+                g.DrawString($" {datum}\n", font, brush, new System.Drawing.PointF(613, 574));
 
-
-                //NR
-                g.DrawString($"{quittungsId}\n", fonts, brush, new System.Drawing.PointF(163, 102));
-
-
+                //Rechts je höher zahl dest mehr runter
+   
                 string quittungPdfPfad = Path.Combine(kategorieOrdnerPfad, $"{dateiName}.pdf");
                 using (FileStream fs = new FileStream(quittungPdfPfad, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
