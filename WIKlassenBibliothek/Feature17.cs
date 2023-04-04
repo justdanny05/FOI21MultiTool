@@ -13,6 +13,9 @@ namespace WIKlassenBibliothek
         internal static void Feature_17()
         {
 
+
+
+
             //-----------------------------------------------------------------------------
             //---------------------------Array Tabelle für Namen---------------------------
             //-----------------------------------------------------------------------------
@@ -35,7 +38,6 @@ namespace WIKlassenBibliothek
             //------------------------------------------------------------------------------
             //--------------------------Array Tabelle für Zahlen----------------------------
             //------------------------------------------------------------------------------
-
             double[] zahlenwert = new double[12];
             zahlenwert[0] = 0;
             zahlenwert[1] = 0;
@@ -59,13 +61,13 @@ namespace WIKlassenBibliothek
 
             double kalkulatorischeAbschreibung = 0;
             double kalkulatorischeZinsen = 0;
-            double kalkulatoricheMiete = 0;   
+            double kalkulatoricheMiete = 0;
             double versicherungskosten = 0;
             double wartungskosten = 0;
 
             double gesamteFixkostenProJahr = 0;
 
-            //Variable Kosten-------------------------------------------------------------
+            //Variable Kosten-------------------------------------- -----------------------
 
             double lohnkosten = 0;
             double werkzeugkosten = 0;
@@ -76,382 +78,86 @@ namespace WIKlassenBibliothek
 
             //----------------------------------------------------------------------------
 
+
             while (wiederholen)
             {
                 Console.WriteLine("Füllen Sie bitte aus\n");
 
-                //------------------------------------------------------------------------
-                //---------------------------Anschafungswert------------------------------
-                //------------------------------------------------------------------------
 
-                Console.Write(namenswert[0]);
-                do
+                for (int i = 0; i < namenswert.Length; i++)
                 {
-                    try
+                    Console.Write(namenswert[i]);
+
+                    do
                     {
-                        zahlenwert[0] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[0] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //---------------------------------------------------------------------------
-                //---------------------------Nutzungsdauer-----------------------------------
-                //---------------------------------------------------------------------------
-
-                Console.Write(namenswert[1]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[1] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[1] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //--------------------------------------------------------------------------
-                //-----------------------------Restwert-------------------------------------
-                //--------------------------------------------------------------------------
-
-                Console.Write(namenswert[2]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[2] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[2] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //---------------------Zinssatz Alternativanlage--------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[3]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[3] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[3] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //------------------------------Platzbedarf-------------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[4]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[4] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[4] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-                //------------------------------------------------------------------------
-                //-----------------------Ortsübliche Monatsmiete--------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[5]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[5] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[5] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //----------------------max. Produktionskapatität-------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[6]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[6] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[6] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //------------------------geplante Auslastung-----------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[7]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[7] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[7] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //-------------------------Versicherungskosten----------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[8]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[8] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[8] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //---------------------------Wartungskosten-------------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[9]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[9] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[9] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //------------------------------Lohkosten---------------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[10]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[10] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[10] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
-
-
-                //------------------------------------------------------------------------
-                //---------------------------Werkzeugkosten-------------------------------
-                //------------------------------------------------------------------------
-
-                Console.Write(namenswert[11]);
-
-                do
-                {
-                    try
-                    {
-                        zahlenwert[11] = double.Parse(Console.ReadLine());
-                        flag = true;
-
-                    }
-                    catch (System.FormatException e)
-                    {
-                        Console.WriteLine("KEINE GANZE ZAHL");
-                        flag = false;
-                    }
-
-                    if (flag == true && zahlenwert[11] <= 0)
-                    {
-                        Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                        flag = false;
-                    }
-                } while (flag == false);
-
+                        try
+                        {
+                            zahlenwert[i] = double.Parse(Console.ReadLine());
+                            flag = true;
+
+                        }
+                        catch (System.FormatException e)
+                        {
+                            Console.WriteLine("KEINE GANZE ZAHL");
+                            flag = false;
+                        }
+
+                        if (flag == true && zahlenwert[i] <= 0)
+                        {
+                            Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
+                            flag = false;
+                        }
+                    } while (flag == false);
+
+                }
 
                 //------------------------------------------------------------------------
                 //                           RECHNUNGSWEGEN
                 //------------------------------------------------------------------------
 
                 //----------------------------Fixe Kosten--------------------------------- 
+
+                Console.WriteLine("--------------------------------------");
+                Console.WriteLine("Fixe Kosten\n");
+
                 kalkulatorischeAbschreibung = (zahlenwert[0] - zahlenwert[2]) / zahlenwert[1];
-                kalkulatorischeZinsen = (zahlenwert[0] - zahlenwert[2]) / zahlenwert[1];
-                kalkulatorischeZinsen *= 5 / 100;
-                kalkulatoricheMiete = zahlenwert[5] * zahlenwert[6] * 12;
+                Console.WriteLine($"kalkuratorische Abschreibung: {kalkulatorischeAbschreibung}");
+
+                kalkulatorischeZinsen = (zahlenwert[0] + zahlenwert[2]) / 2 * zahlenwert[3] / 100;
+                Console.WriteLine($"kalkulatorische Zinsen: {kalkulatorischeZinsen}");
+
+                kalkulatoricheMiete = zahlenwert[4] * zahlenwert[5] * 12;
+                Console.WriteLine($"kalkulatorische Miete: {kalkulatoricheMiete}");
+
                 versicherungskosten = zahlenwert[8];
+                Console.WriteLine($"Versicherungskosten:{versicherungskosten}");
+
                 wartungskosten = zahlenwert[9];
-                 
-                gesamteFixkostenProJahr= kalkulatorischeAbschreibung + kalkulatorischeZinsen + kalkulatoricheMiete + versicherungskosten + wartungskosten;
+                Console.WriteLine($"Wartungskosten: {wartungskosten}\n");
+
+                gesamteFixkostenProJahr = kalkulatorischeAbschreibung + kalkulatorischeZinsen + kalkulatoricheMiete + versicherungskosten + wartungskosten;
+                Console.WriteLine($"gesamte Fixkosten pro Jahr: {gesamteFixkostenProJahr}\n");
 
                 //---------------------------Vriable Kosten-------------------------------
+                Console.WriteLine("--------------------------------");
+                Console.WriteLine("Variable Kosten\n");
+
                 lohnkosten = zahlenwert[10] * zahlenwert[7];
-                werkzeugkosten= zahlenwert[11] * zahlenwert[7];
+                Console.WriteLine($"Lohnkosten: {lohnkosten}");
+
+                werkzeugkosten = zahlenwert[11] * zahlenwert[7];
+                Console.WriteLine($"Werkzeugkosten: {werkzeugkosten}");
 
                 gesamteVariableKostenProJahr = lohnkosten + werkzeugkosten;
+                Console.WriteLine($"gesamte Variable Kosten: {gesamteVariableKostenProJahr}\n");
 
                 // Gesamtkosten
                 gesamtkostenProJahr = gesamteFixkostenProJahr + gesamteVariableKostenProJahr;
 
+                Console.WriteLine("----------------------------------");
+                Console.WriteLine($"Gesamtkosten pro Jahr: {gesamtkostenProJahr}\n");
 
-
-
-
-
-
+                Console.WriteLine("----------------------------------------------------------------");
 
                 //-----------------------------------------------------------------------
                 Console.Write("Möchten Sie das Programm beenden? (true/false)");
@@ -468,6 +174,7 @@ namespace WIKlassenBibliothek
                 }
 
             }
+
 
 
 
