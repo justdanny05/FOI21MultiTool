@@ -593,7 +593,6 @@ namespace PHKlassenBibliothek
                                             {
                                                 //Mit einem anderen Planeten rechnen
                                                 Sonnensystem_schleife = false;
-                                                Console.WriteLine("");
                                             }
                                             else if (i_unterabfrage_eingabe == 3)
                                             {
