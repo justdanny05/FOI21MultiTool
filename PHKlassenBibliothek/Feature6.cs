@@ -23,7 +23,8 @@ namespace PHKlassenBibliothek
 
                     Console.WriteLine("Das ist der Themenbereich Gravitation und ihre Kräfte.\n" +
                         "Hier können Sie lernen und oder Rechnungen aus diesem Themenbereich durchführen lassen.\n" +
-                        "Viel Spaß:)\n\n");
+                        "Wenn Sie das Programm verlassen wollen, können Sie dies hier jederzeit mit dem Befehl exit tun!\n" +
+                        "Viel Spaß :)\n\n");
 
                     Console.WriteLine("Um zurück ins Untermenü Physik zu kommen geben Sie 'back' ein.\n");
 
@@ -36,76 +37,76 @@ namespace PHKlassenBibliothek
                     Console.Write("Geben Sie eine der angegebenen Wahlmöglichkeiten an:");
                     string eingabe_1 = Console.ReadLine();
 
-                    if (eingabe_1 == "1" | eingabe_1 == "2")
+                if (eingabe_1 == "1" | eingabe_1 == "2")
+                {
+                    int ieingabe_1 = int.Parse(eingabe_1);
+                    switch (ieingabe_1)
                     {
-                        int ieingabe_1 = int.Parse(eingabe_1);
-                        switch (ieingabe_1)
-                        {
-                            case 1:
-                                do
+                        case 1:
+                            do
+                            {
+                                //Informationen Gravitation
+                                Console.Clear();
+                                Console.WriteLine("Informationen\n");
+
+                                Console.WriteLine("-------------------------------------------------------\n");
+                                Console.WriteLine("--  Was möchten Sie herausfinden?                    --\n");
+                                Console.WriteLine("-------------------------------------------------------\n");
+                                Console.WriteLine("--  1. Was ist überhaupt Gravitation                 --\n");         //Untermenü Information (info)
+                                Console.WriteLine("--  2. Anziehungskraft unterschiedlicher Planeten    --\n");
+                                Console.WriteLine("--  3. Schwerelosigkeit = keine Gravitation?         --\n");
+                                Console.WriteLine("--                                                   --\n");
+                                Console.WriteLine("-------------------------------------------------------\n");
+
+                                Console.WriteLine("Wenn Sie doch lieber den Rechner benutzen wollen dann geben Sie 'back' ein.\n");
+
+                                Console.Write("Eingabe:");
+                                string case1 = Console.ReadLine();
+                                int info1;
+                                if (case1 == "1" | case1 == "2" | case1 == "3")
                                 {
-                                    //Informationen Gravitation
-                                    Console.Clear();
-                                    Console.WriteLine("Informationen\n");
-
-                                    Console.WriteLine("-------------------------------------------------------\n");
-                                    Console.WriteLine("--  Was möchten Sie herausfinden?                    --\n");
-                                    Console.WriteLine("-------------------------------------------------------\n");
-                                    Console.WriteLine("--  1. Was ist überhaupt Gravitation                 --\n");         //Untermenü Information (info)
-                                    Console.WriteLine("--  2. Anziehungskraft unterschiedlicher Planeten    --\n");
-                                    Console.WriteLine("--  3. Schwerelosigkeit = keine Gravitation?         --\n");
-                                    Console.WriteLine("--                                                   --\n");
-                                    Console.WriteLine("-------------------------------------------------------\n");
-
-                                    Console.WriteLine("Wenn Sie doch lieber den Rechner benutzen wollen dann geben Sie 'back' ein.\n");
-
-                                    Console.Write("Eingabe:");
-                                    string case1 = Console.ReadLine();
-                                    int info1;
-                                    if (case1 == "1" | case1 == "2" | case1 == "3")
+                                    info1 = int.Parse(case1);
+                                    switch (info1)
                                     {
-                                        info1 = int.Parse(case1);
-                                        switch (info1)
-                                        {
-                                            case 1:
-                                                //Was ist Gravitation
-                                                Console.Clear();
-                                                Console.WriteLine("Was ist die Gravitation überhaupt?\n");
-                                                Console.WriteLine("Die Gravitation, auch Massenanziehung oder Gravitationskraft, ist eine der vier Grundkräfte der Physik.\n" +
-                                                                  " Sie äußert sich in der gegenseitigen Anziehung von Massen. Sie nimmt mit zunehmender Entfernung der Massen ab, besitzt \n" +
-                                                                  "aber unbegrenzte Reichweite. Im Gegensatz zu elektrischen oder magnetischen Kräften lässt sie sich nicht abschirmen.\n");
+                                        case 1:
+                                            //Was ist Gravitation
+                                            Console.Clear();
+                                            Console.WriteLine("Was ist die Gravitation überhaupt?\n");
+                                            Console.WriteLine("Die Gravitation, auch Massenanziehung oder Gravitationskraft, ist eine der vier Grundkräfte der Physik.\n" +
+                                                              " Sie äußert sich in der gegenseitigen Anziehung von Massen. Sie nimmt mit zunehmender Entfernung der Massen ab, besitzt \n" +
+                                                              "aber unbegrenzte Reichweite. Im Gegensatz zu elektrischen oder magnetischen Kräften lässt sie sich nicht abschirmen.\n");
 
-                                                Console.WriteLine("Auf der Erde bewirkt die Gravitation (Erdanziehungskraft), dass alle Körper nach „unten“, d. h. in Richtung Erdmittelpunkt,\n" +
-                                                                  "fallen, sofern sie nicht durch andere Kräfte daran gehindert werden. Im Sonnensystem bestimmt die Gravitation die Bahnen der Planeten, Monde,\n" +
-                                                                  "Satelliten und Kometen und im Kosmos die Bildung von Sternen und Galaxien sowie dessen Entwicklung im Großen.\n");
+                                            Console.WriteLine("Auf der Erde bewirkt die Gravitation (Erdanziehungskraft), dass alle Körper nach „unten“, d. h. in Richtung Erdmittelpunkt,\n" +
+                                                              "fallen, sofern sie nicht durch andere Kräfte daran gehindert werden. Im Sonnensystem bestimmt die Gravitation die Bahnen der Planeten, Monde,\n" +
+                                                              "Satelliten und Kometen und im Kosmos die Bildung von Sternen und Galaxien sowie dessen Entwicklung im Großen.\n");
 
-                                                Console.WriteLine("Gravitation wird oft mit Schwerkraft gleichgesetzt. Allerdings umfasst die vom lokal herrschenden Schwerefeld bestimmte Kraft \n" +
-                                                                  "auf einen Körper nicht nur die Gravitationskraft, sondern auch die auf den Körper wirkenden Trägheitswirkungen.\n");
-                                                Console.WriteLine("Das sind so die wichtigsten Dinge, die man über die Gravitation wissen sollte.\n" +
-                                                                  "Sie werden nun automatisch ins Untermenü Informationen weitergeleitet.");
+                                            Console.WriteLine("Gravitation wird oft mit Schwerkraft gleichgesetzt. Allerdings umfasst die vom lokal herrschenden Schwerefeld bestimmte Kraft \n" +
+                                                              "auf einen Körper nicht nur die Gravitationskraft, sondern auch die auf den Körper wirkenden Trägheitswirkungen.\n");
+                                            Console.WriteLine("Das sind so die wichtigsten Dinge, die man über die Gravitation wissen sollte.\n" +
+                                                              "Sie werden nun automatisch ins Untermenü Informationen weitergeleitet.");
 
-                                                Console.ReadKey();
-                                                break;
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 2:
-                                                //Anziehungskraft unterschiedlicher Planeten im Sonnensystem
-                                                Console.Clear();
-                                                Console.WriteLine("Hier ist die Anziehungskraft der verschiedenen Planeten des Sonnensystems aufgelistet,\n" +
-                                                                  "mit dem Maßstab der Anziehungskraft von der Erde, welche 1 beträgt.\n");
+                                        case 2:
+                                            //Anziehungskraft unterschiedlicher Planeten im Sonnensystem
+                                            Console.Clear();
+                                            Console.WriteLine("Hier ist die Anziehungskraft der verschiedenen Planeten des Sonnensystems aufgelistet,\n" +
+                                                              "mit dem Maßstab der Anziehungskraft von der Erde, welche 1 beträgt.\n");
 
-                                                Console.WriteLine("--------------------------------------");
-                                                Console.WriteLine("-- Anziehungskraft im Sonnensystem  --");
-                                                Console.WriteLine("--------------------------------------");
-                                                Console.WriteLine("--  Merkur        --    0,37        --");
-                                                Console.WriteLine("--  Venus         --    0,90        --");
-                                                Console.WriteLine("--  Mond          --    0,16        --");
-                                                Console.WriteLine("--  Mars          --    0,38        --");
-                                                Console.WriteLine("--  Jupiter       --    2,53        --");
-                                                Console.WriteLine("--  Saturn        --    1,07        --");
-                                                Console.WriteLine("--  Uranus        --    0,91        --");
-                                                Console.WriteLine("--  Neptun        --    1,14        --");
-                                                Console.WriteLine("--  Pluto         --    0,08        --");
-                                                Console.WriteLine("--------------------------------------\n");
+                                            Console.WriteLine("--------------------------------------");
+                                            Console.WriteLine("-- Anziehungskraft im Sonnensystem  --");
+                                            Console.WriteLine("--------------------------------------");
+                                            Console.WriteLine("--  Merkur        --    0,37        --");
+                                            Console.WriteLine("--  Venus         --    0,90        --");
+                                            Console.WriteLine("--  Mond          --    0,16        --");
+                                            Console.WriteLine("--  Mars          --    0,38        --");
+                                            Console.WriteLine("--  Jupiter       --    2,53        --");
+                                            Console.WriteLine("--  Saturn        --    1,07        --");
+                                            Console.WriteLine("--  Uranus        --    0,91        --");
+                                            Console.WriteLine("--  Neptun        --    1,14        --");
+                                            Console.WriteLine("--  Pluto         --    0,08        --");
+                                            Console.WriteLine("--------------------------------------\n");
                                             bool rechnung_abfrage = true;
                                             do
                                             {
@@ -135,6 +136,12 @@ namespace PHKlassenBibliothek
 
                                                     }
                                                 }
+                                                else if (info2 == "exit" | info2 == "Exit")
+                                                {
+                                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                                    Environment.Exit(0);
+                                                }
                                                 else
                                                 {
                                                     //Erneute Eingabeaufforderung, wenn Eingabe nicht 1 oder 2 entspricht.
@@ -144,133 +151,150 @@ namespace PHKlassenBibliothek
                                                         "Um fortzufahren bitte eine der zwei Zahlen eingeben...");
                                                     Console.ReadKey();
                                                 }
-                                            } while (!rechnung_abfrage) ;
+                                            } while (!rechnung_abfrage);
                                             break;
 
-                                            case 3:
-                                                //Schwerelosigkeit = keine Gravitation?
-                                                Console.Clear();
-                                                Console.WriteLine("Schwerelosigkeit = keine Gravitation?\n");
+                                        case 3:
+                                            //Schwerelosigkeit = keine Gravitation?
+                                            Console.Clear();
+                                            Console.WriteLine("Schwerelosigkeit = keine Gravitation?\n");
 
-                                                Console.WriteLine("Was ist Schwerkraft?");
-                                                Console.WriteLine("Jeder Himmelskörper, ob Planet, Mond oder Asteroid, besitzt eine individuelle Anziehungskraft,\n" +
-                                                    " auch speziell Schwerkraft oder allgemein Gravitation genannt, die von der Masse des jeweiligen Körpers abhängig ist. \n" +
-                                                    "Je größer der Himmelskörper, desto größer ist seine Schwerkraft.\n");
+                                            Console.WriteLine("Was ist Schwerkraft?");
+                                            Console.WriteLine("Jeder Himmelskörper, ob Planet, Mond oder Asteroid, besitzt eine individuelle Anziehungskraft,\n" +
+                                                " auch speziell Schwerkraft oder allgemein Gravitation genannt, die von der Masse des jeweiligen Körpers abhängig ist. \n" +
+                                                "Je größer der Himmelskörper, desto größer ist seine Schwerkraft.\n");
 
-                                                Console.WriteLine("Wenn man Schwerelos ist, ist die Gewichtskraft auf einen Körper nicht spürbar. \n" +
-                                                    "Er drückt dann nicht auf eine Unterlage und es besteht Gegenkraftlosigkeit. Der Zustand annähernder Schwerelosigkeit heißt Mikrogravitation. \n" +
-                                                    "Die sogennante Schwerelosigkeit befindet sich im Weltall und beginnt unmittelbar hinter der Grenze zwischen ihm und der Luft. \n" +
-                                                    "Schätzungsweise beginnt dieser Punkt circa 100 Kilometer über der Erdoberfläche.\n");
+                                            Console.WriteLine("Wenn man Schwerelos ist, ist die Gewichtskraft auf einen Körper nicht spürbar. \n" +
+                                                "Er drückt dann nicht auf eine Unterlage und es besteht Gegenkraftlosigkeit. Der Zustand annähernder Schwerelosigkeit heißt Mikrogravitation. \n" +
+                                                "Die sogennante Schwerelosigkeit befindet sich im Weltall und beginnt unmittelbar hinter der Grenze zwischen ihm und der Luft. \n" +
+                                                "Schätzungsweise beginnt dieser Punkt circa 100 Kilometer über der Erdoberfläche.\n");
 
-                                                Console.WriteLine("Zusammengefasst ist also ein Gegenstand, der ungebremst, also ohne Gegenkraft im freien Fall, zu Boden fällt, \n" +
-                                                    "schwerelos, da auf ihn außer der Schwerkraft keine weiteren unmittelbaren Kräfte einwirken. Deswegen kann man schon sagen, \n" +
-                                                    "dass wenn man Schwerelos ist, sich keine Gravitationskraft auf einen auswirkt.\n");
+                                            Console.WriteLine("Zusammengefasst ist also ein Gegenstand, der ungebremst, also ohne Gegenkraft im freien Fall, zu Boden fällt, \n" +
+                                                "schwerelos, da auf ihn außer der Schwerkraft keine weiteren unmittelbaren Kräfte einwirken. Deswegen kann man schon sagen, \n" +
+                                                "dass wenn man Schwerelos ist, sich keine Gravitationskraft auf einen auswirkt.\n");
 
-                                                Console.WriteLine("Das wars, sie werden nun automatisch ins Untermenü Informationen weiter geleitet");
+                                            Console.WriteLine("Das wars, sie werden nun automatisch ins Untermenü Informationen weiter geleitet");
 
-                                                Console.ReadKey();
-                                                break;
-                                        }
+                                            Console.ReadKey();
+                                            break;
                                     }
-                                    else if (case1 == "back")
-                                    {
-                                        //Zurück zum Untermenü Gravitationen
-                                        back = true;
-                                        Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");                                        
-                                        Console.ReadKey();
-                                    }
-                                    else
-                                    {
-                                        //Erneute Eingabeaufforderung, wegen falscher eingabe
-                                        Console.WriteLine($"Falsche Eingabe...\n" +
-                                            $"{case1} ist keine korrekte Eingabe, versuchen Sie es mit den vorgegebenen Zahlen nocheinmal.");
-                                        Console.ReadKey();
-                                    }
-                                } while (!back);
-                                break;
-
-                            case 2:
-                                //Rechner
-                                do
+                                }
+                                else if (case1 == "back")
                                 {
-                                    Console.Clear();
-                                    Console.WriteLine("Wilkommen im Untermenü Rechner\n\n");
+                                    //Zurück zum Untermenü Gravitationen
+                                    back = true;
+                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                    Console.ReadKey();
+                                }
+                                else if (case1 == "exit" | case1 == "Exit")
+                                {
+                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                    Environment.Exit(0);
+                                }
+                                else
+                                {
+                                    //Erneute Eingabeaufforderung, wegen falscher eingabe
+                                    Console.WriteLine($"Falsche Eingabe...\n" +
+                                        $"{case1} ist keine korrekte Eingabe, versuchen Sie es mit den vorgegebenen Zahlen nocheinmal.");
+                                    Console.ReadKey();
+                                }
+                            } while (!back);
+                            break;
 
-                                    Console.WriteLine("[-----------------------------------------------------]");
-                                    Console.WriteLine("|  Hier können Sie folgende Rechnungen durchführen:   |");
-                                    Console.WriteLine("|-----------------------------------------------------|");
-                                    Console.WriteLine("|1. Gravitationskraft zwischen zwei Massen            |");
-                                    Console.WriteLine("|                                                     |");                       //Untermenü Rechner
-                                    Console.WriteLine("|2. Gewichtskraft auf der Erdoberfläche               |");
-                                    Console.WriteLine("|                                                     |");
-                                    Console.WriteLine("|3. Gewicht auf unterschiedlichen Planeten            |");
-                                    Console.WriteLine("|                                                     |");
-                                    Console.WriteLine("[-----------------------------------------------------]\n");
+                        case 2:
+                            //Rechner
+                            do
+                            {
+                                Console.Clear();
+                                Console.WriteLine("Wilkommen im Untermenü Rechner\n\n");
 
-                                    Console.WriteLine("Um das Untermenü Rechner zu verlassen und zurück zum Menü Gravitation zu kommen,\n" +
-                                        "müssen Sie einfach 'back' eingeben.");                                                                         //'back' um das Menü zu verlassen
-                                    Console.WriteLine("---------------------------------------------------------------------------------------");
-                                    string r_eingabe = Console.ReadLine();
+                                Console.WriteLine("[-----------------------------------------------------]");
+                                Console.WriteLine("|  Hier können Sie folgende Rechnungen durchführen:   |");
+                                Console.WriteLine("|-----------------------------------------------------|");
+                                Console.WriteLine("|1. Gravitationskraft zwischen zwei Massen            |");
+                                Console.WriteLine("|                                                     |");                       //Untermenü Rechner
+                                Console.WriteLine("|2. Gewichtskraft auf der Erdoberfläche               |");
+                                Console.WriteLine("|                                                     |");
+                                Console.WriteLine("|3. Gewicht auf unterschiedlichen Planeten            |");
+                                Console.WriteLine("|                                                     |");
+                                Console.WriteLine("[-----------------------------------------------------]\n");
 
-                                    if (r_eingabe == "1" | r_eingabe == "2" | r_eingabe == "3")
+                                Console.WriteLine("Um das Untermenü Rechner zu verlassen und zurück zum Menü Gravitation zu kommen,\n" +
+                                    "müssen Sie einfach 'back' eingeben.");                                                                         //'back' um das Menü zu verlassen
+                                Console.WriteLine("---------------------------------------------------------------------------------------");
+                                string r_eingabe = Console.ReadLine();
+
+                                if (r_eingabe == "1" | r_eingabe == "2" | r_eingabe == "3")
+                                {
+                                    int rzahl_eingabe = int.Parse(r_eingabe);                               //Eingabe gleich Zahl
+                                    bool r_leave = true;
+                                    switch (rzahl_eingabe)
                                     {
-                                        int rzahl_eingabe = int.Parse(r_eingabe);                               //Eingabe gleich Zahl
-                                        bool r_leave = true;
-                                        switch (rzahl_eingabe)
-                                        {
-                                            case 1:
+                                        case 1:
                                             //Gravitationskraft zwischen zwei Massen 
                                             Grafitation_2Massen_Rechner();   //Verweis
-                                                break;
+                                            break;
 
-                                            case 2:
+                                        case 2:
                                             //Gewichtskraft auf der Erdoberfläche
                                             Gewichtskraft_Rechner();        //Verweis
-                                                break;
+                                            break;
 
-                                            case 3:
+                                        case 3:
                                             //Gewicht auf unterschiedlichen Planeten
                                             Anziehungskraft_Rechner();      //Verweis
-                                                break;
-                                        }
+                                            break;
                                     }
-                                    else if (r_eingabe == "back")
-                                    {
-                                        //Zurück ins Untermenü Gravitation!
-                                        Console.WriteLine("Sie werden ins Untermenü Gravitation weitergeleitet...\n" +
-                                            "Tschüss");
-                                        back = true;
-                                        Console.ReadKey();
-                                    }
-                                    else
-                                    {
-                                        //Falsche Eingabe, weil nicht 1, 2, 3 oder back!!!
-                                        Console.WriteLine($"Das geht so leider nicht, {r_eingabe} ist keine gültige Eingabe.\n" +
-                                            $"Bitte versuchen Sie es erneut...");
-                                        Console.ReadKey();
-                                    }
-                                } while (!back);
-                                break;
-                        }
-
-                    }
-                    else if (eingabe_1 == "back")                                                //Back wird in dem Fall genommen, um das Programm zu verallgemeinern.
-                    {
-                        //Zurück ins Untermenü PH
-                        Console.WriteLine("Ich hoffe es hat ihnen gefallen\n" +
-                            "Tschüss");
-                        leave = true;
-                        Console.ReadKey();
+                                }
+                                if (r_eingabe == "back")
+                                {
+                                    //Zurück ins Untermenü Gravitation!
+                                    Console.WriteLine("Sie werden ins Untermenü Gravitation weitergeleitet...\n" +
+                                        "Tschüss");
+                                    back = true;
+                                    Console.ReadKey();
+                                }
+                                else if (r_eingabe == "exit" | r_eingabe == "Exit")
+                                {
+                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                    Environment.Exit(0);
+                                }
+                                else
+                                {
+                                    //Falsche Eingabe, weil nicht 1, 2, 3 oder back!!!
+                                    Console.WriteLine($"Das geht so leider nicht, {r_eingabe} ist keine gültige Eingabe.\n" +
+                                        $"Bitte versuchen Sie es erneut...");
+                                    Console.ReadKey();
+                                }
+                            } while (!back);
+                            break;
                     }
 
-                    else
-                    {
-                        //Erneute Eingabeaufforderung, wegen falscher Eingabe
-                        Console.WriteLine("Eingabe: '" + eingabe_1 + "'");
-                        Console.WriteLine("Falsche Eingabe erkannt.\n" +
-                            "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können\n");
-                        Console.ReadKey();
-                    }
+                }
+                if (eingabe_1 == "back")                                                //Back wird in dem Fall genommen, um das Programm zu verallgemeinern.
+                {
+                    //Zurück ins Untermenü PH
+                    Console.WriteLine("Ich hoffe es hat ihnen gefallen\n" +
+                        "Tschüss");
+                    leave = true;
+                    Console.ReadKey();
+                }
+                else if (eingabe_1 == "exit" | eingabe_1 == "Exit")
+                {
+                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    //Erneute Eingabeaufforderung, wegen falscher Eingabe
+                    Console.WriteLine("Eingabe: '" + eingabe_1 + "'");
+                    Console.WriteLine("Falsche Eingabe erkannt.\n" +
+                        "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können\n");
+                    Console.ReadKey();
+                }
 
             } while (!leave);
         }
@@ -295,6 +319,12 @@ namespace PHKlassenBibliothek
                 if (eingabe == "back")
                 {
                     //Zurück zum Untermenü Rechner:
+                }
+                if (eingabe == "exit" | eingabe == "Exit")
+                {
+                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                    Environment.Exit(0);
                 }
                 else if (eingabe == "weiter")
                 {
@@ -373,6 +403,12 @@ namespace PHKlassenBibliothek
                                                         Console.ReadKey();
                                                     }
                                                 }
+                                                else if (abfrage == "exit" | abfrage == "Exit")
+                                                {
+                                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                                    Environment.Exit(0);
+                                                }
                                                 else
                                                 {
                                                     //Erneute Eingabeaufforderung:
@@ -382,6 +418,12 @@ namespace PHKlassenBibliothek
                                                     Console.ReadKey();
                                                 }
                                             } while (!b_abfrage);
+                                        }
+                                        else if (r == "exit" | r == "Exit")
+                                        {
+                                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                            Environment.Exit(0);
                                         }
                                         else
                                         {
@@ -393,6 +435,12 @@ namespace PHKlassenBibliothek
 
                                     } while (!b_r);
                                 }
+                                else if (m2 == "exit" | m2 == "Exit")
+                                {
+                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                    Environment.Exit(0);
+                                }
                                 else
                                 {
                                     b_m2 = false;
@@ -402,6 +450,12 @@ namespace PHKlassenBibliothek
                                 }
 
                             } while (!b_m2);
+                        }
+                        else if (m1 == "exit" | m1 == "Exit")
+                        {
+                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                            Environment.Exit(0);
                         }
                         else
                         {
@@ -607,6 +661,12 @@ namespace PHKlassenBibliothek
                                                 Console.ReadKey();
                                             }
                                         }
+                                        else if (unterabfrage_eingabe == "exit" | unterabfrage_eingabe == "Exit")
+                                        {
+                                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                            Environment.Exit(0);
+                                        }
                                         else
                                         {
                                             //Falsche Eingabe, erneute Eingabeaufforderung:
@@ -616,6 +676,12 @@ namespace PHKlassenBibliothek
                                             Console.ReadKey();
                                         }
                                     } while (!unterabfrage_schleife);
+                                }
+                                else if (planet1 == "exit" | planet1 == "Exit")
+                                {
+                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                    Environment.Exit(0);
                                 }
                                 else
                                 {
@@ -640,6 +706,12 @@ namespace PHKlassenBibliothek
                             Console.ReadKey();
                         }
                     }
+                    else if (eingabe == "exit" | eingabe == "Exit")
+                    {
+                        //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                        Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                        Environment.Exit(0);
+                    }
                     else
                     {
                         //Falsche Eingabe, weil nicht 1 oder 2. Erneute Eingabeaufforderung:
@@ -649,9 +721,15 @@ namespace PHKlassenBibliothek
                         Console.ReadKey();
                     }
                 }
-                else if (gewicht == "back")
+                if (gewicht == "back")
                 {
                     //Zurück ins Untermenü Rechner
+                }
+                else if (gewicht == "exit" | gewicht == "Exit")
+                {
+                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                    Environment.Exit(0);
                 }
                 else
                 {
