@@ -1,4 +1,4 @@
-﻿using Figgle;
+using Figgle;
 
 namespace WIKlassenBibliothek
 {
@@ -53,7 +53,10 @@ namespace WIKlassenBibliothek
 
                     case "2":
                         Console.Clear();
-                        Feature17.Feature_17();
+
+                        Feature17 rechner = new Feature17();
+                        rechner.Run();                       
+           
                         break;
 
                     case "m":
