@@ -38,7 +38,7 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("4 - Produkte Liste");
                 Console.WriteLine("5 - Programm beenden");
 
-                string antwort = Console.ReadLine();
+                string antwort = kassensystem.GetUserInputWithExitOption("Bitte geben Sie eine Zahl zwischen 1 und 5 ein:");
                 switch (antwort)
                 {
                     case "1":
@@ -53,8 +53,7 @@ namespace WIKlassenBibliothek
                                                        "                              >>> Preis Ändern <<<\n" +
                                                        "------------------------------------------------------------------------------------\n\n");
                         kassensystem.ProdukteAuflisten();
-                        Console.Write("Welches Produkt möchten Sie bearbeiten? (Name eingeben): ");
-                        string produktName = Console.ReadLine();
+                        string produktName = kassensystem.GetUserInputWithExitOption("Welches Produkt möchten Sie bearbeiten? (Name eingeben):");
                         kassensystem.ProduktPreisAendern(produktName);
                         break;
                     case "3":
@@ -64,21 +63,23 @@ namespace WIKlassenBibliothek
                         Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                                        "                              >>> Produkt Löschen <<<\n" +
                                                        "------------------------------------------------------------------------------------\n\n");
-                        Console.Write("Welches Produkt möchten Sie löschen? (Name eingeben): ");
-                        string name = Console.ReadLine();
+                        string name = kassensystem.GetUserInputWithExitOption("Welches Produkt möchten Sie löschen? (Name eingeben):");
                         kassensystem.ProduktLoeschen(name);
                         break;
                     case "4":
                         kassensystem.ProdukteAuflisten();
+                        Console.Clear();
                         break;
                     case "5":
-                        exit = true;
+                        Console.Clear();
+                        WIMenue.WI_Menue();
                         break;
                     default:
                         Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 5 ein.");
                         break;
                 }
             }
+
         }
 
         public class Produkt
@@ -121,6 +122,45 @@ namespace WIKlassenBibliothek
 
         class Kassensystem
         {
+            public string GetUserInputWithExitOption(string prompt)
+            {
+                Console.Write(prompt + " (oder 'exit' zum Beenden, 'menu' für Hauptmenü): ");
+                string input = Console.ReadLine();
+
+                if (input.ToLower() == "exit")
+                {
+                    Console.Clear();
+                    WIMenue.WI_Menue();
+                }
+                else if (input.ToLower() == "menu")
+                {
+                    Console.Clear();
+                    Feature_20();
+                }
+
+                while (string.IsNullOrWhiteSpace(input) || input.ToLower() == "exit" || input.ToLower() == "menu")
+                {
+                    if (input.ToLower() == "exit")
+                    {
+                        Console.Clear();
+                        WIMenue.WI_Menue();
+                    }
+                    else if (input.ToLower() == "menu")
+                    {
+                        Console.Clear();
+                        Feature_20();
+                    }
+                    else
+                    {
+                        Console.Write("Ungültige Eingabe. Bitte geben Sie eine Zeichenkette ein: ");
+                        input = Console.ReadLine();
+                    }
+                }
+
+                return input.Trim();
+            }
+
+
             string header = FiggleFonts.Slant.Render("Wirtschaft");
             public List<Produkt> produkte = new List<Produkt>();
             private List<Quittung> quittungen = new List<Quittung>();
@@ -131,6 +171,9 @@ namespace WIKlassenBibliothek
             {
                 Console.ForegroundColor = color;
             }
+
+
+
 
 
             public void ProduktHinzufuegen()
@@ -150,17 +193,16 @@ namespace WIKlassenBibliothek
                 Console.WriteLine(header);
                 Console.Title = "Kassensystem";
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                                   "                              >>> Produkt Hinzufügen <<<\n" +
-                                                   "------------------------------------------------------------------------------------\n");
-                Console.Write("Name des Produkts: ");
-                string name = Console.ReadLine();
+                                                               "                              >>> Produkt Hinzufügen <<<\n" +
+                                                               "------------------------------------------------------------------------------------\n");
+
+                string name = GetUserInputWithExitOption("Name des Produkts: ");
 
                 double preis;
                 bool preisValid = false;
                 do
                 {
-                    Console.Write("Preis des Produkts: ");
-                    string preisEingabe = Console.ReadLine();
+                    string preisEingabe = GetUserInputWithExitOption("Preis des Produkts: ");
                     preisValid = double.TryParse(preisEingabe, out preis);
                     if (!preisValid)
                     {
@@ -173,19 +215,17 @@ namespace WIKlassenBibliothek
                     }
                 } while (!preisValid);
 
-                Console.Write("Kategorie des Produkts: ");
-                string kategorie = Console.ReadLine();
-
-                Console.Write("Hersteller des Produkts: ");
-                string hersteller = Console.ReadLine();
+                string kategorie = GetUserInputWithExitOption("Kategorie des Produkts: ");
+                string hersteller = GetUserInputWithExitOption("Hersteller des Produkts: ");
 
                 Produkt produkt = new Produkt(name, Convert.ToDecimal(preis), kategorie, hersteller);
                 produkte.Add(produkt);
+                Console.Clear();
                 Console.WriteLine("Produkt wurde hinzugefügt.");
 
                 ProdukteSpeichern();
-
             }
+
 
             public void QuittungErstellen(Produkt produkt)
             {
@@ -197,11 +237,11 @@ namespace WIKlassenBibliothek
                 string dateiName = $"{datum}_{produkt.Name}";
                 int quittungsId = quittungsIdCounter++;
 
-                Directory.CreateDirectory(kategorieOrdnerPfad); // Verzeichnis erstellen, falls es noch nicht existiert
+                Directory.CreateDirectory(kategorieOrdnerPfad);
 
-                Bitmap bmp = new Bitmap(@"C:\Users\Janluca\source\repos\FOI21MultiTool\WIKlassenBibliothek\template\temp.PNG");
+                Bitmap bmp = new Bitmap(@".\..\..\..\..\WIKlassenBibliothek\template\temp.PNG");
                 Graphics g = Graphics.FromImage(bmp);
-                System.Drawing.Font font = new System.Drawing.Font("Bahnschrift SemiBold", 16);
+                System.Drawing.Font font = new System.Drawing.Font("Bahnschrift SemiBold", 16, FontStyle.Bold);
                 //lINKS Breite RECHTS Höhe
                 SolidBrush brush = new SolidBrush(System.Drawing.Color.Black);
                 g.DrawString($"{quittungsId}\n", font, brush, new System.Drawing.PointF(443, 387));
@@ -209,7 +249,7 @@ namespace WIKlassenBibliothek
                 g.DrawString($" {produkt.Preis}€\n", font, brush, new System.Drawing.PointF(140, 538));
                 g.DrawString($" {datum}\n", font, brush, new System.Drawing.PointF(613, 574));
 
-                //Rechts je höher zahl dest mehr runter
+
    
                 string quittungPdfPfad = Path.Combine(kategorieOrdnerPfad, $"{dateiName}.pdf");
                 using (FileStream fs = new FileStream(quittungPdfPfad, FileMode.Create, FileAccess.Write, FileShare.None))
@@ -246,6 +286,8 @@ namespace WIKlassenBibliothek
                 string produktOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Produkte");
                 string produktPfad = Path.Combine(produktOrdnerPfad, "produkte.txt");
 
+
+
                 using (StreamWriter writer = new StreamWriter(produktPfad))
                 {
                     HashSet<string> bereitsGespeicherteProdukte = new HashSet<string>();
@@ -262,9 +304,6 @@ namespace WIKlassenBibliothek
                     }
                 }
             }
-
-
-
 
 
             public void ProduktLoeschen(string name)
@@ -340,36 +379,39 @@ namespace WIKlassenBibliothek
                 }
             }
 
-
-
-
             public void ProduktPreisAendern(string name)
             {
                 Produkt produkt = produkte.Find(p => p.Name == name);
 
                 if (produkt == null)
                 {
+                    Console.Clear();
                     Console.WriteLine("Produkt nicht gefunden.");
                     return;
                 }
 
+                decimal preis;
 
-                Console.Write($"Aktueller Preis von {name}: {produkt.Preis} Euro\n" +
-                              $"Neuer Preis eingeben: ");
-                decimal preis = Convert.ToDecimal(Console.ReadLine());
+                while (true)
+                {
+                    Console.Write($"Aktueller Preis von {name}: {produkt.Preis} Euro\n" +
+                                  $"Neuer Preis eingeben: ");
+                    string input = Console.ReadLine();
+
+                    if (!decimal.TryParse(input, out preis) || preis < 0)
+                    {
+                        Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine positive Zahl ein.");
+                        continue;
+                    }
+
+                    break;
+                }
 
                 produkt.Preis = preis;
+                Console.Clear();
                 Console.WriteLine($"Preis von {name} wurde auf {preis} Euro geändert.");
 
                 ProdukteSpeichern();
-            }
-
-
-
-            static void Main(string[] args)
-            {
-
-
             }
         }
     }
