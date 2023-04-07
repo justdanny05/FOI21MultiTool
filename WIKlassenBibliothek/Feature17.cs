@@ -1,4 +1,4 @@
-﻿using Figgle;
+using Figgle;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design.Serialization;
@@ -10,180 +10,159 @@ namespace WIKlassenBibliothek
 {
     internal class Feature17
     {
-        internal static void Feature_17()
+
+        private string[] namenswert;
+        private double[] zahlenwert;
+        private bool wiederholen;
+
+        private double kalkulatorischeAbschreibung;
+        private double kalkulatorischeZinsen;
+        private double kalkulatoricheMiete;
+        private double versicherungskosten;
+        private double wartungskosten;
+        private double lohnkosten;
+        private double werkzeugkosten;
+
+
+
+
+
+
+        public void Run()
         {
+            Console.WriteLine();
 
+            //ASCII art Logo wird erzeugt.
+            Console.WriteLine
+                (FiggleFonts.Slant.Render("Wirtschaft"));
 
+            //Konsolentitel wird geändert.
+            Console.Title = "Kostenvergleichsrechnung";
 
+            Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                              "                              >>>Kostenvergleichsrechnung<<<\n" +
+                              "------------------------------------------------------------------------------------\n\n");
 
-            //-----------------------------------------------------------------------------
-            //---------------------------Array Tabelle für Namen---------------------------
-            //-----------------------------------------------------------------------------
+            Console.WriteLine("Eingabe: exit\t        ->\tbeendet das Programm");
+            Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
-            string[] namenswert = new string[12];
+            //Beschreibung der Software
+            Console.WriteLine("\n\nWillkommen im Untermenü 'Wirtschaft' hier findest du coole und spannende Tools.\n\n");
 
-            namenswert[0] = "Anschaffungswert (Euro): ";
-            namenswert[1] = "nutzungsdauer (Jahr): ";
-            namenswert[2] = "Restwert (Euro): ";
-            namenswert[3] = "Zinssatz Alternativanlage (Prozent): ";
-            namenswert[4] = "Platzbedarf (mq): ";
-            namenswert[5] = "OrtsüblicheMonatsmiete (Euro/qm): ";
-            namenswert[6] = "max. Produktionskapatität (Stück/Jahr): ";
-            namenswert[7] = "geplante Auslastung (Stück/Jahr): ";
-            namenswert[8] = "Versicherungskosten (Euro/Jahr): ";
-            namenswert[9] = "Wartungskosten (Euro/Jahr): ";
-            namenswert[10] = "Lohnkosten (Euro/Stück): ";
-            namenswert[11] = "Werkzeugkosten: ";
+            namenswert = new string[12] {
+                    "Anschaffungswert (Euro): ",
+                    "nutzungsdauer (Jahr): ",
+                    "Restwert (Euro): ",
+                    "Zinssatz Alternativanlage (Prozent): ",
+                    "Platzbedarf (mq): ",
+                    "OrtsüblicheMonatsmiete (Euro/qm): ",
+                    "max. Produktionskapatität (Stück/Jahr): ",
+                    "geplante Auslastung (Stück/Jahr): ",
+                    "Versicherungskosten (Euro/Jahr): ",
+                    "Wartungskosten (Euro/Jahr): ",
+                    "Lohnkosten (Euro/Stück): ",
+                    "Werkzeugkosten: "};
 
-            //------------------------------------------------------------------------------
-            //--------------------------Array Tabelle für Zahlen----------------------------
-            //------------------------------------------------------------------------------
-            double[] zahlenwert = new double[12];
-            zahlenwert[0] = 0;
-            zahlenwert[1] = 0;
-            zahlenwert[2] = 0;
-            zahlenwert[3] = 0;
-            zahlenwert[4] = 0;
-            zahlenwert[5] = 0;
-            zahlenwert[6] = 0;
-            zahlenwert[7] = 0;
-            zahlenwert[8] = 0;
-            zahlenwert[9] = 0;
-            zahlenwert[10] = 0;
-            zahlenwert[11] = 0;
-
-            //-----------------------------------------------------------------------------
-
-            bool wiederholen = true;
-            bool flag = false;
-
-            //Fixe Kosten------------------------------------------------------------------
-
-            double kalkulatorischeAbschreibung = 0;
-            double kalkulatorischeZinsen = 0;
-            double kalkulatoricheMiete = 0;
-            double versicherungskosten = 0;
-            double wartungskosten = 0;
-
-            double gesamteFixkostenProJahr = 0;
-
-            //Variable Kosten-------------------------------------- -----------------------
-
-            double lohnkosten = 0;
-            double werkzeugkosten = 0;
-
-            double gesamteVariableKostenProJahr = 0;
-
-            double gesamtkostenProJahr = 0;
-
-            //----------------------------------------------------------------------------
-
+            zahlenwert = new double[12];
+            wiederholen = true;
+            string eingabe = "";
 
             while (wiederholen)
             {
                 Console.WriteLine("Füllen Sie bitte aus\n");
 
-
                 for (int i = 0; i < namenswert.Length; i++)
                 {
-                    Console.Write(namenswert[i]);
+                    Console.Write(namenswert[i].PadRight(42)+"|");
 
                     do
                     {
+                        
                         try
                         {
-                            zahlenwert[i] = double.Parse(Console.ReadLine());
-                            flag = true;
+                            eingabe = Console.ReadLine();
+                            zahlenwert[i] = double.Parse(eingabe);
 
                         }
                         catch (System.FormatException e)
                         {
-                            Console.WriteLine("KEINE GANZE ZAHL");
-                            flag = false;
-                        }
+                            if (eingabe == "exit")
+                            {
+                                Environment.Exit(0);
+                            }
+                            else if(eingabe == "subexit")
+                            {
+                                Console.Clear();
+                                return;
 
-                        if (flag == true && zahlenwert[i] <= 0)
+                            }
+
+                            Console.WriteLine("KEINE GANZE ZAHL");
+                            continue;
+                        }
+                        
+                        if (zahlenwert[i] < 0)
                         {
                             Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
-                            flag = false;
+                            continue;
                         }
-                    } while (flag == false);
+                        Console.WriteLine("------------------------------------------");
+                        break;
+                        
 
+                    } while (true);
                 }
 
-                //------------------------------------------------------------------------
-                //                           RECHNUNGSWEGEN
-                //------------------------------------------------------------------------
+                Formeln();
+                Console.WriteLine();
+                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("Gesamtkosten pro Jahr: ".PadRight(42) + "|" + GesamtkostenProJahr());
+                Console.WriteLine("------------------------------------------"); 
+                Console.Write("Wollen Sie den Vorgang wiederholen? (J/N)".PadRight(42) + "|");
 
-                //----------------------------Fixe Kosten--------------------------------- 
-
-                Console.WriteLine("--------------------------------------");
-                Console.WriteLine("Fixe Kosten\n");
-
-                kalkulatorischeAbschreibung = (zahlenwert[0] - zahlenwert[2]) / zahlenwert[1];
-                Console.WriteLine($"kalkuratorische Abschreibung: {kalkulatorischeAbschreibung}");
-
-                kalkulatorischeZinsen = (zahlenwert[0] + zahlenwert[2]) / 2 * zahlenwert[3] / 100;
-                Console.WriteLine($"kalkulatorische Zinsen: {kalkulatorischeZinsen}");
-
-                kalkulatoricheMiete = zahlenwert[4] * zahlenwert[5] * 12;
-                Console.WriteLine($"kalkulatorische Miete: {kalkulatoricheMiete}");
-
-                versicherungskosten = zahlenwert[8];
-                Console.WriteLine($"Versicherungskosten:{versicherungskosten}");
-
-                wartungskosten = zahlenwert[9];
-                Console.WriteLine($"Wartungskosten: {wartungskosten}\n");
-
-                gesamteFixkostenProJahr = kalkulatorischeAbschreibung + kalkulatorischeZinsen + kalkulatoricheMiete + versicherungskosten + wartungskosten;
-                Console.WriteLine($"gesamte Fixkosten pro Jahr: {gesamteFixkostenProJahr}\n");
-
-                //---------------------------Vriable Kosten-------------------------------
-                Console.WriteLine("--------------------------------");
-                Console.WriteLine("Variable Kosten\n");
-
-                lohnkosten = zahlenwert[10] * zahlenwert[7];
-                Console.WriteLine($"Lohnkosten: {lohnkosten}");
-
-                werkzeugkosten = zahlenwert[11] * zahlenwert[7];
-                Console.WriteLine($"Werkzeugkosten: {werkzeugkosten}");
-
-                gesamteVariableKostenProJahr = lohnkosten + werkzeugkosten;
-                Console.WriteLine($"gesamte Variable Kosten: {gesamteVariableKostenProJahr}\n");
-
-                // Gesamtkosten
-                gesamtkostenProJahr = gesamteFixkostenProJahr + gesamteVariableKostenProJahr;
-
-                Console.WriteLine("----------------------------------");
-                Console.WriteLine($"Gesamtkosten pro Jahr: {gesamtkostenProJahr}\n");
-
-                Console.WriteLine("----------------------------------------------------------------");
-
-                //-----------------------------------------------------------------------
-                Console.Write("Möchten Sie das Programm beenden? (true/false)");
-                bool beenden = Convert.ToBoolean(Console.ReadLine());
-
-                if (beenden == true)
+                if (Console.ReadLine().ToUpper() != "J")
                 {
                     wiederholen = false;
                 }
-
-                else
+                else if (eingabe == "N")
                 {
-                    wiederholen = true;
+                    Environment.Exit(0);
                 }
+                else if (eingabe == "subexit")
+                {
+                    Console.Clear();
+                    return;
 
+                }
             }
-
-
-
-
-
-
-
-
-
+        //Bei Subexit ohne anderen Code auszuführen hier hin.
         }
+
+        private void Formeln()
+        {
+            // Fixe Kosten
+            kalkulatorischeAbschreibung = (zahlenwert[0] - zahlenwert[2]) / zahlenwert[1];
+            kalkulatorischeZinsen = (zahlenwert[0] + zahlenwert[2]) / 2 * zahlenwert[3] / 100;
+            kalkulatoricheMiete = zahlenwert[4] * zahlenwert[5] * 12;
+            versicherungskosten = zahlenwert[8];
+            wartungskosten = zahlenwert[9];
+
+            // Variable Kosten
+            lohnkosten = zahlenwert[10] * zahlenwert[7];
+            werkzeugkosten = zahlenwert[11] * zahlenwert[7];
+        }
+
+        private double GesamtkostenProJahr()
+        {
+            double gesamteFixkostenProJahr = kalkulatorischeAbschreibung + kalkulatorischeZinsen + kalkulatoricheMiete + versicherungskosten + wartungskosten;
+            double gesamteVariableKostenProJahr = lohnkosten + werkzeugkosten;
+            return gesamteFixkostenProJahr + gesamteVariableKostenProJahr;
+        }
+
+
+
     }
 }
+
+
 
