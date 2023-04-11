@@ -23,7 +23,7 @@ namespace PHKlassenBibliothek
 
                 Console.WriteLine("Das ist der Themenbereich Gravitation und ihre Kräfte.\n" +
                     "Hier können Sie lernen und oder Rechnungen aus diesem Themenbereich durchführen lassen.\n" +
-                    "Wenn Sie das Programm verlassen wollen, können Sie dies hier jederzeit mit dem Befehl exit tun!\n" +
+                    "Wenn Sie das Programm verlassen wollen, können Sie dies hier jederzeit mit dem Befehl 'exit' tun!\n" +
                     "Viel Spaß :)\n\n");
 
                 Console.WriteLine("Um zurück ins Untermenü Physik zu kommen geben Sie 'back' ein.\n");
@@ -174,6 +174,7 @@ namespace PHKlassenBibliothek
                                                 "dass wenn man Schwerelos ist, sich keine Gravitationskraft auf einen auswirkt.\n");
 
                                             Console.WriteLine("Das wars, sie werden nun automatisch ins Untermenü Informationen weiter geleitet");
+
                                             Console.ReadKey();
                                             break;
                                     }
@@ -269,6 +270,7 @@ namespace PHKlassenBibliothek
                             } while (!back);
                             break;
                     }
+
                 }
                 if (eingabe_1 == "back")                                                //Back wird in dem Fall genommen, um das Programm zu verallgemeinern.
                 {
@@ -290,6 +292,7 @@ namespace PHKlassenBibliothek
                         "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können\n");
                     Console.ReadKey();
                 }
+
             } while (!leave);
         }
 
@@ -313,6 +316,10 @@ namespace PHKlassenBibliothek
                 if (eingabe == "back")
                 {
                     //Zurück zum Untermenü Rechner:
+                }
+                if (eingabe == "exit")
+                {
+                    Programmbeendet();
                 }
                 else if (eingabe == "weiter")
                 {
@@ -882,6 +889,7 @@ namespace PHKlassenBibliothek
                 else if (planet == "exit")
                 {
                     Programmbeendet();
+                    schleife = false;
                 }
                 else
                 {
@@ -927,8 +935,34 @@ namespace PHKlassenBibliothek
         //Eingabe des Benutzers == 'exit'
         internal static void Programmbeendet()
         {
-            Console.WriteLine("Das Programm wurde erfolgreich beendet");
-            Environment.Exit(0);
+            bool schleife = true;
+            do
+            {
+                schleife = true;
+                Console.WriteLine("Wollen Sie das Programm wirklich beenden?\n" +
+               "Ja             \tJ\n" +
+               "Nein           \tN");
+                Console.WriteLine("---------------------------------------------------");
+                Console.WriteLine("");
+                string eingabe = Console.ReadLine();
+                if (eingabe == "J")
+                {
+                    //Programm wird beendet
+                    Console.WriteLine("Das Programm wurde erfolgreich beendet");
+                    Environment.Exit(0);
+                }
+                else if (eingabe == "N")
+                {
+                    //Beenden des Programms wurde abgebrochen.
+                }
+                else
+                {
+                    //Erneute Eingaberaufforderung wegen falscher Eingabe
+                    schleife = false;
+                    Console.WriteLine("'"+eingabe+"' ist eine falsche Eingabe.\n" +
+                        "Erneute Eingabe erforderlich...");
+                }
+            } while (!schleife);
         }
     }
 }
