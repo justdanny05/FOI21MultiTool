@@ -18,24 +18,24 @@ namespace PHKlassenBibliothek
             do
             {
                 bool back = false;
-                    Console.Clear();
-                    Console.Title = "Gravitation\n";
+                Console.Clear();
+                Console.Title = "Gravitation\n";
 
-                    Console.WriteLine("Das ist der Themenbereich Gravitation und ihre Kräfte.\n" +
-                        "Hier können Sie lernen und oder Rechnungen aus diesem Themenbereich durchführen lassen.\n" +
-                        "Wenn Sie das Programm verlassen wollen, können Sie dies hier jederzeit mit dem Befehl exit tun!\n" +
-                        "Viel Spaß :)\n\n");
+                Console.WriteLine("Das ist der Themenbereich Gravitation und ihre Kräfte.\n" +
+                    "Hier können Sie lernen und oder Rechnungen aus diesem Themenbereich durchführen lassen.\n" +
+                    "Wenn Sie das Programm verlassen wollen, können Sie dies hier jederzeit mit dem Befehl exit tun!\n" +
+                    "Viel Spaß :)\n\n");
 
-                    Console.WriteLine("Um zurück ins Untermenü Physik zu kommen geben Sie 'back' ein.\n");
+                Console.WriteLine("Um zurück ins Untermenü Physik zu kommen geben Sie 'back' ein.\n");
 
-                    Console.WriteLine("\tWie wollen Sie fortfahren?\n");
+                Console.WriteLine("\tWie wollen Sie fortfahren?\n");
 
-                    Console.WriteLine("\t1. Informationen");                                                          //Untermenü Gravitation
-                    Console.WriteLine("\t2. Rechner");
-                    Console.WriteLine("\tback. Zurück zum Untermenü Physik");
-                    Console.WriteLine("-------------------------------------------------------------------------");
-                    Console.Write("Geben Sie eine der angegebenen Wahlmöglichkeiten an:");
-                    string eingabe_1 = Console.ReadLine();
+                Console.WriteLine("\t1. Informationen");                                                          //Untermenü Gravitation
+                Console.WriteLine("\t2. Rechner");
+                Console.WriteLine("\tback. Zurück zum Untermenü Physik");
+                Console.WriteLine("-------------------------------------------------------------------------");
+                Console.Write("Geben Sie eine der angegebenen Wahlmöglichkeiten an:");
+                string eingabe_1 = Console.ReadLine();
 
                 if (eingabe_1 == "1" | eingabe_1 == "2")
                 {
@@ -136,11 +136,9 @@ namespace PHKlassenBibliothek
 
                                                     }
                                                 }
-                                                else if (info2 == "exit" | info2 == "Exit")
+                                                else if (info2 == "exit")
                                                 {
-                                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                                    Environment.Exit(0);
+                                                    Programmbeendet();
                                                 }
                                                 else
                                                 {
@@ -186,11 +184,9 @@ namespace PHKlassenBibliothek
                                     Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
                                     Console.ReadKey();
                                 }
-                                else if (case1 == "exit" | case1 == "Exit")
+                                else if (case1 == "exit")
                                 {
-                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                    Environment.Exit(0);
+                                    Programmbeendet();
                                 }
                                 else
                                 {
@@ -255,11 +251,9 @@ namespace PHKlassenBibliothek
                                     back = true;
                                     Console.ReadKey();
                                 }
-                                else if (r_eingabe == "exit" | r_eingabe == "Exit")
+                                else if (r_eingabe == "exit")
                                 {
-                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                    Environment.Exit(0);
+                                    Programmbeendet();
                                 }
                                 else
                                 {
@@ -281,11 +275,9 @@ namespace PHKlassenBibliothek
                     leave = true;
                     Console.ReadKey();
                 }
-                else if (eingabe_1 == "exit" | eingabe_1 == "Exit")
+                else if (eingabe_1 == "exit")
                 {
-                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                    Environment.Exit(0);
+                    Programmbeendet();
                 }
                 else
                 {
@@ -298,7 +290,7 @@ namespace PHKlassenBibliothek
 
             } while (!leave);
         }
-        
+
         //Rechnung 1
         internal static void Grafitation_2Massen_Rechner()
         {
@@ -320,11 +312,9 @@ namespace PHKlassenBibliothek
                 {
                     //Zurück zum Untermenü Rechner:
                 }
-                if (eingabe == "exit" | eingabe == "Exit")
+                if (eingabe == "exit")
                 {
-                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                    Environment.Exit(0);
+                    Programmbeendet();
                 }
                 else if (eingabe == "weiter")
                 {
@@ -369,7 +359,7 @@ namespace PHKlassenBibliothek
                                             double F = G * d_m1 * d_m2 / (d_r * d_r);               // Berechnung der Gravitationskraft in N
 
                                             //Ausgabe des Ergebnis:
-                                            Console.WriteLine($"Die Gravitationskraft zwischen den Massen {m1} kg und {m2} kg bei einem Abstand von {r} m beträgt {F} N (Newton).\n\n");                                                                                                                                    
+                                            Console.WriteLine($"Die Gravitationskraft zwischen den Massen {m1} kg und {m2} kg bei einem Abstand von {r} m beträgt {F} N (Newton).\n\n");
                                             Console.ReadKey();
                                             bool b_abfrage = true;                                  //Für die Abfrage
                                             do
@@ -403,11 +393,9 @@ namespace PHKlassenBibliothek
                                                         Console.ReadKey();
                                                     }
                                                 }
-                                                else if (abfrage == "exit" | abfrage == "Exit")
+                                                else if (abfrage == "exit")
                                                 {
-                                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                                    Environment.Exit(0);
+                                                    Programmbeendet();
                                                 }
                                                 else
                                                 {
@@ -419,11 +407,9 @@ namespace PHKlassenBibliothek
                                                 }
                                             } while (!b_abfrage);
                                         }
-                                        else if (r == "exit" | r == "Exit")
+                                        else if (r == "exit")
                                         {
-                                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                            Environment.Exit(0);
+                                            Programmbeendet();
                                         }
                                         else
                                         {
@@ -435,11 +421,9 @@ namespace PHKlassenBibliothek
 
                                     } while (!b_r);
                                 }
-                                else if (m2 == "exit" | m2 == "Exit")
+                                else if (m2 == "exit")
                                 {
-                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                    Environment.Exit(0);
+                                    Programmbeendet();
                                 }
                                 else
                                 {
@@ -448,14 +432,11 @@ namespace PHKlassenBibliothek
                                     Console.WriteLine("Das geht so leider nicht, geben Sie bitte eine gültige Zahl ein...");
                                     Console.ReadKey();
                                 }
-
                             } while (!b_m2);
                         }
-                        else if (m1 == "exit" | m1 == "Exit")
+                        else if (m1 == "exit")
                         {
-                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                            Environment.Exit(0);
+                            Programmbeendet();
                         }
                         else
                         {
@@ -475,7 +456,7 @@ namespace PHKlassenBibliothek
                 }
             } while (!schleife);
         }
-       
+
         //Rechnung 2
         internal static void Gewichtskraft_Rechner()
         {
@@ -506,7 +487,7 @@ namespace PHKlassenBibliothek
                     Console.WriteLine("\t1) Gewichtskraft auf anderen Planeten im Sonnensystem\n" +
                         "\t2) Zurück ins Untermenü Rechner");
                     string eingabe = Console.ReadLine();
-                    if (eingabe=="1"|eingabe=="2")
+                    if (eingabe == "1" | eingabe == "2")
                     {
                         int i_eingabe;
                         int.TryParse(eingabe, out i_eingabe);
@@ -625,16 +606,17 @@ namespace PHKlassenBibliothek
                                     do
                                     {
                                         unterabfrage_schleife = true;
+                                        Console.Clear();
                                         Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
                                         Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
                                         "\t2. Mit einem anderen Planeten rechnen\n" +
                                         "\t3. Zurück zum Untermenü Rechner\n");
 
                                         Console.WriteLine("---------------------------------------------------------------");
-                                        string unterabfrage_eingabe = Console.ReadLine();                                   
-                                    
-                                        
-                                        if (unterabfrage_eingabe == "1"|unterabfrage_eingabe=="2"|unterabfrage_eingabe=="3")
+                                        string unterabfrage_eingabe = Console.ReadLine();
+
+
+                                        if (unterabfrage_eingabe == "1" | unterabfrage_eingabe == "2" | unterabfrage_eingabe == "3")
                                         {
                                             int i_unterabfrage_eingabe;
                                             int.TryParse(unterabfrage_eingabe, out i_unterabfrage_eingabe);
@@ -661,11 +643,9 @@ namespace PHKlassenBibliothek
                                                 Console.ReadKey();
                                             }
                                         }
-                                        else if (unterabfrage_eingabe == "exit" | unterabfrage_eingabe == "Exit")
+                                        else if (unterabfrage_eingabe == "exit")
                                         {
-                                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                            Environment.Exit(0);
+                                            Programmbeendet();
                                         }
                                         else
                                         {
@@ -677,11 +657,9 @@ namespace PHKlassenBibliothek
                                         }
                                     } while (!unterabfrage_schleife);
                                 }
-                                else if (planet1 == "exit" | planet1 == "Exit")
+                                else if (planet1 == "exit")
                                 {
-                                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                    Environment.Exit(0);
+                                    Programmbeendet();
                                 }
                                 else
                                 {
@@ -691,7 +669,7 @@ namespace PHKlassenBibliothek
                                         $"Das hat nicht geklappt, bitte nocheinmal Versuchen...");
                                     Console.ReadKey();
                                 }
-                            } while (!Sonnensystem_schleife);                            
+                            } while (!Sonnensystem_schleife);
                         }
                         else if (i_eingabe == 2)
                         {
@@ -706,11 +684,9 @@ namespace PHKlassenBibliothek
                             Console.ReadKey();
                         }
                     }
-                    else if (eingabe == "exit" | eingabe == "Exit")
+                    else if (eingabe == "exit")
                     {
-                        //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                        Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                        Environment.Exit(0);
+                        Programmbeendet();
                     }
                     else
                     {
@@ -725,23 +701,21 @@ namespace PHKlassenBibliothek
                 {
                     //Zurück ins Untermenü Rechner
                 }
-                else if (gewicht == "exit" | gewicht == "Exit")
+                else if (gewicht == "exit")
                 {
-                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                    Environment.Exit(0);
+                    Programmbeendet();
                 }
                 else
                 {
                     //Falsche Eingabe, erneute Eingabeaufforderung:
                     schleife = false;
-                    Console.WriteLine("Eingabe: '"+gewicht+"'\n" +
+                    Console.WriteLine("Eingabe: '" + gewicht + "'\n" +
                         "Diese Eingabe ist falsch, versuchen Sie es erneut...");
                     Console.ReadKey();
                 }
             } while (!schleife);
         }
-        
+
         //Rechnung 3
         internal static void Anziehungskraft_Rechner()
         {
@@ -899,18 +873,17 @@ namespace PHKlassenBibliothek
 
                             Console.Write("Geben Sie Ihr Gewicht auf der Erde in Kilogramm ein: ");                                // Gewicht der Person auf der Erde abfragen
                             Erdgewicht = double.Parse(Console.ReadLine());
-                            
+
                             Planetgewicht = Erdgewicht * Planetgrafitation / 9.81;                                                // Berechnung des Gewichts auf dem Planeten
-                            
+
                             Console.WriteLine($"Ihr Gewicht auf diesem Planeten ist {Planetgewicht:F2} Kilogramm.");             // Ergebnis ausgeben
                             Console.ReadKey();
                             break;
                     }
-                    Console.WriteLine("");
-                    Console.WriteLine("Das wars, sie werden jetzt automatisch zum nächsten Untermenü weitergeleitet\n" +
-                        "\n" +
-                        "Viel Spaß :)");
-                    Console.ReadKey();
+                }
+                else if (planet == "exit")
+                {
+                    Programmbeendet();
                 }
                 else
                 {
@@ -923,34 +896,41 @@ namespace PHKlassenBibliothek
                 }
             } while (!schleife);
         }
-        
+
         //Tabelle mit Planeten im Sonnensystem:
         internal static void Sonnensystem_PlanetenListe()
         {
-            Console.Write("Tabelle: ");
+            Console.Write("\tTabelle: ");
             Console.WriteLine($"{"----------------------------------",35}");
             Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
             Console.WriteLine($"{"----------------------------------",44}");
-            Console.WriteLine($"{"-- 1. Sonne                     --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 2. Merkur                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 3. Venus                     --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 4. Mond                      --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 5. Mars                      --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 6. Jupiter                   --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 7. Saturn                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 8. Uranus                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 9. Neptun                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"--10. Pluto                     --",44}");
+            Console.WriteLine($"{"-- 1. Sonne          |  247     --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 2. Merkur         |  0,37    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 3. Venus          |  0,90    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 4. Mond           |  0,16    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 5. Mars           |  0,38    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 6. Jupiter        |  2,53    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 7. Saturn         |  1,07    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 8. Uranus         |  0,91    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 9. Neptun         |  1,14    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"--10. Pluto          |  0,08    --",44}");
             Console.WriteLine($"{"----------------------------------\n",44}");
+        }
+        
+        //Eingabe des Benutzers == 'exit'
+        internal static void Programmbeendet()
+        {
+            Console.WriteLine("Das Programm wurde erfolgreich beendet");
+            Environment.Exit(0);
         }
     }
 }
