@@ -128,6 +128,9 @@ namespace PHKlassenBibliothek
                                                         case 1:
                                                             //Zum Rechner
                                                             Anziehungskraft_Rechner();
+                                                            Console.WriteLine("Das wars Sie werden jetzt automatisch ins Untermenü Informationen weitergeleitet\n" +
+                                                                "Viel Spaß :)");
+                                                            Console.ReadKey();
                                                             break;
 
                                                         case 2:
@@ -240,6 +243,9 @@ namespace PHKlassenBibliothek
                                         case 3:
                                             //Gewicht auf unterschiedlichen Planeten
                                             Anziehungskraft_Rechner();      //Verweis
+                                            Console.WriteLine("Das wars Sie werden jetzt automatisch zum Untermenü Rechner weitergeleitet\n" +
+                                                "Viel Spaß :)");
+                                            Console.ReadKey();
                                             break;
                                     }
                                 }
