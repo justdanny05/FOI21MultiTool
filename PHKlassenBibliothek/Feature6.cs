@@ -320,11 +320,9 @@ namespace PHKlassenBibliothek
                 {
                     //Zurück zum Untermenü Rechner:
                 }
-                if (eingabe == "exit" | eingabe == "Exit")
+                if (eingabe == "exit")
                 {
-                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                    Environment.Exit(0);
+                    Programmbeendet();
                 }
                 else if (eingabe == "weiter")
                 {
@@ -419,11 +417,9 @@ namespace PHKlassenBibliothek
                                                 }
                                             } while (!b_abfrage);
                                         }
-                                        else if (r == "exit" | r == "Exit")
+                                        else if (r == "exit") 
                                         {
-                                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                                            Environment.Exit(0);
+                                            Programmbeendet(); 
                                         }
                                         else
                                         {
@@ -435,7 +431,7 @@ namespace PHKlassenBibliothek
 
                                     } while (!b_r);
                                 }
-                                else if (m2 == "exit" | m2 == "Exit")
+                                else if (m2 == "exit")
                                 {
                                     //Programm wird beendet, weil der Befehl Exit eingegeben wurde
                                     Console.WriteLine("Das Programm wird beendet\nBis bald :)");
@@ -453,9 +449,7 @@ namespace PHKlassenBibliothek
                         }
                         else if (m1 == "exit" | m1 == "Exit")
                         {
-                            //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                            Environment.Exit(0);
+                            Programmbeendet();
                         }
                         else
                         {
@@ -625,6 +619,7 @@ namespace PHKlassenBibliothek
                                     do
                                     {
                                         unterabfrage_schleife = true;
+                                        Console.Clear();
                                         Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
                                         Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
                                         "\t2. Mit einem anderen Planeten rechnen\n" +
@@ -661,10 +656,10 @@ namespace PHKlassenBibliothek
                                                 Console.ReadKey();
                                             }
                                         }
-                                        else if (unterabfrage_eingabe == "exit" | unterabfrage_eingabe == "Exit")
+                                        else if (unterabfrage_eingabe == "exit")
                                         {
                                             //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                            Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                            Console.WriteLine("Das Programm wurde erfolgreich beendet.");
                                             Environment.Exit(0);
                                         }
                                         else
@@ -677,10 +672,10 @@ namespace PHKlassenBibliothek
                                         }
                                     } while (!unterabfrage_schleife);
                                 }
-                                else if (planet1 == "exit" | planet1 == "Exit")
+                                else if (planet1 == "exit")
                                 {
                                     //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                                    Console.WriteLine("Das Programm wurde erfolgreich beendet.");
                                     Environment.Exit(0);
                                 }
                                 else
@@ -706,10 +701,10 @@ namespace PHKlassenBibliothek
                             Console.ReadKey();
                         }
                     }
-                    else if (eingabe == "exit" | eingabe == "Exit")
+                    else if (eingabe == "exit")
                     {
                         //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                        Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                        Console.WriteLine("Das Programm wurde erfolgreich beendet.");
                         Environment.Exit(0);
                     }
                     else
@@ -725,10 +720,10 @@ namespace PHKlassenBibliothek
                 {
                     //Zurück ins Untermenü Rechner
                 }
-                else if (gewicht == "exit" | gewicht == "Exit")
+                else if (gewicht == "exit")
                 {
-                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                    //Programm wird beendet, weil der Befehl exit eingegeben wurde
+                    Console.WriteLine("Das Programm wurde erfolgreich beendet.");
                     Environment.Exit(0);
                 }
                 else
@@ -906,11 +901,11 @@ namespace PHKlassenBibliothek
                             Console.ReadKey();
                             break;
                     }
-                    Console.WriteLine("");
-                    Console.WriteLine("Das wars, sie werden jetzt automatisch zum nächsten Untermenü weitergeleitet\n" +
-                        "\n" +
-                        "Viel Spaß :)");
-                    Console.ReadKey();
+                }
+                else if (planet == "exit")
+                {
+                    Console.WriteLine("Das Programm wurde erfolgreich beendet");
+                    Environment.Exit(0);
                 }
                 else
                 {
@@ -927,29 +922,29 @@ namespace PHKlassenBibliothek
         //Tabelle mit Planeten im Sonnensystem:
         internal static void Sonnensystem_PlanetenListe()
         {
-            Console.Write("Tabelle: ");
+            Console.Write("\tTabelle: ");
             Console.WriteLine($"{"----------------------------------",35}");
             Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
             Console.WriteLine($"{"----------------------------------",44}");
-            Console.WriteLine($"{"-- 1. Sonne                     --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 2. Merkur                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 3. Venus                     --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 4. Mond                      --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 5. Mars                      --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 6. Jupiter                   --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 7. Saturn                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 8. Uranus                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 9. Neptun                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"--10. Pluto                     --",44}");
+            Console.WriteLine($"{"-- 1. Sonne          |  247     --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 2. Merkur         |  0,37    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 3. Venus          |  0,90    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 4. Mond           |  0,16    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 5. Mars           |  0,38    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 6. Jupiter        |  2,53    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 7. Saturn         |  1,07    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 8. Uranus         |  0,91    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"-- 9. Neptun         |  1,14    --",44}");
+            Console.WriteLine($"{"--                   |          --",44}");
+            Console.WriteLine($"{"--10. Pluto          |  0,08    --",44}");
             Console.WriteLine($"{"----------------------------------\n",44}");
         }
     }
