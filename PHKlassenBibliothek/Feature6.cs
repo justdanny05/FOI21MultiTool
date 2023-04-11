@@ -32,7 +32,6 @@ namespace PHKlassenBibliothek
 
                 Console.WriteLine("\t1. Informationen");                                                          //Untermenü Gravitation
                 Console.WriteLine("\t2. Rechner");
-                Console.WriteLine("\tback. Zurück zum Untermenü Physik");
                 Console.WriteLine("-------------------------------------------------------------------------");
                 Console.Write("Geben Sie eine der angegebenen Wahlmöglichkeiten an:");
                 string eingabe_1 = Console.ReadLine();
@@ -175,7 +174,6 @@ namespace PHKlassenBibliothek
                                                 "dass wenn man Schwerelos ist, sich keine Gravitationskraft auf einen auswirkt.\n");
 
                                             Console.WriteLine("Das wars, sie werden nun automatisch ins Untermenü Informationen weiter geleitet");
-
                                             Console.ReadKey();
                                             break;
                                     }
@@ -271,7 +269,6 @@ namespace PHKlassenBibliothek
                             } while (!back);
                             break;
                     }
-
                 }
                 if (eingabe_1 == "back")                                                //Back wird in dem Fall genommen, um das Programm zu verallgemeinern.
                 {
@@ -293,7 +290,6 @@ namespace PHKlassenBibliothek
                         "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können\n");
                     Console.ReadKey();
                 }
-
             } while (!leave);
         }
 
@@ -317,10 +313,6 @@ namespace PHKlassenBibliothek
                 if (eingabe == "back")
                 {
                     //Zurück zum Untermenü Rechner:
-                }
-                if (eingabe == "exit")
-                {
-                    Programmbeendet();
                 }
                 else if (eingabe == "weiter")
                 {
