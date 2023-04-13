@@ -23,30 +23,26 @@ namespace WIKlassenBibliothek
         private double lohnkosten;
         private double werkzeugkosten;
 
-
-
-
-
-
         public void Run()
         {
             Console.WriteLine();
-
+           
             //ASCII art Logo wird erzeugt.
             Console.WriteLine
                 (FiggleFonts.Slant.Render("Wirtschaft"));
-
             //Konsolentitel wird geändert.
             Console.Title = "Kostenvergleichsrechnung";
-
+         
+            Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("------------------------------------------------------------------------------------\n" +
                               "                              >>>Kostenvergleichsrechnung<<<\n" +
                               "------------------------------------------------------------------------------------\n\n");
-
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Eingabe: exit\t        ->\tbeendet das Programm");
             Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
             //Beschreibung der Software
+            Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("\n\nWillkommen im Untermenü 'Wirtschaft' hier findest du coole und spannende Tools.\n\n");
 
             namenswert = new string[12] {
@@ -69,7 +65,10 @@ namespace WIKlassenBibliothek
 
             while (wiederholen)
             {
-                Console.WriteLine("Füllen Sie bitte aus\n");
+                Console.WriteLine("Füllen Sie bitte aus");
+                Console.WriteLine("__________________________________________", Console.ForegroundColor = ConsoleColor.Gray, Console.BackgroundColor = ConsoleColor.Gray);
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Cyan;
 
                 for (int i = 0; i < namenswert.Length; i++)
                 {
@@ -97,13 +96,26 @@ namespace WIKlassenBibliothek
 
                             }
 
-                            Console.WriteLine("KEINE GANZE ZAHL");
+                            (int, int) cPosBM = Console.GetCursorPosition();
+                            Console.Write("KEINE GANZE ZAHL");
+                            Console.ReadKey();
+
+                            (int, int) cPosAM = Console.GetCursorPosition();
+
+                            KonsolenExtrasBibliothek.ConsoleExtras.ClearCurrentConsoleLine(cPosBM.Item2, cPosAM.Item2);
                             continue;
+
                         }
                         
                         if (zahlenwert[i] < 0)
                         {
-                            Console.WriteLine("DIE ZAHL MUSS GRÖßER ALS 0 SEIN");
+                            (int, int) cPosBM = Console.GetCursorPosition();
+                            Console.WriteLine("DIE ZAHL MUSS GRÖßER ODER GLEICH 0 SEIN");
+                            Console.ReadKey();
+
+                            (int, int) cPosAM = Console.GetCursorPosition();
+
+                            KonsolenExtrasBibliothek.ConsoleExtras.ClearCurrentConsoleLine(cPosBM.Item2, cPosAM.Item2);
                             continue;
                         }
                         Console.WriteLine("------------------------------------------");
@@ -114,17 +126,32 @@ namespace WIKlassenBibliothek
                 }
 
                 Formeln();
-                Console.WriteLine();
-                Console.WriteLine("------------------------------------------");
+                Console.WriteLine("__________________________________________", Console.ForegroundColor = ConsoleColor.Gray, Console.BackgroundColor = ConsoleColor.Gray);
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("kalkulatorische Abschreibung: ".PadRight(42) + "|" + kalkulatorischeAbschreibung);
+                Console.WriteLine("kalkulatorische Zinsen: ".PadRight(42) + "|" + kalkulatorischeZinsen);
+                Console.WriteLine("kalkulatorische Miete: ".PadRight(42) + "|" + kalkulatoricheMiete);
+                Console.WriteLine("Lohnksten: ".PadRight(42) + "|" + lohnkosten);
+                Console.WriteLine("Wekzeugkosten: ".PadRight(42) + "|" + werkzeugkosten);
+                Console.WriteLine("__________________________________________", Console.ForegroundColor = ConsoleColor.Gray, Console.BackgroundColor = ConsoleColor.Gray);
+                Console.ResetColor();
+                
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.BackgroundColor = ConsoleColor.DarkRed;
                 Console.WriteLine("Gesamtkosten pro Jahr: ".PadRight(42) + "|" + GesamtkostenProJahr());
-                Console.WriteLine("------------------------------------------"); 
+                
+                Console.WriteLine("__________________________________________", Console.ForegroundColor = ConsoleColor.Gray, Console.BackgroundColor = ConsoleColor.Gray);
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write("Wollen Sie den Vorgang wiederholen? (J/N)".PadRight(42) + "|");
 
-                if (Console.ReadLine().ToUpper() != "J")
+                if (Console.ReadLine().ToUpper() == "J")
                 {
-                    wiederholen = false;
+                    Console.Clear();
+                    Run();
                 }
-                else if (eingabe == "N")
+                else if (Console.ReadLine().ToUpper() == "N")
                 {
                     Environment.Exit(0);
                 }
@@ -159,10 +186,5 @@ namespace WIKlassenBibliothek
             return gesamteFixkostenProJahr + gesamteVariableKostenProJahr;
         }
 
-
-
     }
 }
-
-
-
