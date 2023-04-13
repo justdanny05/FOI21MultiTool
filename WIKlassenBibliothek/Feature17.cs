@@ -43,7 +43,18 @@ namespace WIKlassenBibliothek
 
             //Beschreibung der Software
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("\n\nWillkommen im Untermenü 'Wirtschaft' hier findest du coole und spannende Tools.\n\n");
+            Console.WriteLine("\n\nHerzlich willkommen zu Ihrem neuen Feature!\n\n" +
+                "Wir freuen uns, Ihnen mitteilen zu können, dass unser C#-Programm nun ein neues Tool für\n" +
+                "die Kostenvergleichsrechnung bietet. Mit diesem Feature können Sie als Unternehmen nun\n" +
+                "einfach und effektiv die Gesamtkosten pro Jahr berechnen, indem sowohl fixe als auch\n" +
+                "variable Kosten berücksichtigt werden.\n\n" +
+                "Dieses Feature löst das Problem der Kostenvergleichsrechnung und ermöglicht es Ihnen,\n" +
+                "Ihre Rentabilität zu bewerten und fundierte Entscheidungen zu treffen. Die Berechnungen\n" +
+                "werden anhand Ihrer Eingaben durchgeführt, was die Benutzung noch einfacher und\n" +
+                "zeitsparender macht.\n\n" +
+                "Wir sind davon überzeugt, dass Sie mit diesem neuen Feature Ihre Finanzen noch besser im\n" +
+                "Blick behalten können und somit noch erfolgreicher in Ihrem Unternehmen agieren werden.\n\n" +
+                "Viel Erfolg!\n");
 
             namenswert = new string[12] {
                     "Anschaffungswert (Euro): ",
