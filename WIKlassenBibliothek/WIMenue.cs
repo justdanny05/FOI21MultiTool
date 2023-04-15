@@ -39,7 +39,7 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("Wählen Sie eine der folgenden Tools:\n");
                 Console.WriteLine("\t1 - Währungsrechner");
                 Console.WriteLine("\t2 - Informatik");
-                Console.WriteLine("\tm - Mathematik");
+                Console.WriteLine("\t3 - Zinnsrechner");
                 Console.WriteLine("\tp - Physik");
                 Console.WriteLine("\tw - Wirtschaft\n");
                 Console.Write("Eingabe:");
@@ -56,7 +56,7 @@ namespace WIKlassenBibliothek
                         //Hier das Mathematikmenü aufrufen
                         break;
 
-                    case "m":
+                    case "3":
                         Console.Clear();
                         Feature18.Feature_18();
                         break;
