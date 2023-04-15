@@ -49,17 +49,16 @@ namespace WIKlassenBibliothek
                 {
                     case "1":
                         Console.Clear();
-                        Feature16.Feature_16();
                         break;
 
                     case "i":
                         Console.Clear();
-                        //Hier das Informationstechnikmenü aufrufen
+                        //Hier das Mathematikmenü aufrufen
                         break;
 
                     case "m":
                         Console.Clear();
-                        //Hier das Mathematikmenü aufrufen
+                        Feature18.Feature_18();
                         break;
 
                     case "p":
