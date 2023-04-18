@@ -9,13 +9,17 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-
+using System.Globalization;
+using static iTextSharp.text.pdf.AcroFields;
+using static WIKlassenBibliothek.Feature20;
 
 namespace WIKlassenBibliothek
 {
    internal class Feature20
    {
         private static string benutzerdateiPath1;
+        private static Produkt produkte;
+        private static List<string> warenkorbProdukte;
 
         internal static void Feature_20()
         {
@@ -42,6 +46,29 @@ namespace WIKlassenBibliothek
         string passwortAdmin = "777";
         string rechteadmin = "999";
         string benutzerdateiPfad = Path.Combine(usersOrdnerPfad, "users.txt");
+
+             bool UserHasRole999()
+            {
+                string benutzerName = GetCurrentUserName1();
+                string usersOrdnerPfad = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "Kassensystem", "Users");
+                string benutzerDateiPfad = Path.Combine(usersOrdnerPfad, "users.txt");
+
+                if (!File.Exists(benutzerDateiPfad))
+                {
+                    return false;
+                }
+
+                string[] benutzerListe = File.ReadAllLines(benutzerDateiPfad);
+                foreach (string benutzer in benutzerListe)
+                {
+                    string[] benutzerDaten = benutzer.Split(':');
+                    if (benutzerDaten[0] == benutzerName && benutzerDaten[2] == "999")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
 
 
             string Verschluesseln(string klartext)
@@ -105,7 +132,14 @@ namespace WIKlassenBibliothek
                     Console.Clear();
                     Console.WriteLine($"Willkommen zurück, {benutzerName1}!");
                     Console.WriteLine("Sie wurden automatisch angemeldet, da Sie Autologin aktiviert haben!");
-                    adminoberflaeche();
+                    if (UserHasRole999())
+                    {
+                        adminoberflaeche();
+                    }
+                    else
+                    {
+                        KassensystemBenutzeroberflaeche();
+                    }
                     File.WriteAllText(Path.Combine(usersOrdnerPfad, "loggedin.txt"), benutzerName);
                 }
                 else if (auswahl == "1" && !autologinEnabled)
@@ -198,7 +232,7 @@ namespace WIKlassenBibliothek
                         }
                     }
 
-                    // if the user does not exist, prompt for a password and create a new user
+
                     if (!userExists)
                     {
                         Console.Write("Passwort: ");
@@ -227,9 +261,6 @@ namespace WIKlassenBibliothek
                         }
                     }
                 }
-
-
-
 
 
                 if (auswahl == "3")
@@ -312,7 +343,6 @@ namespace WIKlassenBibliothek
         }
 
 
-
         public static bool IsAutoLoginEnabled()
         {
             string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -385,7 +415,6 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("Auto-Login ist jetzt deaktiviert.");
             }
         }
-
 
 
         public static List<string> BenutzerAuflisten()
@@ -515,7 +544,7 @@ namespace WIKlassenBibliothek
                 {
                     File.WriteAllLines(usersDateiPfad, neueBenutzerdaten);
                     Console.Clear();
-                    Console.WriteLine($"Der Benutzer {benutzername} wurde der Rang Admin hinzugefügt.");
+                    Console.WriteLine($"Der Benutzer {benutzername} wurde dem Rang Admin hinzugefügt.");
                     Kassensystem kassensystem = new Kassensystem();
                     if (kassensystem.UserHasRole999())
                     {
@@ -552,26 +581,31 @@ namespace WIKlassenBibliothek
                             "                              >>> Admin-Kassensystem <<<\n" +
                             "------------------------------------------------------------------------------------\n\n");
             Console.WriteLine("\nWas möchten Sie tun?");
-            Console.WriteLine("1 - Produkt hinzufügen");
-            Console.WriteLine("2 - Produkt Preis ändern");
-            Console.WriteLine("3 - Produkt löschen");
-            Console.WriteLine("4 - Produkte Liste");
-            Console.WriteLine("5 - Automatisch Angemeldet bleiben");
-            Console.WriteLine("6 - Rechte vergeben");
-            Console.WriteLine("7 - Benutzer Abmelden");
-            Console.WriteLine("8 - Programm beenden");
+            Console.WriteLine("1 - Warenkorb anzeigen");
+            Console.WriteLine("2 - Produkt hinzufügen");
+            Console.WriteLine("3 - Produkt Preis ändern");
+            Console.WriteLine("4 - Produkt löschen");
+            Console.WriteLine("5 - Produkte Liste");
+            Console.WriteLine("6 - Automatisch Angemeldet bleiben");
+            Console.WriteLine("7 - Rechte vergeben");
+            Console.WriteLine("8 - Benutzer Abmelden");
+            Console.WriteLine("9 - Programm beenden");
 
             Console.WriteLine("");
 
-            string antwort = kassensystem.GetUserInputWithExitOption("Bitte geben Sie eine Zahl zwischen 1 und 7 ein:");
+            string antwort = kassensystem.GetUserInputWithExitOption("Bitte geben Sie eine Zahl zwischen 1 und 9 ein:");
             switch (antwort)
             {
                 case "1":
-                    kassensystem.ProduktHinzufuegen();
-                    Produkt letztesProdukt = kassensystem.produkte.Last();
-                    kassensystem.QuittungErstellen(letztesProdukt);
+                    Produkt produkt = new Produkt();
+                    kassensystem.ErstelleWarenkorb(produkt);
                     break;
                 case "2":
+                    kassensystem.ProduktHinzufuegen();
+                    Produkt letztesProdukt = kassensystem.produkte.Last();
+                    kassensystem.QuittungErstellen(produkte, warenkorbProdukte);
+                    break;
+                case "3":
                     kassensystem.ProdukteAuflisten();
                     Console.Clear();
                     Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
@@ -581,7 +615,7 @@ namespace WIKlassenBibliothek
                     string produktName = kassensystem.GetUserInputWithExitOption("Welches Produkt möchten Sie bearbeiten? (Name eingeben):");
                     kassensystem.ProduktPreisAendern(produktName);
                     break;
-                case "3":
+                case "4":
                     kassensystem.ProdukteAuflisten();
                     Console.Clear();
                     Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
@@ -591,16 +625,16 @@ namespace WIKlassenBibliothek
                     string name = kassensystem.GetUserInputWithExitOption("Welches Produkt möchten Sie löschen? (Name eingeben):");
                     kassensystem.ProduktLoeschen(name);
                     break;
-                case "4":
+                case "5":
                     kassensystem.ProdukteAuflisten();
                     Console.Clear();
                     adminoberflaeche();
                     break;
-                case "5":
+                case "6":
                     ToggleAutoLogin();
                     adminoberflaeche();
                     break;
-                case "6":
+                case "7":
                     BenutzerZuAdminMachen();
                     if (kassensystem.UserHasRole999())
                     {
@@ -611,17 +645,17 @@ namespace WIKlassenBibliothek
                         KassensystemBenutzeroberflaeche();
                     }
                     break;
-                case "7":
+                case "8":
                     Console.Clear();
                     Console.WriteLine("Sie wurden abgemeldet!");
                     Feature20.Feature_20();
                     break;
-                case "8":
+                case "9":
                     Console.Clear();
                     WIMenue.WI_Menue();
                     break;
                 default:
-                    Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 8 ein.");
+                    Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 9 ein.");
                     break;
             }
         }
@@ -640,19 +674,18 @@ namespace WIKlassenBibliothek
                             "                              >>> Kassensystem <<<\n" +
                             "------------------------------------------------------------------------------------\n\n");
             Console.WriteLine("\nWas möchten Sie tun?");
-            Console.WriteLine("1 - Produkt hinzufügen");
+            Console.WriteLine("1 - Warenkorb anzeigen");
             Console.WriteLine("2 - Produkte Liste");
             Console.WriteLine("3 - Benutzer Abmelden");
             Console.WriteLine("4 - Programm beenden");
             Console.WriteLine("");
 
-            string antwort = kassensystem.GetUserInputWithExitOption("Bitte geben Sie eine Zahl zwischen 1 und 8 ein:");
+            string antwort = kassensystem.GetUserInputWithExitOption("Bitte geben Sie eine Zahl zwischen 1 und 4 ein:");
             switch (antwort)
             {
                 case "1":
-                    kassensystem.ProduktHinzufuegen();
-                    Produkt letztesProdukt = kassensystem.produkte.Last();
-                    kassensystem.QuittungErstellen(letztesProdukt);
+                    Produkt produkt = new Produkt();
+                    kassensystem.ErstelleWarenkorb(produkt);
                     break;
                 case "2":
                     kassensystem.ProdukteAuflisten();
@@ -689,7 +722,12 @@ namespace WIKlassenBibliothek
                 Kategorie = kategorie;
                 Hersteller = hersteller;
             }
+
+            public Produkt()
+            {
+            }
         }
+
 
         public class Quittung
         {
@@ -728,6 +766,299 @@ namespace WIKlassenBibliothek
 
         class Kassensystem
         {
+            public void ErstelleWarenkorb(Produkt produkte)
+            {
+                string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
+                string warenkorbOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Warenkorb");
+                
+
+                string benutzername = File.ReadAllText(Path.Combine(kassensystemOrdnerPfad, "users", "loggedin.txt"));
+                string benutzerWarenkorbPfad = Path.Combine(warenkorbOrdnerPfad, benutzername);
+                string warengekauft = Path.Combine(benutzerWarenkorbPfad, "gekauft");
+                if (!Directory.Exists(benutzerWarenkorbPfad))
+                {
+                    Directory.CreateDirectory(benutzerWarenkorbPfad);
+                }
+                string warenkorbDateiPfad = Path.Combine(benutzerWarenkorbPfad, "warenkorb.txt");
+                if (!File.Exists(warenkorbDateiPfad))
+                {
+                    File.Create(warenkorbDateiPfad).Dispose();
+                }
+                if (!Directory.Exists(warengekauft))
+                {
+                    Directory.CreateDirectory(warengekauft);
+                }
+
+
+                List<string> warenkorbProdukte = File.ReadAllLines(warenkorbDateiPfad).ToList();
+                while (true)
+                {
+                    Console.Clear();
+                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                      "                              >>> Warenkorb <<<\n" +
+                                      "------------------------------------------------------------------------------------\n\n");
+                    if (warenkorbProdukte.Count > 0)
+                    {
+                        Console.WriteLine("In ihrem Warenkorb befinden sich zurzeit:\n");
+                        decimal gesamtsumme = 0;
+                        foreach (var produktString in warenkorbProdukte)
+                        {
+                            var produktTeile = produktString.Split(',');
+                            if (produktTeile.Length >= 2)
+                            {
+                                var name = produktTeile[0];
+                                var preis = decimal.Parse(produktTeile[1]);
+                                var produkt = new Produkt(name, preis, "", "");
+
+                                Console.WriteLine($"- {produkt.Name}: {produkt.Preis.ToString("N2")} Euro");
+                                gesamtsumme += produkt.Preis;
+                            }
+                            else
+                            {
+                                Console.WriteLine($"Ungültiger Produkt-String: {produktString}");
+                            }
+                        }
+
+                        Console.WriteLine($"\nGesamtsumme: {gesamtsumme.ToString("N2")} Euro");
+                    }
+
+
+                    if (warenkorbProdukte.Count == 0)
+                    {
+                        Console.WriteLine("Ihr Warenkorb ist leer.\n");
+                    }
+
+
+                    Console.WriteLine("\nMöchten Sie ein Produkt zum Warenkorb hinzufügen (Ja/Nein)?");
+                    string antwort = Console.ReadLine();
+                    if (antwort.ToLower() == "ja")
+                    {
+                        Console.Clear();
+                        Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                        Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                          "                              >>> Warenkorb <<<\n" +
+                                          "------------------------------------------------------------------------------------\n\n");
+                        Console.WriteLine("Bitte geben Sie den Namen des Produkts ein, das Sie zum Warenkorb hinzufügen möchten:");
+                        string produktNames = Console.ReadLine();
+                        ProduktZumWarenkorbHinzufügen(produktNames);
+                    }
+                    else if (antwort.ToLower() == "nein")
+                    {
+                        Console.WriteLine("\nMöchten Sie zur Kasse gehen? (Ja/Nein)");
+                        string ant = Console.ReadLine();
+                        if (ant.ToLower() == "ja")
+                        {
+                            Console.Clear();
+                            Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                            Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                              "                              >>> Kasse <<<\n" +
+                                              "------------------------------------------------------------------------------------\n\n");
+
+                            Console.WriteLine("Folgende Waren werden zur Kasse gebracht:\n");
+
+                            decimal gesamtsumme = 0;
+                            List<Produkt> produkt = new List<Produkt>();
+                            foreach (var produktString in warenkorbProdukte)
+                            {
+                                var produktTeile = produktString.Split(',');
+                                if (produktTeile.Length >= 2)
+                                {
+                                    var name = produktTeile[0];
+                                    var preis = decimal.Parse(produktTeile[1]);
+                                    var produkts = new Produkt(name, preis, "", "");
+
+                                    Console.WriteLine($"- {produkts.Name}: {produkts.Preis.ToString("N2")} Euro");
+                                    gesamtsumme += produkts.Preis;
+                                    produkt.Add(produkts);
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Ungültiger Produkt-String: {produktString}");
+                                }
+                            }
+
+                            Console.WriteLine($"\nGesamtsumme: {gesamtsumme.ToString("N2")} Euro");
+
+                            Console.WriteLine("\nMöchten Sie eine Quittung erhalten? (ja/nein)");
+                            ant = Console.ReadLine();
+
+                            if (ant.ToLower() == "ja")
+                            {
+                                foreach (Produkt produkttt in produkt)
+                                {
+                                    Console.Clear();
+                                    int anzahlWarenkorbDateien = Directory.GetFiles(warengekauft, "warenkorb*").Length;
+                                    string neueDateiName = "warenkorb" + (anzahlWarenkorbDateien + 1).ToString() + ".txt";
+                                    string neueDateiPfad = Path.Combine(warengekauft, neueDateiName);
+                                    File.Copy(warenkorbDateiPfad, neueDateiPfad);
+                                    File.WriteAllText(warenkorbDateiPfad, string.Empty);
+                                    QuittungErstellen(produkttt, warenkorbProdukte);
+
+                                }
+                            }
+
+                            else if (ant.ToLower() == "nein")
+                            {
+                                Console.Clear();
+                                int anzahlWarenkorbDateien = Directory.GetFiles(warengekauft, "warenkorb*").Length;
+                                string neueDateiName = "warenkorb" + (anzahlWarenkorbDateien + 1).ToString() + ".txt";
+                                string neueDateiPfad = Path.Combine(warengekauft, neueDateiName);
+                                File.Copy(warenkorbDateiPfad, neueDateiPfad);
+                                File.WriteAllText(warenkorbDateiPfad, string.Empty);
+                                Console.WriteLine("Vielen Dank für Ihren Einkauf!");
+                            }
+
+                            if (UserHasRole999())
+                            {
+                                adminoberflaeche();
+                            }
+                            else
+                            {
+                                KassensystemBenutzeroberflaeche();
+                            }
+                            return;
+                        }
+                        else if (ant.ToLower() == "nein")
+                        {
+                            Console.Clear();
+                            Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                            Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                              "                              >>> Kasse <<<\n" +
+                                              "------------------------------------------------------------------------------------\n\n");
+
+                            Console.WriteLine("Folgende Waren sind zur Zeit im Warenkorb:\n");
+
+                            decimal gesamtsumme = 0;
+                            foreach (var produktString in warenkorbProdukte)
+                            {
+                                var produktTeile = produktString.Split(',');
+                                if (produktTeile.Length >= 2)
+                                {
+                                    var name = produktTeile[0];
+                                    var preis = decimal.Parse(produktTeile[1]);
+                                    var produkt = new Produkt(name, preis, "", "");
+
+                                    Console.WriteLine($"- {produkt.Name}: {produkt.Preis.ToString("N2")} Euro");
+                                    gesamtsumme += produkt.Preis;
+                                }
+                                else
+                                {
+                                    Console.WriteLine($"Ungültiger Produkt-String: {produktString}");
+                                }
+                            }
+
+                            Console.WriteLine($"\nGesamtsumme: {gesamtsumme.ToString("N2")} Euro");
+
+                            Console.WriteLine($"\nWollen Sie den Warenkorb verlassen? (Ja/Nein)");
+                            string ant1 = Console.ReadLine();
+
+                            if (ant1.ToLower() == "ja")
+                            {
+                                if (UserHasRole999())
+                                {
+                                    Console.Clear ();
+                                    Console.WriteLine("Sie haben den Warenkorb verlassen");
+                                    adminoberflaeche();
+                                }
+                                else
+                                {
+                                    Console.Clear();
+                                    Console.WriteLine("Sie haben den Warenkorb verlassen");
+                                    KassensystemBenutzeroberflaeche();
+                                }
+
+                            }
+                            else if (ant1.ToLower() == "nein")
+                            {
+                                Console.Clear();
+                                break;
+                            }
+
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                        Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                          "                              >>> Warenkorb <<<\n" +
+                                          "------------------------------------------------------------------------------------\n\n");
+                        Console.WriteLine("Ungültige Eingabe. Bitte geben Sie 'ja' oder 'nein' ein.");
+                        Console.ReadKey();
+                        continue;
+                    }
+                }
+
+            }
+            }
+
+            public void ProduktZumWarenkorbHinzufügen(string produktName)
+            {
+                string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
+                List<Produkt> produkte = ProdukteAusDateiEinlesen();
+                Produkt produkt = produkte.FirstOrDefault(p => p.Name.Equals(produktName, StringComparison.OrdinalIgnoreCase));
+                if (produkt == null)
+                {
+                    Console.WriteLine("Das Produkt wurde nicht gefunden.");
+                    return;
+                }
+                string benutzername = File.ReadAllText(Path.Combine(kassensystemOrdnerPfad, "users", "loggedin.txt"));
+                string warenkorbDateiPfad = Path.Combine(kassensystemOrdnerPfad, "Warenkorb", benutzername, "warenkorb.txt");
+                using (StreamWriter writer = File.AppendText(warenkorbDateiPfad))
+                {
+                    writer.WriteLine($"{produkt.Name},{produkt.Preis}");
+                }
+                List<string> warenkorb = new List<string>(File.ReadAllLines(warenkorbDateiPfad));
+                if (warenkorb.Count == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                    "                              >>> Warenkorb <<<\n" +
+                                    "------------------------------------------------------------------------------------\n\n");
+                    Console.WriteLine($"Das Produkt '{produktName}' wurde zum Warenkorb hinzugefügt, der Warenkorb ist jedoch leer.");
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                    "                              >>> Warenkorb <<<\n" +
+                                    "------------------------------------------------------------------------------------\n\n");
+
+
+                    Console.WriteLine($"Das Produkt '{produktName}' wurde zum Warenkorb hinzugefügt.");
+                    Console.WriteLine("Möchten Sie noch weitere Produkte hinzufügen? (Ja/Nein)");
+                    string antwort = Console.ReadLine();
+                    if (antwort.Equals("ja", StringComparison.OrdinalIgnoreCase))
+                    {
+
+                        Console.WriteLine("Welches Produkt möchten Sie hinzufügen?");
+                        string weiteresProduktName = Console.ReadLine();
+                        ProduktZumWarenkorbHinzufügen(weiteresProduktName);
+                    }
+                    else if (antwort.Equals("nein", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.Clear();
+                        ErstelleWarenkorb(new Produkt());
+                    }
+
+                    else
+                    {
+                        Console.Clear();
+                        Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                        Console.WriteLine("------------------------------------------------------------------------------------\n" +
+                                          "                              >>> Warenkorb <<<\n" +
+                                          "------------------------------------------------------------------------------------\n\n");
+                        Console.WriteLine("Ungültige Eingabe. Bitte geben Sie 'ja' oder 'nein' ein.");
+                        Console.ReadKey();
+                    }
+
+                }
+            }
+
             public string GetUserInputWithExitOption(string prompt)
             {
                 Console.Write(prompt + " (oder 'exit' zum Beenden, 'menu' für Hauptmenü): ");
@@ -741,7 +1072,15 @@ namespace WIKlassenBibliothek
                 else if (input.ToLower() == "menu")
                 {
                     Console.Clear();
-                    Feature_20();
+
+                    if (UserHasRole999())
+                    {
+                        adminoberflaeche();
+                    }
+                    else
+                    {
+                        KassensystemBenutzeroberflaeche();
+                    }
                 }
 
                 while (string.IsNullOrWhiteSpace(input) || input.ToLower() == "exit" || input.ToLower() == "menu")
@@ -754,7 +1093,15 @@ namespace WIKlassenBibliothek
                     else if (input.ToLower() == "menu")
                     {
                         Console.Clear();
-                        Feature_20();
+
+                        if (UserHasRole999())
+                        {
+                            adminoberflaeche();
+                        }
+                        else
+                        {
+                            KassensystemBenutzeroberflaeche();
+                        }
                     }
                     else
                     {
@@ -852,7 +1199,7 @@ namespace WIKlassenBibliothek
                 return false;
             }
 
-            public void QuittungErstellen(Produkt produkt)
+            public void QuittungErstellen(Produkt produkt, List<string> warenkorbProdukte)
             {
                 int quittungsId = GetNextQuittungsID();
 
@@ -902,6 +1249,7 @@ namespace WIKlassenBibliothek
                 File.AppendAllText(kategorieDateiPfad, quittung.ToString() + "\n");
                 Console.WriteLine($"Quittung wird erstellt...");
                 Console.WriteLine($"Quittung erstellt: {dateiPfad}");
+                Console.WriteLine("Vielen Dank für Ihren Einkauf!");
 
                 if (UserHasRole999())
                 {
@@ -920,24 +1268,35 @@ namespace WIKlassenBibliothek
                 string produktOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Produkte");
                 string produktPfad = Path.Combine(produktOrdnerPfad, "produkte.txt");
 
+                List<string> bereitsGespeicherteProdukte = new List<string>();
 
+                if (File.Exists(produktPfad))
+                {
+                    bereitsGespeicherteProdukte = File.ReadAllLines(produktPfad).ToList();
+                }
 
                 using (StreamWriter writer = new StreamWriter(produktPfad))
                 {
-                    HashSet<string> bereitsGespeicherteProdukte = new HashSet<string>();
-
                     foreach (Produkt produkt in produkte)
                     {
                         string produktEintrag = $"{produkt.Name},{produkt.Preis},{produkt.Kategorie},{produkt.Hersteller}";
 
-                        if (!bereitsGespeicherteProdukte.Contains(produktEintrag))
+                        if (bereitsGespeicherteProdukte.Contains(produktEintrag))
                         {
-                            writer.WriteLine(produktEintrag);
-                            bereitsGespeicherteProdukte.Add(produktEintrag);
+                            bereitsGespeicherteProdukte.Remove(produktEintrag);
                         }
+
+                        writer.WriteLine(produktEintrag);
+                    }
+
+                    // Schreibe bereits gespeicherte Produkte am Ende der Datei
+                    foreach (string produktEintrag in bereitsGespeicherteProdukte)
+                    {
+                        writer.WriteLine(produktEintrag);
                     }
                 }
             }
+
 
             public void ProduktLoeschen(string name)
             {
@@ -991,11 +1350,12 @@ namespace WIKlassenBibliothek
                 }
             }
 
-            public void ProdukteAusDateiEinlesen()
+            public List<Produkt> ProdukteAusDateiEinlesen()
             {
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string dateiPfad = Path.Combine(desktopPfad, "Kassensystem", "Produkte", "produkte.txt");
 
+                List<Produkt> produkte = new List<Produkt>();
                 if (File.Exists(dateiPfad))
                 {
                     using (StreamReader reader = new StreamReader(dateiPfad))
@@ -1021,7 +1381,9 @@ namespace WIKlassenBibliothek
                         }
                     }
                 }
+                return produkte;
             }
+
 
             public void ProduktPreisAendern(string name)
             {
@@ -1066,6 +1428,4 @@ namespace WIKlassenBibliothek
         }
     }
 }
-
-
 
