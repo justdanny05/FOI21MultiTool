@@ -48,7 +48,7 @@ namespace ETKlassenBibliothek
 
                 switch (SubAusw)
                 {
-                    case "e":
+                    case "1":
                         Console.Clear();
                         Featue1.Feature1()
                         break;
