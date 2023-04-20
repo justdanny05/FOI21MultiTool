@@ -138,6 +138,12 @@ namespace PHKlassenBibliothek
 
                                                     }
                                                 }
+                                                else if (info2 == "subexit")
+                                                {
+                                                    //Ins Untermenü Gravitation zurück
+                                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                                    Feature_6();
+                                                }
                                                 else if (info2 == "exit")
                                                 {
                                                     Programmbeendet();
@@ -257,6 +263,12 @@ namespace PHKlassenBibliothek
                                         "Tschüss");
                                     exit_untermenü_ReUNDIn = true;
                                     Console.ReadKey();
+                                }
+                                else if (rechner_eingabe == "subexit")
+                                {
+                                    //Ins Untermenü Gravitation zurück
+                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                    Feature_6();
                                 }
                                 else if (rechner_eingabe == "exit")
                                 {
@@ -394,6 +406,12 @@ namespace PHKlassenBibliothek
                                                         Console.ReadKey();
                                                     }
                                                 }
+                                                if (abfrage == "subexit")
+                                                {
+                                                    //Ins Untermenü Gravitation zurück
+                                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                                    Feature_6();
+                                                }
                                                 else if (abfrage == "exit")
                                                 {
                                                     Programmbeendet();
@@ -408,6 +426,12 @@ namespace PHKlassenBibliothek
                                                     Console.ReadKey();
                                                 }
                                             } while (!b_abfrage);
+                                        }
+                                        if (r == "subexit")
+                                        {
+                                            //Ins Untermenü Gravitation zurück
+                                            Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                            Feature_6();
                                         }
                                         else if (r == "exit")
                                         {
@@ -424,6 +448,12 @@ namespace PHKlassenBibliothek
 
                                     } while (!b_r);
                                 }
+                                if (m2 == "subexit")
+                                {
+                                    //Ins Untermenü Gravitation zurück
+                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                    Feature_6();
+                                }
                                 else if (m2 == "exit")
                                 {
                                     Programmbeendet();
@@ -437,6 +467,12 @@ namespace PHKlassenBibliothek
                                     Console.ReadKey();
                                 }
                             } while (!b_m2);
+                        }
+                        if (m1 == "subexit")
+                        {
+                            //Ins Untermenü Gravitation zurück
+                            Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                            Feature_6();
                         }
                         else if (m1 == "exit")
                         {
@@ -452,13 +488,24 @@ namespace PHKlassenBibliothek
                         }
                     } while (!b_m1);
                 }
+                if (eingabe == "subexit")
+                {
+                    //Ins Untermenü Gravitation zurück
+                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                    Feature_6();
+                }
+                else if (eingabe == "exit")
+                {
+                    Programmbeendet();
+                    schleife = false;                       //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
+                }
                 else
                 {
                     //Falsche Eingabe, erneute Eingabeaufforderung:
                     schleife = false;
                     Console.WriteLine("Das war nicht korrekt '" + eingabe + "' ist nicht gültig.\nVersuchen Sie es nocheinmal...");
                     Console.ReadKey();
-                }
+                }                
             } while (!schleife);
         }
 
@@ -654,6 +701,12 @@ namespace PHKlassenBibliothek
                                                     Console.ReadKey();
                                                 }
                                             }
+                                            else if (unterabfrage_eingabe == "subexit")
+                                            {
+                                                //Ins Untermenü Gravitation zurück
+                                                Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                                Feature_6();
+                                            }
                                             else if (unterabfrage_eingabe == "exit")
                                             {
                                                 Programmbeendet();
@@ -668,6 +721,12 @@ namespace PHKlassenBibliothek
                                                 Console.ReadKey();
                                             }
                                         } while (!unterabfrage_schleife);
+                                    }
+                                    else if (planet1 == "subexit")
+                                    {
+                                        //Ins Untermenü Gravitation zurück
+                                        Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                        Feature_6();
                                     }
                                     else if (planet1 == "exit")
                                     {
@@ -697,6 +756,12 @@ namespace PHKlassenBibliothek
                                 Console.ReadKey();
                             }
                         }
+                        else if (eingabe == "subexit")
+                        {
+                            //Ins Untermenü Gravitation zurück
+                            Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                            Feature_6();
+                        }
                         else if (eingabe == "exit")
                         {
                             Programmbeendet();
@@ -715,6 +780,12 @@ namespace PHKlassenBibliothek
                 if (gewicht == "back")
                 {
                     //Zurück ins Untermenü Rechner
+                }
+                else if (gewicht == "subexit")
+                {
+                    //Ins Untermenü Gravitation zurück
+                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                    Feature_6();
                 }
                 else if (gewicht == "exit")
                 {
@@ -896,6 +967,12 @@ namespace PHKlassenBibliothek
                             Console.ReadKey();
                             break;
                     }
+                }
+                else if (planet == "subexit")
+                {
+                    //Ins Untermenü Gravitation zurück
+                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                    Feature_6();
                 }
                 else if (planet == "exit")
                 {
