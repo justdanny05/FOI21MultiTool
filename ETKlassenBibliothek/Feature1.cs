@@ -1,9 +1,7 @@
-﻿using System;
-
-public class Feature1
+﻿namespace MAKlassenBibliothek
 {
-	public Feature1()
-	{
+    internal class Feature1
+    {
         internal static void Feature_1()
         {
             Console.WriteLine("Test Feature 1");
