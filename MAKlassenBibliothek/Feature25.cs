@@ -258,7 +258,7 @@ namespace MAKlassenBibliothek
                 case 12:
 
                     Console.WriteLine("Berechnung des Kegels");
-
+                    Console.WriteLine("-----------------");
                     Console.Write("Radius des Kegels: ");
                     double radius_ke = Convert.ToDouble(Console.ReadLine());
 
