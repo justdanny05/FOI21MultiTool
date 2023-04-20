@@ -6,12 +6,7 @@ using System.Threading.Tasks;
 
 namespace WIKlassenBibliothek
 {
-    internal class Feature16
+    internal class Feature19
     {
-        internal static void Feature_16()
-        {
-            Console.Clear();
-            Console.WriteLine("TEST");
-        }
     }
 }
