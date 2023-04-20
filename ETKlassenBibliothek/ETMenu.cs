@@ -1,4 +1,5 @@
 ﻿using Figgle;
+using Feature1;
 
 
 namespace ETKlassenBibliothek
@@ -49,7 +50,7 @@ namespace ETKlassenBibliothek
                 {
                     case "e":
                         Console.Clear();
-                        //Hier das Etechnikmenü aufrufen
+                        Featue1.Feature1()
                         break;
 
                     case "i":
