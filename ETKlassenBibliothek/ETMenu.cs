@@ -1,5 +1,4 @@
 ﻿using Figgle;
-using Feature1;
 
 
 namespace ETKlassenBibliothek
