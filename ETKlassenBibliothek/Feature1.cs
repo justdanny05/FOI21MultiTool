@@ -1,4 +1,4 @@
-﻿namespace MAKlassenBibliothek
+﻿namespace ETKlassenBibliothek
 {
     internal class Feature1
     {
