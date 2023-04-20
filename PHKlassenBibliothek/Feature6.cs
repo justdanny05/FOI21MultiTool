@@ -459,11 +459,6 @@ namespace PHKlassenBibliothek
                     Console.WriteLine("Das war nicht korrekt '" + eingabe + "' ist nicht gültig.\nVersuchen Sie es nocheinmal...");
                     Console.ReadKey();
                 }
-                if (eingabe == "exit")
-                {
-                    Programmbeendet();
-                    schleife = false;                       //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
-                }
             } while (!schleife);
         }
 
