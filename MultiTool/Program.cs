@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 //Die Größe des Konsolenfensters wird an den Bildschirm angepasst.
-Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+// Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight); need to remove the comment when working normally in visual studio and not in github codespaces
 
 //Schriftfarbe wird auf Grün gesetzt.
 Console.ForegroundColor = ConsoleColor.Green;
@@ -15,6 +15,8 @@ Init();
 void Init()
 {
     bool exitGenerator = false;
+    int passwordLength = 6;
+    bool specialCharactersSelected = false;
 
     do
     {
@@ -26,12 +28,11 @@ void Init()
 
         string selectedMenu = "";
         string generatedPassword = "";
-        int passwordLength = 6;
 
         Console.Write("Input: ");
 
         selectedMenu = Console.ReadLine().ToLower();
-
+        
         switch (selectedMenu)
         {
             case "1":
@@ -56,6 +57,22 @@ void Init()
                     Console.Clear();
                 }
 
+
+                break;
+            case "2":
+                Console.Clear();
+
+                specialCharactersSelected = !specialCharactersSelected;
+
+                if (specialCharactersSelected) {
+                    Console.WriteLine("Now using special characters. ");
+                    Console.ReadKey();
+                    Console.Clear();
+                } else {
+                    Console.WriteLine("Special characters have been turned off.");
+                    Console.ReadKey();
+                    Console.Clear();
+                }
 
                 break;
             default:
