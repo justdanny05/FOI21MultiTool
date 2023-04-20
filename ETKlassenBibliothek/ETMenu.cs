@@ -35,12 +35,12 @@ namespace ETKlassenBibliothek
 
 
                 //Eingabeaufforderung 
-                Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
-                Console.WriteLine("\te - Elektrotechnik");
-                Console.WriteLine("\ti - Informatik");
-                Console.WriteLine("\tm - Mathematik");
-                Console.WriteLine("\tp - Physik");
-                Console.WriteLine("\tw - Wirtschaft\n");
+                Console.WriteLine("Wählen Sie eines der folgenden Features:\n");
+                Console.WriteLine("\t1 - Voltage, Current, Resistance Calculator");
+                Console.WriteLine("\t2 - Spannungsfallberechner");
+                Console.WriteLine("\t3 - Mathematik");
+                Console.WriteLine("\t4 - Physik");
+                Console.WriteLine("\t5 - Wirtschaft\n");
                 int LOL = Console.CursorTop;
                 Console.Write("Eingabe:");
                 SubAusw = Console.ReadLine().ToLower();
