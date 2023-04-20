@@ -14,10 +14,10 @@ namespace PHKlassenBibliothek
         //Untermenü Gravitation-Feature_6
         internal static void Feature_6()
         {
-            bool leave = false;
+            bool exit_gravitation = false;
             do
             {
-                bool back = false;
+                bool exit_untermenü_ReUNDIn = false;
                 Console.Clear();
                 Console.Title = "Gravitation\n";
 
@@ -106,10 +106,10 @@ namespace PHKlassenBibliothek
                                             Console.WriteLine("--  Neptun        --    1,14        --");
                                             Console.WriteLine("--  Pluto         --    0,08        --");
                                             Console.WriteLine("--------------------------------------\n");
-                                            bool rechnung_abfrage = true;
+                                            bool rechnung2_abfrage = true;
                                             do
                                             {
-                                                rechnung_abfrage = true;
+                                                rechnung2_abfrage = true;
                                                 Console.WriteLine("Wenn Sie jetzt noch wissen wollen, wieviel Sie Wiegen würden, wenn Sie auf einem dieser Planeten auf einer Waage stehen würden,\n" +
                                                               " dann tippen Sie die eins und wenn Sie zurück ins Untermenü Info wollen, dann geben Sie die zwei ein.\n");
 
@@ -141,17 +141,18 @@ namespace PHKlassenBibliothek
                                                 else if (info2 == "exit")
                                                 {
                                                     Programmbeendet();
+                                                    rechnung2_abfrage = false;           //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.    
                                                 }
                                                 else
                                                 {
                                                     //Erneute Eingabeaufforderung, wenn Eingabe nicht 1 oder 2 entspricht.
-                                                    rechnung_abfrage = false;
+                                                    rechnung2_abfrage = false;
                                                     Console.WriteLine("Das gehts so leider nicht\n" +
                                                         "" + info2 + " ist keine gültige Eingabe.\n" +
                                                         "Um fortzufahren bitte eine der zwei Zahlen eingeben...");
                                                     Console.ReadKey();
                                                 }
-                                            } while (!rechnung_abfrage);
+                                            } while (!rechnung2_abfrage);
                                             break;
 
                                         case 3:
@@ -174,7 +175,6 @@ namespace PHKlassenBibliothek
                                                 "dass wenn man Schwerelos ist, sich keine Gravitationskraft auf einen auswirkt.\n");
 
                                             Console.WriteLine("Das wars, sie werden nun automatisch ins Untermenü Informationen weiter geleitet");
-
                                             Console.ReadKey();
                                             break;
                                     }
@@ -182,13 +182,13 @@ namespace PHKlassenBibliothek
                                 else if (case1 == "back")
                                 {
                                     //Zurück zum Untermenü Gravitationen
-                                    back = true;
+                                    exit_untermenü_ReUNDIn = true;
                                     Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
                                     Console.ReadKey();
                                 }
                                 else if (case1 == "exit")
                                 {
-                                    Programmbeendet();
+                                    Programmbeendet();                  //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                                 }
                                 else
                                 {
@@ -197,7 +197,7 @@ namespace PHKlassenBibliothek
                                         $"{case1} ist keine korrekte Eingabe, versuchen Sie es mit den vorgegebenen Zahlen nocheinmal.");
                                     Console.ReadKey();
                                 }
-                            } while (!back);
+                            } while (!exit_untermenü_ReUNDIn);
                             break;
 
                         case 2:
@@ -221,79 +221,79 @@ namespace PHKlassenBibliothek
                                 Console.WriteLine("Um das Untermenü Rechner zu verlassen und zurück zum Menü Gravitation zu kommen,\n" +
                                     "müssen Sie einfach 'back' eingeben.");                                                                         //'back' um das Menü zu verlassen
                                 Console.WriteLine("---------------------------------------------------------------------------------------");
-                                string r_eingabe = Console.ReadLine();
+                                string rechner_eingabe = Console.ReadLine();
 
-                                if (r_eingabe == "1" | r_eingabe == "2" | r_eingabe == "3")
+                                if (rechner_eingabe == "1" | rechner_eingabe == "2" | rechner_eingabe == "3")
                                 {
-                                    int rzahl_eingabe = int.Parse(r_eingabe);                               //Eingabe gleich Zahl
-                                    bool r_leave = true;
-                                    switch (rzahl_eingabe)
+                                    int rechner_zahl_eingabe = int.Parse(rechner_eingabe);                               //Eingabe gleich Zahl
+                                    switch (rechner_zahl_eingabe)
                                     {
                                         case 1:
+                                            Console.Clear();
                                             //Gravitationskraft zwischen zwei Massen 
-                                            Grafitation_2Massen_Rechner();   //Verweis
+                                            Grafitation_2Massen_Rechner();               //Verweis
                                             break;
 
                                         case 2:
+                                            Console.Clear();
                                             //Gewichtskraft auf der Erdoberfläche
-                                            Gewichtskraft_Rechner();        //Verweis
+                                            Gewichtskraft_Rechner();                    //Verweis
                                             break;
 
                                         case 3:
+                                            Console.Clear();
                                             //Gewicht auf unterschiedlichen Planeten
-                                            Anziehungskraft_Rechner();      //Verweis
-                                            Console.WriteLine("Das wars Sie werden jetzt automatisch zum Untermenü Rechner weitergeleitet\n" +
+                                            Anziehungskraft_Rechner();                  //Verweis
+                                            Console.WriteLine("Das wars Sie werden jetzt automatisch zum Untermenü Rechner weitergeleitet.\n" +
                                                 "Viel Spaß :)");
                                             Console.ReadKey();
                                             break;
                                     }
                                 }
-                                if (r_eingabe == "back")
+                                if (rechner_eingabe == "back")
                                 {
                                     //Zurück ins Untermenü Gravitation!
-                                    Console.WriteLine("Sie werden ins Untermenü Gravitation weitergeleitet...\n" +
+                                    Console.WriteLine("Sie werden ins Untermenü Gravitation weitergeleitet.\n" +
                                         "Tschüss");
-                                    back = true;
+                                    exit_untermenü_ReUNDIn = true;
                                     Console.ReadKey();
                                 }
-                                else if (r_eingabe == "exit")
+                                else if (rechner_eingabe == "exit")
                                 {
-                                    Programmbeendet();
+                                    Programmbeendet();                  //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                                 }
                                 else
                                 {
                                     //Falsche Eingabe, weil nicht 1, 2, 3 oder back!!!
-                                    Console.WriteLine($"Das geht so leider nicht, {r_eingabe} ist keine gültige Eingabe.\n" +
-                                        $"Bitte versuchen Sie es erneut...");
+                                    Console.WriteLine($"Das geht so leider nicht, {rechner_eingabe} ist keine gültige Eingabe.\n" +
+                                        $"Bitte versuchen Sie es erneut.");
                                     Console.ReadKey();
                                 }
-                            } while (!back);
+                            } while (!exit_untermenü_ReUNDIn);
                             break;
                     }
-
                 }
                 if (eingabe_1 == "back")                                                //Back wird in dem Fall genommen, um das Programm zu verallgemeinern.
                 {
                     //Zurück ins Untermenü PH
-                    Console.WriteLine("Ich hoffe es hat ihnen gefallen\n" +
+                    Console.WriteLine("Ich hoffe es hat ihnen gefallen.\n" +
                         "Tschüss");
-                    leave = true;
+                    exit_gravitation = true;
                     Console.ReadKey();
                 }
                 else if (eingabe_1 == "exit")
                 {
-                    Programmbeendet();
+                    Programmbeendet();                  //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                 }
                 else
                 {
                     //Erneute Eingabeaufforderung, wegen falscher Eingabe
                     Console.WriteLine("Eingabe: '" + eingabe_1 + "'");
                     Console.WriteLine("Falsche Eingabe erkannt.\n" +
-                        "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können\n");
+                        "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können.\n");
                     Console.ReadKey();
                 }
-
-            } while (!leave);
+            } while (!exit_gravitation);
         }
 
         //Rechnung 1
@@ -316,10 +316,6 @@ namespace PHKlassenBibliothek
                 if (eingabe == "back")
                 {
                     //Zurück zum Untermenü Rechner:
-                }
-                if (eingabe == "exit")
-                {
-                    Programmbeendet();
                 }
                 else if (eingabe == "weiter")
                 {
@@ -393,14 +389,15 @@ namespace PHKlassenBibliothek
                                                     {
                                                         //Erneute Eingabeaufforderung:
                                                         b_abfrage = false;
-                                                        Console.WriteLine("'" + i_abfrage + "' ist eine falsche Eingabe...\n" +
-                                                            "Versuchen Sie es erneut, mit den Zahlen 1 und 2");
+                                                        Console.WriteLine("'" + i_abfrage + "' ist keine gültige Zahl.\n" +
+                                                            "Versuchen Sie es erneut, mit den Zahlen 1 oder 2");
                                                         Console.ReadKey();
                                                     }
                                                 }
                                                 else if (abfrage == "exit")
                                                 {
                                                     Programmbeendet();
+                                                    b_abfrage = false;                      //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                                                 }
                                                 else
                                                 {
@@ -415,6 +412,7 @@ namespace PHKlassenBibliothek
                                         else if (r == "exit")
                                         {
                                             Programmbeendet();
+                                            b_r = false;                //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                                         }
                                         else
                                         {
@@ -429,6 +427,7 @@ namespace PHKlassenBibliothek
                                 else if (m2 == "exit")
                                 {
                                     Programmbeendet();
+                                    b_m2 = false;                   //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                                 }
                                 else
                                 {
@@ -442,6 +441,7 @@ namespace PHKlassenBibliothek
                         else if (m1 == "exit")
                         {
                             Programmbeendet();
+                            b_m1 = false;                   //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                         }
                         else
                         {
@@ -458,6 +458,11 @@ namespace PHKlassenBibliothek
                     schleife = false;
                     Console.WriteLine("Das war nicht korrekt '" + eingabe + "' ist nicht gültig.\nVersuchen Sie es nocheinmal...");
                     Console.ReadKey();
+                }
+                if (eingabe == "exit")
+                {
+                    Programmbeendet();
+                    schleife = false;                       //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                 }
             } while (!schleife);
         }
@@ -480,227 +485,237 @@ namespace PHKlassenBibliothek
                 double d_gewicht;
                 if (double.TryParse(gewicht, out d_gewicht))
                 {
-                    //Rechnung durchführen
-                    double erdbeschleunigung = 9.81;                                    // Erdbeschleunigung in m/s^2
-
-                    double gewichtskraft = d_gewicht * erdbeschleunigung;               //Rechnung
-
-                    Console.WriteLine($"Die Gewichtskraft beträgt {gewichtskraft} N(Newton).");
-                    Console.ReadKey();
-
-                    Console.WriteLine("Wenn Sie wollen, können Sie jetzt noch die Gewichtskraft auf anderen Planeten in unserem Sonnensystem errechnen.");
-                    Console.WriteLine("\t1) Gewichtskraft auf anderen Planeten im Sonnensystem\n" +
-                        "\t2) Zurück ins Untermenü Rechner");
-                    string eingabe = Console.ReadLine();
-                    if (eingabe == "1" | eingabe == "2")
+                    bool schleife_exit = true;
+                    do
                     {
-                        int i_eingabe;
-                        int.TryParse(eingabe, out i_eingabe);
-                        if (i_eingabe == 1)
+                        //Rechnung durchführen
+                        schleife_exit = true;
+
+                        double erdbeschleunigung = 9.81;                                    // Erdbeschleunigung in m/s^2
+
+                        double gewichtskraft = d_gewicht * erdbeschleunigung;               //Rechnung
+
+                        Console.WriteLine($"Die Gewichtskraft beträgt {gewichtskraft} N(Newton).");
+                        Console.ReadKey();
+
+                        Console.WriteLine("Wenn Sie wollen, können Sie jetzt noch die Gewichtskraft auf anderen Planeten in unserem Sonnensystem errechnen.");
+                        Console.WriteLine("\t1) Gewichtskraft auf anderen Planeten im Sonnensystem\n" +
+                            "\t2) Zurück ins Untermenü Rechner");
+                        string eingabe = Console.ReadLine();
+                        if (eingabe == "1" | eingabe == "2")
                         {
-                            //Rechnung mit Planeten aus dem Sonnensystem:
-                            bool Sonnensystem_schleife = true;
-                            do
+                            int i_eingabe;
+                            int.TryParse(eingabe, out i_eingabe);
+                            if (i_eingabe == 1)
                             {
-                                Sonnensystem_schleife = true;
-                                Console.WriteLine("\t1) Gewichtskraft auf anderen Planeten im Sonnensystem\n");
-
-                                Sonnensystem_PlanetenListe();
-                                Console.WriteLine("");
-                                Console.WriteLine("Wählen Sie einen Planeten aus, mit dem Sie rechnen wollen.");
-                                string planet1 = Console.ReadLine();
-                                if (planet1 == "1" | planet1 == "2" | planet1 == "3" | planet1 == "4" | planet1 == "5" | planet1 == "6" | planet1 == "7" | planet1 == "8" | planet1 == "9" | planet1 == "10")
+                                //Rechnung mit Planeten aus dem Sonnensystem:
+                                bool Sonnensystem_schleife = true;
+                                do
                                 {
-                                    int i_planet1;
-                                    double planetbeschleunigung;
-                                    double s_gewichtskraft1;
-                                    int.TryParse(planet1, out i_planet1);
-                                    switch (i_planet1)
+                                    Sonnensystem_schleife = true;
+                                    Console.Clear();
+                                    Console.WriteLine("\t1) Gewichtskraft auf anderen Planeten im Sonnensystem\n");
+
+                                    Sonnensystem_PlanetenListe();
+                                    Console.WriteLine("");
+                                    Console.WriteLine("Wählen Sie einen Planeten aus, mit dem Sie rechnen wollen.");
+                                    string planet1 = Console.ReadLine();
+                                    if (planet1 == "1" | planet1 == "2" | planet1 == "3" | planet1 == "4" | planet1 == "5" | planet1 == "6" | planet1 == "7" | planet1 == "8" | planet1 == "9" | planet1 == "10")
                                     {
-                                        case 1:
-                                            //Sonne 247
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 247;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf der Sonne, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 2:
-                                            //Merkur 3.7
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 3.7;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Merkur, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 3:
-                                            //Venus 8.87
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 8.87;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf der Venus, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 4:
-                                            //Mond 1.62
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 1.62;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Mond, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 5:
-                                            //Mars 3.721
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 3.721;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Mars, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 6:
-                                            //Jupiter 24.79
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 24.79;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Jupiter, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 7:
-                                            //Saturn 10.44
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 10.44;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Saturn, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 8:
-                                            //Uranus 8.87
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 8.87;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Uranus beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 9:
-                                            //Neptun 11.15
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 11.15;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Neptun beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-
-                                        case 10:
-                                            //Pluto 0.62
-                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                            planetbeschleunigung = 0.62;
-                                            s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                            Console.WriteLine($"Die Gewichtskraft, auf dem Zwergplaneten Pluto, beträgt {s_gewichtskraft1} N(Newton).");
-                                            Console.ReadKey();
-                                            break;
-                                    }
-                                    bool unterabfrage_schleife = true;
-                                    do
-                                    {
-                                        unterabfrage_schleife = true;
-                                        Console.Clear();
-                                        Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
-                                        Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
-                                        "\t2. Mit einem anderen Planeten rechnen\n" +
-                                        "\t3. Zurück zum Untermenü Rechner\n");
-
-                                        Console.WriteLine("---------------------------------------------------------------");
-                                        string unterabfrage_eingabe = Console.ReadLine();
-
-
-                                        if (unterabfrage_eingabe == "1" | unterabfrage_eingabe == "2" | unterabfrage_eingabe == "3")
+                                        int i_planet1;
+                                        double planetbeschleunigung;
+                                        double s_gewichtskraft1;
+                                        int.TryParse(planet1, out i_planet1);
+                                        switch (i_planet1)
                                         {
-                                            int i_unterabfrage_eingabe;
-                                            int.TryParse(unterabfrage_eingabe, out i_unterabfrage_eingabe);
-                                            if (i_unterabfrage_eingabe == 1)
+                                            case 1:
+                                                //Sonne 247
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 247;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf der Sonne, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 2:
+                                                //Merkur 3.7
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 3.7;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Merkur, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 3:
+                                                //Venus 8.87
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 8.87;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf der Venus, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 4:
+                                                //Mond 1.62
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 1.62;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Mond, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 5:
+                                                //Mars 3.721
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 3.721;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Mars, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 6:
+                                                //Jupiter 24.79
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 24.79;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Jupiter, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 7:
+                                                //Saturn 10.44
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 10.44;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Saturn, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 8:
+                                                //Uranus 8.87
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 8.87;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Uranus beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 9:
+                                                //Neptun 11.15
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 11.15;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Neptun beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+
+                                            case 10:
+                                                //Pluto 0.62
+                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                                planetbeschleunigung = 0.62;
+                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
+                                                Console.WriteLine($"Die Gewichtskraft, auf dem Zwergplaneten Pluto, beträgt {s_gewichtskraft1} N(Newton).");
+                                                Console.ReadKey();
+                                                break;
+                                        }
+                                        bool unterabfrage_schleife = true;
+                                        do
+                                        {
+                                            unterabfrage_schleife = true;
+                                            Console.Clear();
+                                            Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
+                                            Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
+                                            "\t2. Mit einem anderen Planeten rechnen\n" +
+                                            "\t3. Zurück zum Untermenü Rechner\n");
+
+                                            Console.WriteLine("---------------------------------------------------------------");
+                                            string unterabfrage_eingabe = Console.ReadLine();
+
+
+                                            if (unterabfrage_eingabe == "1" | unterabfrage_eingabe == "2" | unterabfrage_eingabe == "3")
                                             {
-                                                //Zurück zum Anfang der Rechnung:
-                                                Gewichtskraft_Rechner();
+                                                int i_unterabfrage_eingabe;
+                                                int.TryParse(unterabfrage_eingabe, out i_unterabfrage_eingabe);
+                                                if (i_unterabfrage_eingabe == 1)
+                                                {
+                                                    //Zurück zum Anfang der Rechnung:
+                                                    Gewichtskraft_Rechner();
+                                                }
+                                                if (i_unterabfrage_eingabe == 2)
+                                                {
+                                                    //Mit einem anderen Planeten rechnen
+                                                    Sonnensystem_schleife = false;
+                                                }
+                                                else if (i_unterabfrage_eingabe == 3)
+                                                {
+                                                    //Zurück zum Untermenü Rechner:
+                                                }
+                                                else
+                                                {
+                                                    //Falsche Eingabe, weil nicht 1, 2 oder 3. Erneute Eingabeaufforderung:
+                                                    unterabfrage_schleife = false;
+                                                    Console.WriteLine($"Eingabe: '{i_unterabfrage_eingabe}'\n" +
+                                                    $"Das hat nicht geklappt, bitte nocheinmal Versuchen...");
+                                                    Console.ReadKey();
+                                                }
                                             }
-                                            if (i_unterabfrage_eingabe == 2)
+                                            else if (unterabfrage_eingabe == "exit")
                                             {
-                                                //Mit einem anderen Planeten rechnen
-                                                Sonnensystem_schleife = false;
-                                            }
-                                            else if (i_unterabfrage_eingabe == 3)
-                                            {
-                                                //Zurück zum Untermenü Rechner:
+                                                Programmbeendet();
+                                                unterabfrage_schleife = false;              //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                                             }
                                             else
                                             {
-                                                //Falsche Eingabe, weil nicht 1, 2 oder 3. Erneute Eingabeaufforderung:
+                                                //Falsche Eingabe, erneute Eingabeaufforderung:
                                                 unterabfrage_schleife = false;
-                                                Console.WriteLine($"Eingabe: '{i_unterabfrage_eingabe}'\n" +
-                                                $"Das hat nicht geklappt, bitte nocheinmal Versuchen...");
+                                                Console.WriteLine($"Eingabe: '{unterabfrage_eingabe}'\n" +
+                                                    $"Das hat nicht geklappt, bitte nocheinmal Versuchen...");
                                                 Console.ReadKey();
                                             }
-                                        }
-                                        else if (unterabfrage_eingabe == "exit")
-                                        {
-                                            Programmbeendet();
-                                        }
-                                        else
-                                        {
-                                            //Falsche Eingabe, erneute Eingabeaufforderung:
-                                            unterabfrage_schleife = false;
-                                            Console.WriteLine($"Eingabe: '{unterabfrage_eingabe}'\n" +
-                                                $"Das hat nicht geklappt, bitte nocheinmal Versuchen...");
-                                            Console.ReadKey();
-                                        }
-                                    } while (!unterabfrage_schleife);
-                                }
-                                else if (planet1 == "exit")
-                                {
-                                    Programmbeendet();
-                                }
-                                else
-                                {
-                                    //Falsche Eingabe, erneute Eingabeaufforderung:
-                                    Sonnensystem_schleife = false;
-                                    Console.WriteLine($"Eingabe: '{planet1}'\n" +
-                                        $"Das hat nicht geklappt, bitte nocheinmal Versuchen...");
-                                    Console.ReadKey();
-                                }
-                            } while (!Sonnensystem_schleife);
+                                        } while (!unterabfrage_schleife);
+                                    }
+                                    else if (planet1 == "exit")
+                                    {
+                                        Programmbeendet();
+                                        Sonnensystem_schleife = false;      //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
+                                    }
+                                    else
+                                    {
+                                        //Falsche Eingabe, erneute Eingabeaufforderung:
+                                        Sonnensystem_schleife = false;
+                                        Console.WriteLine($"Eingabe: '{planet1}'\n" +
+                                            $"Das hat nicht geklappt, bitte nocheinmal Versuchen...");
+                                        Console.ReadKey();
+                                    }
+                                } while (!Sonnensystem_schleife);
+                            }
+                            else if (i_eingabe == 2)
+                            {
+                                //Zurück ins Untermenü Rechner:
+                            }
+                            else
+                            {
+                                //Falsche EIngabe, erneute Eingabeaufforderung:
+                                schleife = false;
+                                Console.WriteLine("Falsche Eingabe, '" + i_eingabe + "' ist nicht gültig.\n" +
+                                    "Versuchen Sie es bitte erneut.");
+                                Console.ReadKey();
+                            }
                         }
-                        else if (i_eingabe == 2)
+                        else if (eingabe == "exit")
                         {
-                            //Zurück ins Untermenü Rechner:
+                            Programmbeendet();
+                            schleife_exit = false;                      //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                         }
                         else
                         {
-                            //Falsche EIngabe, erneute Eingabeaufforderung:
+                            //Falsche Eingabe, weil nicht 1 oder 2. Erneute Eingabeaufforderung:
                             schleife = false;
-                            Console.WriteLine("Falsche Eingabe, '" + i_eingabe + "' ist nicht gültig.\n" +
-                                "Versuchen Sie es bitte erneut.");
+                            Console.WriteLine("Falsche Eingabe, '" + eingabe + "' ist nicht gültig.\n" +
+                                "Bitte erneut Versuchen.");
                             Console.ReadKey();
                         }
-                    }
-                    else if (eingabe == "exit")
-                    {
-                        Programmbeendet();
-                    }
-                    else
-                    {
-                        //Falsche Eingabe, weil nicht 1 oder 2. Erneute Eingabeaufforderung:
-                        schleife = false;
-                        Console.WriteLine("Falsche Eingabe, '" + eingabe + "' ist nicht gültig.\n" +
-                            "Bitte erneut Versuchen.");
-                        Console.ReadKey();
-                    }
+                    } while (!schleife_exit);
                 }
                 if (gewicht == "back")
                 {
@@ -709,6 +724,7 @@ namespace PHKlassenBibliothek
                 else if (gewicht == "exit")
                 {
                     Programmbeendet();
+                    schleife = false;                               //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                 }
                 else
                 {
@@ -889,12 +905,12 @@ namespace PHKlassenBibliothek
                 else if (planet == "exit")
                 {
                     Programmbeendet();
-                    schleife = false;
+                    schleife = false;                           //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                 }
                 else
                 {
                     //Falsche Eingabe, erneute Eingabeaufforderung
-                    Console.WriteLine("Falsche Eingabe \n" +
+                    Console.WriteLine("Falsche Eingabe.\n" +
                         "" + planet + " ist keine gültige Eingabe.\n" +
                         "Versuchen Sie es bitte nocheinmal.");
                     schleife = false;
@@ -910,48 +926,49 @@ namespace PHKlassenBibliothek
             Console.WriteLine($"{"----------------------------------",35}");
             Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
             Console.WriteLine($"{"----------------------------------",44}");
-            Console.WriteLine($"{"-- 1. Sonne          |  247     --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 2. Merkur         |  0,37    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 3. Venus          |  0,90    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 4. Mond           |  0,16    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 5. Mars           |  0,38    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 6. Jupiter        |  2,53    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 7. Saturn         |  1,07    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 8. Uranus         |  0,91    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"-- 9. Neptun         |  1,14    --",44}");
-            Console.WriteLine($"{"--                   |          --",44}");
-            Console.WriteLine($"{"--10. Pluto          |  0,08    --",44}");
+            Console.WriteLine($"{"-- 1. Sonne       |     247     --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 2. Merkur      |     0,37    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 3. Venus       |     0,90    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 4. Mond        |     0,16    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 5. Mars        |     0,38    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 6. Jupiter     |     2,53    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 7. Saturn      |     1,07    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 8. Uranus      |     0,91    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 9. Neptun      |     1,14    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"--10. Pluto       |     0,08    --",44}");
             Console.WriteLine($"{"----------------------------------\n",44}");
         }
         
         //Eingabe des Benutzers == 'exit'
         internal static void Programmbeendet()
         {
+            //Wird jedes mal ausgeführt, wenn die Eingabe des Nutzers 'exit' entspricht.
             bool schleife = true;
             do
             {
                 schleife = true;
                 Console.WriteLine("Wollen Sie das Programm wirklich beenden?\n" +
-               "Ja             \tJ\n" +
-               "Nein           \tN");
+                                    "Ja             \tj\n" +
+                                    "Nein           \tn");
                 Console.WriteLine("---------------------------------------------------");
                 Console.WriteLine("");
                 string eingabe = Console.ReadLine();
-                if (eingabe == "J")
+                if (eingabe == "j")
                 {
                     //Programm wird beendet
-                    Console.WriteLine("Das Programm wurde erfolgreich beendet");
+                    Console.WriteLine("Das Programm wurde erfolgreich beendet.");
                     Environment.Exit(0);
                 }
-                else if (eingabe == "N")
+                else if (eingabe == "n")
                 {
                     //Beenden des Programms wurde abgebrochen.
                 }
@@ -960,7 +977,7 @@ namespace PHKlassenBibliothek
                     //Erneute Eingaberaufforderung wegen falscher Eingabe
                     schleife = false;
                     Console.WriteLine("'"+eingabe+"' ist eine falsche Eingabe.\n" +
-                        "Erneute Eingabe erforderlich...");
+                        "Erneute Eingabe erforderlich.");
                 }
             } while (!schleife);
         }
