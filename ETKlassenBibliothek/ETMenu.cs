@@ -47,12 +47,12 @@ namespace ETKlassenBibliothek
 
                 switch (SubAusw)
                 {
-                    case "e":
+                    case "1":
                         Console.Clear();
                         //Hier das Etechnikmenü aufrufen
                         break;
 
-                    case "i":
+                    case "2":
                         Console.Clear();
                         //Hier das Informationstechnikmenü aufrufen
                         break;
