@@ -52,8 +52,9 @@ namespace ETKlassenBibliothek
                         //Hier das Etechnikmenü aufrufen
                         break;
 
-                    case "i":
+                    case "2":
                         Console.Clear();
+                        Feature2.Feature_2();
                         //Hier das Informationstechnikmenü aufrufen
                         break;
 
