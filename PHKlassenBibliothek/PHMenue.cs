@@ -66,7 +66,7 @@ namespace PHKlassenBibliothek
                             break;
                     }
                 }
-                if (eingabe == "exit")
+                else if (eingabe == "exit")
                 {
                     Console.WriteLine("Das Programm wurde erfolgreich beendet.");
                     Environment.Exit(0);
@@ -82,7 +82,7 @@ namespace PHKlassenBibliothek
                 else
                 {
                     //Falsche Eingabe
-                    Console.WriteLine("Das hat nicht geklappt, "+ eingabe +" ist nicht gültig.\n" +
+                    Console.WriteLine("Das hat nicht geklappt, " + eingabe + " ist nicht gültig.\n" +
                         "Um fortfahren zu können, geben Sie bitte eine der vier vorgegebenen Zahlen an\n" +
                         " oder 'subexit' um ins Hauptmenü zurückzukehren.:)");
                     Console.WriteLine("Um fortzufahren eine beliebige Taste drücken.");
