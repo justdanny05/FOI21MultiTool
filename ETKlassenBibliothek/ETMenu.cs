@@ -38,7 +38,7 @@ namespace ETKlassenBibliothek
                 Console.WriteLine("Wählen Sie eines der folgenden Features:\n");
                 Console.WriteLine("\t1 - Voltage, Current, Resistance Calculator");
                 Console.WriteLine("\t2 - Spannungsfallberechner");
-                Console.WriteLine("\t3 - Mathematik");
+                Console.WriteLine("\t3 - Quiz");
                 Console.WriteLine("\t4 - Physik");
                 Console.WriteLine("\t5 - Wirtschaft\n");
                 int LOL = Console.CursorTop;
@@ -57,9 +57,10 @@ namespace ETKlassenBibliothek
                         //Hier das Informationstechnikmenü aufrufen
                         break;
 
-                    case "m":
+                    case "3":
                         Console.Clear();
                         //Hier das Mathematikmenü aufrufen
+                        Feature5.Feature_5();
                         break;
 
                     case "p":
