@@ -28,8 +28,8 @@ namespace MAKlassenBibliothek
                 Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
 
                 //Beschreibung der Software.
-                Console.WriteLine("\n\nWilkommen im Mathematik-Submenü! Hier können sie\n" +
-                                  "verschiedene Features aufrufen und diese benutzen\n\n");
+                Console.WriteLine("\n\nWilkommen im Mathematik-Submenü!\n" +
+                                  "Hier können sie verschiedene Features aufrufen und diese benutzen\n\n");
 
                 string HauptAusw;
 
