@@ -67,7 +67,7 @@ namespace PHKlassenBibliothek
                             break;
                     }
                 }
-                if (eingabe == "exit")
+                else if (eingabe == "exit")
                 {
                     Console.WriteLine("Das Programm wurde erfolgreich beendet.");
                     Environment.Exit(0);
