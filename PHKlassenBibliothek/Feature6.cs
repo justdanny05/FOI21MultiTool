@@ -32,6 +32,7 @@ namespace PHKlassenBibliothek
 
                 Console.WriteLine("\t1. Informationen");                                                          //Untermenü Gravitation
                 Console.WriteLine("\t2. Rechner");
+                Console.WriteLine("\tMit 'subexit' können Sie jederzeit hier ins Menü zurück.");
                 Console.WriteLine("-------------------------------------------------------------------------");
                 Console.Write("Geben Sie eine der angegebenen Wahlmöglichkeiten an:");
                 string eingabe_1 = Console.ReadLine();
