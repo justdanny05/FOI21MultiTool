@@ -55,7 +55,7 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |**Informatik**	    |Menü IT    |Teamkoordinator  |   snwster      |ITEntwicklung,Feature11|				
 |		                |Passwortgenerator	          |Entwickler       |		nacelol      |Feature12             |		
 |		                |Byterechner	          |Entwickler       |   K923ai      |Feature13             |	
-|		                |	          |Entwickler       |  	kilian1008      |Feature14             |			
+|		                |Dateipfad einlesen         |Entwickler       |  	kilian1008      |Feature14             |			
 |		                |	          |Entwickler       |         |Feature15             |			
 |		                |	          |	                |		      |		                   |				
 |**Wirtschaft**	    |Menü WI    |Teamkoordinator / Währungsrechner  |selimAP       |WIEntwicklung,Feature16|				
