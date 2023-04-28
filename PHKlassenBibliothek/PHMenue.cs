@@ -47,22 +47,22 @@ namespace PHKlassenBibliothek
 
                         case 1:
                             Console.Clear();
-                            //Feature 1 Danny CallmeBabygirl
+                            //Feature 6 Danny CallmeBabygirl
                             break;
 
                         case 2:
                             Console.Clear();
-                            //Feature 2 Shehan nahehs
+                            //Feature 7 Shehan nahehs
                             break;
 
                         case 3:
                             Console.Clear();
-                            //Feature 3 Cihan Nextsuki
+                            //Feature 8 Cihan Nextsuki
                             break;
 
                         case 4:
                             Console.Clear();
-                            //Feature 4 Simon simqn
+                            //Feature 9 Simon simqn
                             break;
                     }
                 }
