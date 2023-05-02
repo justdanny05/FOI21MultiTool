@@ -18,7 +18,7 @@ namespace WIKlassenBibliothek
    internal class Feature20
    {
         private static string benutzerdateiPath1;
-        private static Produkt produkte;
+        private static produkt produkte;
         private static List<string> warenkorbProdukte;
 
         internal static void Feature_20()
@@ -217,8 +217,6 @@ namespace WIKlassenBibliothek
                     Console.Write("Benutzername: ");
                     string newBenutzerName = Console.ReadLine();
 
-
-                    // check if the user already exists
                     bool userExists = false;
                     foreach (string zeile in File.ReadLines(benutzerdateiPfad))
                     {
@@ -244,6 +242,7 @@ namespace WIKlassenBibliothek
 
                         if (newPasswort != newPasswortBestaetigen)
                         {
+                            Console.Clear();
                             Console.WriteLine("Die Passwörter stimmen nicht überein. Bitte versuchen Sie es erneut.");
                         }
                         else
@@ -262,14 +261,13 @@ namespace WIKlassenBibliothek
                     }
                 }
 
-
                 if (auswahl == "3")
                 {
                     Console.Clear();
                     Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                    " >>> Benutzer löschen <<<\n" +
-                    "------------------------------------------------------------------------------------\n\n");
+                                      "                              >>> Benutzer löschen <<<\n" +
+                                      "------------------------------------------------------------------------------------\n\n");
                     Console.Write("Geben Sie den Benutzernamen des zu löschenden Kontos ein: ");
                     string benutzerZumLoeschen = Console.ReadLine();
                     if (benutzerZumLoeschen.ToLower() == "admin")
@@ -288,7 +286,7 @@ namespace WIKlassenBibliothek
                             foreach (string zeile in File.ReadLines(Path.Combine(usersOrdnerPfad, "users.txt")))
                             {
                                 string[] benutzer = zeile.Split(':');
-                                if (benutzer.Length == 2 && benutzer[0] == benutzerZumLoeschen && Verschluesseln(passwortBestaetigen) == benutzer[1])
+                                if (benutzer.Length == 3 && benutzer[0] == benutzerZumLoeschen && Verschluesseln(passwortBestaetigen) == benutzer[1])
                                 {
                                     benutzernameUndPasswortKorrekt = true;
                                     break;
@@ -304,7 +302,7 @@ namespace WIKlassenBibliothek
                                 foreach (string zeile in File.ReadLines(Path.Combine(usersOrdnerPfad, "users.txt")))
                                 {
                                     string[] benutzer = zeile.Split(':');
-                                    if (benutzer.Length == 2 && benutzer[0] != benutzerZumLoeschen)
+                                    if (benutzer.Length == 3 && benutzer[0] != benutzerZumLoeschen)
                                     {
                                         sw.WriteLine(zeile);
                                     }
@@ -323,8 +321,12 @@ namespace WIKlassenBibliothek
                         }
                     }
                 }
+
+
             }
         }
+
+
 
         internal static string GetCurrentUserName1()
         {
@@ -597,16 +599,16 @@ namespace WIKlassenBibliothek
             switch (antwort)
             {
                 case "1":
-                    Produkt produkt = new Produkt();
+                    produkt produkt = new produkt();
                     kassensystem.ErstelleWarenkorb(produkt);
                     break;
                 case "2":
                     kassensystem.ProduktHinzufuegen();
-                    Produkt letztesProdukt = kassensystem.produkte.Last();
-                    kassensystem.QuittungErstellen(produkte, warenkorbProdukte);
+                    produkt letztesProdukt = kassensystem.produkte.Last();
+                    adminoberflaeche();
                     break;
                 case "3":
-                    kassensystem.ProdukteAuflisten();
+                    kassensystem.ProdukteAuflisten(new produkt());
                     Console.Clear();
                     Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
@@ -616,17 +618,17 @@ namespace WIKlassenBibliothek
                     kassensystem.ProduktPreisAendern(produktName);
                     break;
                 case "4":
-                    kassensystem.ProdukteAuflisten();
+                    kassensystem.ProdukteAuflisten(new produkt());
                     Console.Clear();
                     Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                             "                              >>> Produkt Löschen <<<\n" +
                             "------------------------------------------------------------------------------------\n\n");
                     string name = kassensystem.GetUserInputWithExitOption("Welches Produkt möchten Sie löschen? (Name eingeben):");
-                    kassensystem.ProduktLoeschen(name);
+                    kassensystem.ProduktLoeschen(new produkt(), name);
                     break;
                 case "5":
-                    kassensystem.ProdukteAuflisten();
+                    kassensystem.ProdukteAuflisten(new produkt());
                     Console.Clear();
                     adminoberflaeche();
                     break;
@@ -655,7 +657,16 @@ namespace WIKlassenBibliothek
                     WIMenue.WI_Menue();
                     break;
                 default:
+                    Console.Clear();
                     Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 9 ein.");
+                    if (kassensystem.UserHasRole999())
+                    {
+                        adminoberflaeche();
+                    }
+                    else
+                    {
+                        KassensystemBenutzeroberflaeche();
+                    }
                     break;
             }
         }
@@ -684,11 +695,11 @@ namespace WIKlassenBibliothek
             switch (antwort)
             {
                 case "1":
-                    Produkt produkt = new Produkt();
+                    produkt produkt = new produkt();
                     kassensystem.ErstelleWarenkorb(produkt);
                     break;
                 case "2":
-                    kassensystem.ProdukteAuflisten();
+                    kassensystem.ProdukteAuflisten(new produkt());
                     Console.Clear();
                     KassensystemBenutzeroberflaeche();
                     break;
@@ -708,14 +719,14 @@ namespace WIKlassenBibliothek
             }
         }
 
-        public class Produkt
+        public class produkt
         {
             public string Name { get; set; }
             public decimal Preis { get; set; }
             public string Kategorie { get; set; }
             public string Hersteller { get; set; }
 
-            public Produkt(string name, decimal preis, string kategorie, string hersteller)
+            public produkt(string name, decimal preis, string kategorie, string hersteller)
             {
                 Name = name;
                 Preis = preis;
@@ -723,8 +734,12 @@ namespace WIKlassenBibliothek
                 Hersteller = hersteller;
             }
 
-            public Produkt()
+            public produkt()
             {
+                Name = "";
+                Preis = 0;
+                Kategorie = "";
+                Hersteller = "";
             }
         }
 
@@ -733,10 +748,10 @@ namespace WIKlassenBibliothek
         {
             private int ID;
             private DateTime Datum;
-            private Produkt Produkt;
+            private produkt Produkt;
             private string benutzerName;
 
-            public Quittung(int id, DateTime Datum, Produkt Produkt, string benutzerName)
+            public Quittung(int id, DateTime Datum, produkt Produkt, string benutzerName)
             {
                 this.ID = ID;
                 this.Datum = Datum;
@@ -766,7 +781,7 @@ namespace WIKlassenBibliothek
 
         class Kassensystem
         {
-            public void ErstelleWarenkorb(Produkt produkte)
+            public void ErstelleWarenkorb(produkt produkte)
             {
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
@@ -810,10 +825,10 @@ namespace WIKlassenBibliothek
                             {
                                 var name = produktTeile[0];
                                 var preis = decimal.Parse(produktTeile[1]);
-                                var produkt = new Produkt(name, preis, "", "");
+                                var produkts = new produkt(name, preis, "", "");
 
-                                Console.WriteLine($"- {produkt.Name}: {produkt.Preis.ToString("N2")} Euro");
-                                gesamtsumme += produkt.Preis;
+                                Console.WriteLine($"- {produkts.Name}: {produkts.Preis.ToString("N2")} Euro");
+                                gesamtsumme += produkts.Preis;
                             }
                             else
                             {
@@ -859,7 +874,7 @@ namespace WIKlassenBibliothek
                             Console.WriteLine("Folgende Waren werden zur Kasse gebracht:\n");
 
                             decimal gesamtsumme = 0;
-                            List<Produkt> produkt = new List<Produkt>();
+                            List<produkt> produkt = new List<produkt>();
                             foreach (var produktString in warenkorbProdukte)
                             {
                                 var produktTeile = produktString.Split(',');
@@ -867,11 +882,11 @@ namespace WIKlassenBibliothek
                                 {
                                     var name = produktTeile[0];
                                     var preis = decimal.Parse(produktTeile[1]);
-                                    var produkts = new Produkt(name, preis, "", "");
+                                    var produktss = new produkt(name, preis, "", "");
 
-                                    Console.WriteLine($"- {produkts.Name}: {produkts.Preis.ToString("N2")} Euro");
-                                    gesamtsumme += produkts.Preis;
-                                    produkt.Add(produkts);
+                                    Console.WriteLine($"- {produktss.Name}: {produktss.Preis.ToString("N2")} Euro");
+                                    gesamtsumme += produktss.Preis;
+                                    produkt.Add(produktss);
                                 }
                                 else
                                 {
@@ -886,7 +901,7 @@ namespace WIKlassenBibliothek
 
                             if (ant.ToLower() == "ja")
                             {
-                                foreach (Produkt produkttt in produkt)
+                                foreach (produkt produkttt in produkt)
                                 {
                                     Console.Clear();
                                     int anzahlWarenkorbDateien = Directory.GetFiles(warengekauft, "warenkorb*").Length;
@@ -938,7 +953,7 @@ namespace WIKlassenBibliothek
                                 {
                                     var name = produktTeile[0];
                                     var preis = decimal.Parse(produktTeile[1]);
-                                    var produkt = new Produkt(name, preis, "", "");
+                                    var produkt = new produkt(name, preis, "", "");
 
                                     Console.WriteLine($"- {produkt.Name}: {produkt.Preis.ToString("N2")} Euro");
                                     gesamtsumme += produkt.Preis;
@@ -989,16 +1004,15 @@ namespace WIKlassenBibliothek
                         continue;
                     }
                 }
-
             }
-            }
+        }         
 
-            public void ProduktZumWarenkorbHinzufügen(string produktName)
+      public void ProduktZumWarenkorbHinzufügen(string produktName)
             {
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
-                List<Produkt> produkte = ProdukteAusDateiEinlesen();
-                Produkt produkt = produkte.FirstOrDefault(p => p.Name.Equals(produktName, StringComparison.OrdinalIgnoreCase));
+                List<produkt> produkte = ProdukteAusDateiEinlesen();
+                produkt produkt = produkte.FirstOrDefault(p => p.Name.Equals(produktName, StringComparison.OrdinalIgnoreCase));
                 if (produkt == null)
                 {
                     Console.WriteLine("Das Produkt wurde nicht gefunden.");
@@ -1042,7 +1056,7 @@ namespace WIKlassenBibliothek
                     else if (antwort.Equals("nein", StringComparison.OrdinalIgnoreCase))
                     {
                         Console.Clear();
-                        ErstelleWarenkorb(new Produkt());
+                        ErstelleWarenkorb(new produkt());
                     }
 
                     else
@@ -1058,7 +1072,7 @@ namespace WIKlassenBibliothek
 
                 }
             }
-
+            
             public string GetUserInputWithExitOption(string prompt)
             {
                 Console.Write(prompt + " (oder 'exit' zum Beenden, 'menu' für Hauptmenü): ");
@@ -1113,14 +1127,8 @@ namespace WIKlassenBibliothek
                 return input.Trim();
             }
 
-
-            public static object Verschluesseln(string v)
-            {
-                throw new NotImplementedException();
-            }
-
             string header = FiggleFonts.Slant.Render("Kassensystem");
-            public List<Produkt> produkte = new List<Produkt>();
+            public List<produkt> produkte = new List<produkt>();
             private List<Quittung> quittungen = new List<Quittung>();
             private int quittungsIdCounter = 1;
             private Stream quittungPfad;
@@ -1161,7 +1169,7 @@ namespace WIKlassenBibliothek
                 string kategorie = GetUserInputWithExitOption("Kategorie des Produkts: ");
                 string hersteller = GetUserInputWithExitOption("Hersteller des Produkts: ");
 
-                Produkt produkt = new Produkt(name, Convert.ToDecimal(preis), kategorie, hersteller);
+                produkt produkt = new produkt(name, Convert.ToDecimal(preis), kategorie, hersteller);
                 produkte.Add(produkt);
                 Console.Clear();
                 Console.WriteLine("Produkt wurde hinzugefügt.");
@@ -1199,7 +1207,7 @@ namespace WIKlassenBibliothek
                 return false;
             }
 
-            public void QuittungErstellen(Produkt produkt, List<string> warenkorbProdukte)
+            public void QuittungErstellen(produkt produkt, List<string> warenkorbProdukte)
             {
                 int quittungsId = GetNextQuittungsID();
 
@@ -1277,7 +1285,7 @@ namespace WIKlassenBibliothek
 
                 using (StreamWriter writer = new StreamWriter(produktPfad))
                 {
-                    foreach (Produkt produkt in produkte)
+                    foreach (produkt produkt in produkte)
                     {
                         string produktEintrag = $"{produkt.Name},{produkt.Preis},{produkt.Kategorie},{produkt.Hersteller}";
 
@@ -1289,16 +1297,14 @@ namespace WIKlassenBibliothek
                         writer.WriteLine(produktEintrag);
                     }
 
-                    // Schreibe bereits gespeicherte Produkte am Ende der Datei
                     foreach (string produktEintrag in bereitsGespeicherteProdukte)
                     {
                         writer.WriteLine(produktEintrag);
                     }
                 }
             }
-
-
-            public void ProduktLoeschen(string name)
+            
+            public void ProduktLoeschen(produkt produkt , string name)
             {
                 produkte.RemoveAll(produkt => produkt.Name == name);
                 Console.Clear();
@@ -1308,13 +1314,13 @@ namespace WIKlassenBibliothek
                 adminoberflaeche();
             }
 
-            public void ProdukteAuflisten()
+            public void ProdukteAuflisten(produkt produkt)
             {
 
                 if (produkte.Count == 0)
                 {
                     Console.WriteLine("Keine Produkte vorhanden.");
-                    return;
+
                 }
 
                 Console.Clear();
@@ -1323,14 +1329,15 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                                    "                              >>> Produkt Liste <<<\n" +
                                                    "------------------------------------------------------------------------------------\n");
-                foreach (Produkt produkt in produkte)
+                foreach (produkt p in produkte)
                 {
-                    Console.WriteLine($"\nName: {produkt.Name}\n" +
-                            $"Preis: {produkt.Preis} Euro\n" +
-                            $"Kategorie: {produkt.Kategorie}\n" +
-                            $"Hersteller: {produkt.Hersteller}\n" +
+                    Console.WriteLine($"\nName: {p.Name}\n" +
+                            $"Preis: {p.Preis} Euro\n" +
+                            $"Kategorie: {p.Kategorie}\n" +
+                            $"Hersteller: {p.Hersteller}\n" +
                             "-----------------------------------");
                 }
+
 
                 Console.WriteLine("\nDrücken Sie 'B' und dann Enter, um zum Hauptmenü zurückzukehren.");
                 string eingabe = Console.ReadLine();
@@ -1350,12 +1357,12 @@ namespace WIKlassenBibliothek
                 }
             }
 
-            public List<Produkt> ProdukteAusDateiEinlesen()
+            public List<produkt> ProdukteAusDateiEinlesen()
             {
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string dateiPfad = Path.Combine(desktopPfad, "Kassensystem", "Produkte", "produkte.txt");
 
-                List<Produkt> produkte = new List<Produkt>();
+                List<produkt> produkte = new List<produkt>();
                 if (File.Exists(dateiPfad))
                 {
                     using (StreamReader reader = new StreamReader(dateiPfad))
@@ -1371,7 +1378,7 @@ namespace WIKlassenBibliothek
                                 string kategorie = produktDaten[2];
                                 string hersteller = produktDaten[3];
 
-                                Produkt produkt = new Produkt(name, preis, kategorie, hersteller);
+                                produkt produkt = new produkt(name, preis, kategorie, hersteller);
                                 produkte.Add(produkt);
                             }
                             catch (Exception e)
@@ -1387,13 +1394,22 @@ namespace WIKlassenBibliothek
 
             public void ProduktPreisAendern(string name)
             {
-                Produkt produkt = produkte.Find(p => p.Name == name);
+                produkt produkt = produkte.Find(p => p.Name == name);
 
                 if (produkt == null)
                 {
                     Console.Clear();
                     Console.WriteLine("Produkt nicht gefunden.");
-                    KassensystemBenutzeroberflaeche();
+
+                    if (UserHasRole999())
+                    {
+                        
+                        adminoberflaeche();
+                    }
+                    else
+                    {
+                        KassensystemBenutzeroberflaeche();
+                    }
                     return;
                 }
 
