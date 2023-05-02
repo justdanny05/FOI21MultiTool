@@ -622,7 +622,15 @@ namespace WIKlassenBibliothek
                             "                              >>> Produkt Löschen <<<\n" +
                             "------------------------------------------------------------------------------------\n\n");
                     string name = kassensystem.GetUserInputWithExitOption("Welches Produkt möchten Sie löschen? (Name eingeben):");
-                    kassensystem.ProduktLoeschen(new produkt(), name);
+                    if (!string.IsNullOrWhiteSpace(name))
+                    {
+                        kassensystem.ProduktLoeschen(name);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Kein gültiger Produktnamen eingegeben.");
+                    }
+
                     break;
                 case "5":
                     kassensystem.ProdukteAuflisten();
@@ -1306,16 +1314,51 @@ namespace WIKlassenBibliothek
                     }
                 }
             }
-            
-            public void ProduktLoeschen(produkt produkt , string name)
-            {
-                produkte.RemoveAll(produkt => produkt.Name == name);
-                Console.Clear();
-                Console.WriteLine("Produkt wurde gelöscht.");
 
-                ProdukteSpeichern();
-                adminoberflaeche();
+            public void ProduktLoeschen(string produktName)
+            {
+                string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
+                string produktOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Produkte");
+                string produktPfad = Path.Combine(produktOrdnerPfad, "produkte.txt");
+
+                if (File.Exists(produktPfad))
+                {
+                    string[] zeilen = File.ReadAllLines(produktPfad);
+                    bool produktGefunden = false;
+
+                    for (int i = 0; i < zeilen.Length; i++)
+                    {
+                        if (zeilen[i].StartsWith(produktName + ","))
+                        {
+                            produktGefunden = true;
+                            List<string> zeilenListe = new List<string>(zeilen);
+                            zeilenListe.RemoveAt(i);
+                            File.WriteAllLines(produktPfad, zeilenListe.ToArray());
+                            Console.Clear();
+                            Console.WriteLine($"Produkt {produktName} wurde gelöscht.");
+                            adminoberflaeche();
+                            break;
+                        }
+                    }
+
+                    if (!produktGefunden)
+                    {
+                        Console.Clear();
+                        Console.WriteLine($"Produkt {produktName} nicht gefunden.");
+                        adminoberflaeche();
+                    }
+                }
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine($"Datei {produktPfad} nicht gefunden.");
+                    adminoberflaeche();
+                }
             }
+
+
+
 
             public List<Feature20.produkt> ProdukteAusDateiLesen(string dateiPfad)
             {
@@ -1422,7 +1465,7 @@ namespace WIKlassenBibliothek
 
             public void ProduktPreisAendern(string name)
             {
-                produkt produkt = produkte.Find(p => p.Name == name);
+                Feature20.produkt produkt = produkte.Find(p => p.Name == name);
 
                 if (produkt == null)
                 {
