@@ -608,7 +608,7 @@ namespace WIKlassenBibliothek
                     adminoberflaeche();
                     break;
                 case "3":
-                    kassensystem.ProdukteAuflisten(new produkt());
+                    kassensystem.ProdukteAuflisten();
                     Console.Clear();
                     Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
@@ -618,7 +618,7 @@ namespace WIKlassenBibliothek
                     kassensystem.ProduktPreisAendern(produktName);
                     break;
                 case "4":
-                    kassensystem.ProdukteAuflisten(new produkt());
+                    kassensystem.ProdukteAuflisten();
                     Console.Clear();
                     Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
@@ -628,7 +628,7 @@ namespace WIKlassenBibliothek
                     kassensystem.ProduktLoeschen(new produkt(), name);
                     break;
                 case "5":
-                    kassensystem.ProdukteAuflisten(new produkt());
+                    kassensystem.ProdukteAuflisten();
                     Console.Clear();
                     adminoberflaeche();
                     break;
@@ -699,7 +699,7 @@ namespace WIKlassenBibliothek
                     kassensystem.ErstelleWarenkorb(produkt);
                     break;
                 case "2":
-                    kassensystem.ProdukteAuflisten(new produkt());
+                    kassensystem.ProdukteAuflisten();
                     Console.Clear();
                     KassensystemBenutzeroberflaeche();
                     break;
@@ -1314,30 +1314,60 @@ namespace WIKlassenBibliothek
                 adminoberflaeche();
             }
 
-            public void ProdukteAuflisten(produkt produkt)
+            public List<Feature20.produkt> ProdukteAusDateiLesen(string dateiPfad)
             {
+                List<Feature20.produkt> produkte = new List<Feature20.produkt>();
 
-                if (produkte.Count == 0)
+                try
                 {
-                    Console.WriteLine("Keine Produkte vorhanden.");
-
+                    using (StreamReader sr = new StreamReader(dateiPfad))
+                    {
+                        string line;
+                        while ((line = sr.ReadLine()) != null)
+                        {
+                            string[] tokens = line.Split(',');
+                            string name = tokens[0];
+                            decimal preis = decimal.Parse(tokens[1]);
+                            string kategorie = tokens[2];
+                            string hersteller = tokens[3];
+                            Feature20.produkt produkt = new Feature20.produkt(name, preis, kategorie, hersteller);
+                            produkte.Add(produkt);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
                 }
 
+                return produkte;
+            }
+
+
+
+            public void ProdukteAuflisten()
+            {
                 Console.Clear();
                 Console.WriteLine(header);
                 Console.Title = "Kassensystem";
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                                   "                              >>> Produkt Liste <<<\n" +
-                                                   "------------------------------------------------------------------------------------\n");
-                foreach (produkt p in produkte)
-                {
-                    Console.WriteLine($"\nName: {p.Name}\n" +
-                            $"Preis: {p.Preis} Euro\n" +
-                            $"Kategorie: {p.Kategorie}\n" +
-                            $"Hersteller: {p.Hersteller}\n" +
-                            "-----------------------------------");
-                }
+                                                           "                              >>> Produktliste <<<\n" +
+                                                           "------------------------------------------------------------------------------------\n");
 
+                string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
+                string produktOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Produkte");
+                string produktPfad = Path.Combine(produktOrdnerPfad, "produkte.txt");
+
+                List<Feature20.produkt> produkte = ProdukteAusDateiLesen(produktPfad);
+
+                foreach (Feature20.produkt produkt in produkte)
+                {
+                    Console.WriteLine($"Name: {produkt.Name}\n" +
+                                               $"Preis: {produkt.Preis} Euro\n" +
+                                               $"Kategorie: {produkt.Kategorie}\n" +
+                                               $"Hersteller: {produkt.Hersteller}\n");
+                    Console.WriteLine("------------------------------------------------------------------------------------\n");
+                }
 
                 Console.WriteLine("\nDrücken Sie 'B' und dann Enter, um zum Hauptmenü zurückzukehren.");
                 string eingabe = Console.ReadLine();
@@ -1353,9 +1383,10 @@ namespace WIKlassenBibliothek
                     {
                         KassensystemBenutzeroberflaeche();
                     }
-                    return;
                 }
             }
+
+
 
             public List<produkt> ProdukteAusDateiEinlesen()
             {
@@ -1383,7 +1414,6 @@ namespace WIKlassenBibliothek
                             }
                             catch (Exception e)
                             {
-                                Console.WriteLine("Ungültige Zeile: " + line);
                             }
                         }
                     }
