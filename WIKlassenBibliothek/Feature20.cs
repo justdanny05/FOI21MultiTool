@@ -32,9 +32,6 @@ namespace WIKlassenBibliothek
         string produktOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Produkte");
         Directory.CreateDirectory(produktOrdnerPfad);
 
-        string quittungOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Quittungen");
-        Directory.CreateDirectory(quittungOrdnerPfad);
-
         string usersOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "users");
         Directory.CreateDirectory(usersOrdnerPfad);
 
@@ -791,6 +788,12 @@ namespace WIKlassenBibliothek
                 string benutzername = File.ReadAllText(Path.Combine(kassensystemOrdnerPfad, "users", "loggedin.txt"));
                 string benutzerWarenkorbPfad = Path.Combine(warenkorbOrdnerPfad, benutzername);
                 string warengekauft = Path.Combine(benutzerWarenkorbPfad, "gekauft");
+                string quittungOrdnerPfad = Path.Combine(warengekauft, "Quittung");
+
+                if (!Directory.Exists(quittungOrdnerPfad))
+                {
+                    Directory.CreateDirectory(quittungOrdnerPfad);
+                }
                 if (!Directory.Exists(benutzerWarenkorbPfad))
                 {
                     Directory.CreateDirectory(benutzerWarenkorbPfad);
@@ -1016,6 +1019,7 @@ namespace WIKlassenBibliothek
                 if (produkt == null)
                 {
                     Console.WriteLine("Das Produkt wurde nicht gefunden.");
+                    ErstelleWarenkorb(produkt);
                     return;
                 }
                 string benutzername = File.ReadAllText(Path.Combine(kassensystemOrdnerPfad, "users", "loggedin.txt"));
@@ -1132,6 +1136,7 @@ namespace WIKlassenBibliothek
             private List<Quittung> quittungen = new List<Quittung>();
             private int quittungsIdCounter = 1;
             private Stream quittungPfad;
+            private static int anzahlWarenkorbDateien;
 
             public static void SetConsoleColor(ConsoleColor color)
             {
@@ -1213,13 +1218,12 @@ namespace WIKlassenBibliothek
 
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
-                string quittungOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Quittungen");
-                string kategorieOrdnerPfad = Path.Combine(quittungOrdnerPfad, produkt.Kategorie);
+                string gekauftOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Warenkorb", GetCurrentUserName1(), "gekauft", "Quittung");
                 string datum = DateTime.Now.ToString("yyyy-MM");
-                string dateiName = $"{datum}_{produkt.Name}";
-                string benutzerName = GetCurrentUserName1();
+                string neueDateiName = "warenkorb" + (Kassensystem.anzahlWarenkorbDateien + 1).ToString();
+                string dateiName = $"{datum}_{neueDateiName}";
 
-                Directory.CreateDirectory(kategorieOrdnerPfad);
+                Directory.CreateDirectory(gekauftOrdnerPfad);
 
                 Bitmap bmp = new Bitmap(@".\..\..\..\..\WIKlassenBibliothek\template\temp.PNG");
                 Graphics g = Graphics.FromImage(bmp);
@@ -1230,9 +1234,9 @@ namespace WIKlassenBibliothek
                 g.DrawString($" {produkt.Name}", font, brush, new System.Drawing.PointF(160, 464));
                 g.DrawString($" {produkt.Preis}€\n", font, brush, new System.Drawing.PointF(140, 538));
                 g.DrawString($" {datum}\n", font, brush, new System.Drawing.PointF(613, 574));
-                g.DrawString($" {benutzerName}\n", font, brush, new System.Drawing.PointF(200, 574));
+                g.DrawString($" {GetCurrentUserName1()}\n", font, brush, new System.Drawing.PointF(200, 574));
 
-                string quittungPdfPfad = Path.Combine(kategorieOrdnerPfad, $"{dateiName}.pdf");
+                string quittungPdfPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.pdf");
                 using (FileStream fs = new FileStream(quittungPdfPfad, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(bmp.Width, bmp.Height);
@@ -1245,19 +1249,18 @@ namespace WIKlassenBibliothek
                     pdfDoc.Close();
                 }
 
-                string kategorieDateiPfad = Path.Combine(kategorieOrdnerPfad, $"{dateiName}.txt");
+                string kategorieDateiPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.txt");
 
                 if (!File.Exists(kategorieDateiPfad))
                 {
                     File.WriteAllText(kategorieDateiPfad, $"Quittungen für Artikel {produkt.Name} :\n\n");
                 }
 
-                string dateiPfad = Path.Combine(kategorieOrdnerPfad, dateiName);
-                Quittung quittung = new Quittung(GetNextQuittungsID(), DateTime.Now, produkt, benutzerName);
+                string dateiPfad = Path.Combine(gekauftOrdnerPfad, dateiName);
+                Quittung quittung = new Quittung(GetNextQuittungsID(), DateTime.Now, produkt, GetCurrentUserName1());
                 File.AppendAllText(kategorieDateiPfad, quittung.ToString() + "\n");
                 Console.WriteLine($"Quittung wird erstellt...");
                 Console.WriteLine($"Quittung erstellt: {dateiPfad}");
-                Console.WriteLine("Vielen Dank für Ihren Einkauf!");
 
                 if (UserHasRole999())
                 {
@@ -1342,8 +1345,6 @@ namespace WIKlassenBibliothek
                 return produkte;
             }
 
-
-
             public void ProdukteAuflisten()
             {
                 Console.Clear();
@@ -1386,8 +1387,6 @@ namespace WIKlassenBibliothek
                 }
             }
 
-
-
             public List<produkt> ProdukteAusDateiEinlesen()
             {
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -1420,7 +1419,6 @@ namespace WIKlassenBibliothek
                 }
                 return produkte;
             }
-
 
             public void ProduktPreisAendern(string name)
             {
