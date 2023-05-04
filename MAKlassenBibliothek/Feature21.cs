@@ -14,13 +14,13 @@ namespace MAKlassenBibliothek
 
             do
             {
-                Console.WriteLine("Wilkommen im Funktionsrechner!\n" +
+                Console.WriteLine("Willkommen im Funktionsrechner!\n" +
                               "Wählen Sie eine der folgenden Optionen:\n" +
                               "\t1 - Berechnet das Ergebnis einer Funktion\n" +
-                              "\t2 - Berechnet den Wert von x einer Funktion\n" +
+                              "\t2 - Berechnet den Wert von x einer linearen Funktion\n" +
                               "\tExit - Verlässt das Feature");
 
-                Console.Write("Eingabe:");
+                Console.Write("Eingabe: ");
                 string Eingabe = Console.ReadLine();
 
                 Console.Clear();
@@ -31,7 +31,7 @@ namespace MAKlassenBibliothek
                     Console.WriteLine("Geben Sie eine Funktion ein, das x beinhaltet:");
                     string function = Console.ReadLine();
 
-                    Console.WriteLine("\nGeben Sie den Wert von X ein:");
+                    Console.WriteLine("\nGeben Sie den Wert von x ein: ");
                     double x = Convert.ToDouble(Console.ReadLine());
 
                     double result = CalculateFunction(function, x);
@@ -60,61 +60,39 @@ namespace MAKlassenBibliothek
 
                         return result;
                     }
+
                 }
                 else if (Eingabe == "2")
                 {
 
-                    Console.WriteLine("Geben Sie eine Funktion ein, das x beinhaltet:");
-                    string function = Console.ReadLine();
-
-                    Console.WriteLine("Geben sie das Ergebnis der Funktion ein:");
-                    double solution = Convert.ToDouble(Console.ReadLine());
-
-                    double x = SolveFunction(function, solution);
-
-                    Console.WriteLine("x = " + x);
-
-                    static double SolveFunction(string function, double solution)
+                    Console.WriteLine("Die Funktion, mit denen sie den Wert von x berechnen können, lautet f(x) = ax + b\n");
+                    Console.Write("Geben sie die Steigung a an: ");
+                    double a;
+                    while (!double.TryParse(Console.ReadLine(), out a))
                     {
-                        double x = 0;
-
-                        // Replace "x" in the function string with a placeholder value
-                        function = function.Replace("x", "{0}");
-
-                        // Evaluate the function for different values of x until the solution is found
-                        for (double i = -1000; i <= 1000; i += 0.1)
-                        {
-                            double result = CalculateFunction(function, i);
-
-                            if (Math.Abs(result - solution) < 0.1)
-                            {
-                                x = i;
-                                break;
-                            }
-                        }
-
-                        return x;
+                        Console.WriteLine("Ungültige Eingabe, bitte geben sie eine gültige Zahl ein.");
                     }
 
-                    static double CalculateFunction(string function, double x)
+                    Console.Write("Geben sie den y-Achsenabschnitt b an: ");
+                    double b;
+                    while (!double.TryParse(Console.ReadLine(), out b))
                     {
-                        double result = 0;
-
-                        // Replace the placeholder value with the input value of x
-                        function = string.Format(function, x);
-
-                        // Evaluate the function using the built-in math functions
-                        try
-                        {
-                            result = Convert.ToDouble(new System.Data.DataTable().Compute(function, ""));
-                        }
-                        catch
-                        {
-
-                        }
-
-                        return result;
+                        Console.WriteLine("Ungültige Eingabe, bitte geben sie eine gültige Zahl ein.");
                     }
+
+                    Console.Write("Geben sie die Lösung der Funktion an: ");
+                    double fx;
+                    while (!double.TryParse(Console.ReadLine(), out fx))
+                    {
+                        Console.WriteLine("Ungültige Eingabe, bitte geben sie eine gültige Zahl ein.");
+                    }
+
+                    // Calculate the value of x using the given linear function and fx
+                    double x = (fx - b) / a;
+                    Console.WriteLine($"Der Wert von x der Funktion {a}x + {b} = {fx} ist {x}");
+                    Console.WriteLine("\n\nDrücken Sie eine beliebige Taste zum fortfahren");
+                    Console.ReadKey();
+
                 }
                 else
                 {
