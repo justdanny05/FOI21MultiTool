@@ -8,7 +8,7 @@ namespace MAKlassenBibliothek
 {
     internal class Feature22
     {
-        internal static void Feature_22 ()
+        internal static void Feature_22()
         {
             Console.WriteLine("Test Feature 22");
 
@@ -51,7 +51,7 @@ namespace MAKlassenBibliothek
                             }
                             else
                             {
-                                Console.WriteLine("Fk you !!!!");
+                                Console.WriteLine("Bitte exit oder Nummer schreiben ");
                                 continue;
                             }
 
@@ -121,8 +121,26 @@ namespace MAKlassenBibliothek
                             return;
                         }
 
-                        int antwort = int.Parse(eingabeAntwort);
+                        int antword = 0;
 
+                        try
+                        {
+                            antword = int.Parse(eingabeAntwort);
+                        }
+                        catch (FormatException ex)
+                        {
+                            if (eingabeAntwort == "exit")
+                            {
+                                Console.WriteLine("Auf Wiedersehen!");
+                                return;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Bitte exit oder Nummer schreiben ");
+                                continue;
+                            }
+
+                        }
                         int ergebnis = operanden[0];
 
                         for (int i = 0; i < anzahlOperatoren; i++)
@@ -144,7 +162,7 @@ namespace MAKlassenBibliothek
                             }
                         }
 
-                        if (antwort == ergebnis)
+                        if (antword == ergebnis)
                         {
                             Console.WriteLine("Richtig!");
                             punkte += 1;
