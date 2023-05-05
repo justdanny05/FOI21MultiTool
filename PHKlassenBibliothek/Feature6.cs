@@ -6,7 +6,7 @@ using System.Runtime.Intrinsics.X86;
 using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
-//Test commit Arbeit
+
 namespace PHKlassenBibliothek
 {
     internal class Feature6
@@ -319,6 +319,12 @@ namespace PHKlassenBibliothek
                 if (eingabe == "back")
                 {
                     //Zurück zum Untermenü Rechner:
+                }
+                if (eingabe == "exit" | eingabe == "Exit")
+                {
+                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                    Environment.Exit(0);
                 }
                 else if (eingabe == "weiter")
                 {
@@ -945,40 +951,7 @@ namespace PHKlassenBibliothek
             Console.WriteLine($"{"--                |             --",44}");
             Console.WriteLine($"{"--10. Pluto       |     0,68    --",44}");
             Console.WriteLine($"{"----------------------------------\n",44}");
-        }
-
-        //Eingabe des Benutzers == 'exit'
-        internal static void Programmbeendet()
-        {
-            //Wird jedes mal ausgeführt, wenn die Eingabe des Nutzers 'exit' entspricht.
-            bool schleife = true;
-            do
-            {
-                schleife = true;
-                Console.WriteLine("Wollen Sie das Programm wirklich beenden?\n" +
-                                    "Ja             \tj\n" +
-                                    "Nein           \tn");
-                Console.WriteLine("---------------------------------------------------");
-                Console.WriteLine("");
-                string eingabe = Console.ReadLine();
-                if (eingabe == "j")
-                {
-                    //Programm wird beendet
-                    Console.WriteLine("Das Programm wurde erfolgreich beendet.");
-                    Environment.Exit(0);
-                }
-                else if (eingabe == "n")
-                {
-                    //Beenden des Programms wurde abgebrochen.
-                }
-                else
-                {
-                    //Erneute Eingaberaufforderung wegen falscher Eingabe
-                    schleife = false;
-                    Console.WriteLine("'" + eingabe + "' ist eine falsche Eingabe.\n" +
-                        "Erneute Eingabe erforderlich.");
-                }
-            } while (!schleife);
+            Console.WriteLine("\tReferenz: Erde = 1");
         }
     }
 }
