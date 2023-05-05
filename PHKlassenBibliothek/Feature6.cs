@@ -174,7 +174,6 @@ namespace PHKlassenBibliothek
                                                 "dass wenn man Schwerelos ist, sich keine Gravitationskraft auf einen auswirkt.\n");
 
                                             Console.WriteLine("Das wars, sie werden nun automatisch ins Untermenü Informationen weiter geleitet");
-
                                             Console.ReadKey();
                                             break;
                                     }
@@ -320,12 +319,6 @@ namespace PHKlassenBibliothek
                 {
                     //Zurück zum Untermenü Rechner:
                 }
-                if (eingabe == "exit" | eingabe == "Exit")
-                {
-                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
-                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
-                    Environment.Exit(0);
-                }
                 else if (eingabe == "weiter")
                 {
                     //Weiter zur Rechnung:
@@ -448,7 +441,6 @@ namespace PHKlassenBibliothek
                                     Console.WriteLine("Das geht so leider nicht, geben Sie bitte eine gültige Zahl ein...");
                                     Console.ReadKey();
                                 }
-
                             } while (!b_m2);
                         }
                         else if (m1 == "exit" | m1 == "Exit")
