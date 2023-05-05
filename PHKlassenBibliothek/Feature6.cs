@@ -298,12 +298,19 @@ namespace PHKlassenBibliothek
                 {
                     Programmbeendet();                  //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                 }
+                else if (eingabe_1 == "subexit")
+                {
+                    //Das ist hier noch nicht möglich, erneute Eingabeaufforderung
+                    Console.WriteLine("'subexit' bring ihnen hier nichts, da Sie sich schon im Untermenü Gravitation befinden :)\n" +
+                        "Um fortfahren zu können, geben Sie eine der Angegebenen Zahlen an.");
+                    Console.ReadKey();
+                }
                 else
                 {
                     //Erneute Eingabeaufforderung, wegen falscher Eingabe
                     Console.WriteLine("Eingabe: '" + eingabe_1 + "'");
                     Console.WriteLine("Falsche Eingabe erkannt.\n" +
-                        "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können.\n");
+                        "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können.");
                     Console.ReadKey();
                 }
             } while (!exit_gravitation);
