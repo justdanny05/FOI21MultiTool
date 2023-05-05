@@ -265,12 +265,6 @@ namespace PHKlassenBibliothek
                                     exit_untermenü_ReUNDIn = true;
                                     Console.ReadKey();
                                 }
-                                else if (rechner_eingabe == "subexit")
-                                {
-                                    //Ins Untermenü Gravitation zurück
-                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
-                                    Feature_6();
-                                }
                                 else if (rechner_eingabe == "exit")
                                 {
                                     Programmbeendet();                  //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
