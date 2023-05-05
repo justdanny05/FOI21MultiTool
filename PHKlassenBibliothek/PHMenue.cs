@@ -23,7 +23,7 @@ namespace PHKlassenBibliothek
 
                 Console.WriteLine("Willkommen im Themenbereich Physik :)\n" +
                     "Hier sind Sie genau richtig, wenn Sie hilfe beim lösen von ihren Aufgaben in den unten Aufgelisteten Themenbereichen brauchen.\n" +
-                    "Um das Programm beenden zu können, können Sie jederzeit 'exit' eingeben."+
+                    "Um das Programm beenden zu können, können Sie jederzeit 'exit' eingeben." +
                     "Wenn Sie hier raus wollen, können Sie jeder Zeit mit dem Befehl 'subexit' ins Hauptmenü zurückkehren.\n\n");
 
                 Console.WriteLine("----------------------------------------------------");
@@ -47,22 +47,22 @@ namespace PHKlassenBibliothek
 
                         case 1:
                             Console.Clear();
-                            //Feature 6 Danny CallmeBabygirl
+                            //Feature 1 Danny CallmeBabygirl
                             break;
 
                         case 2:
                             Console.Clear();
-                            //Feature 7 Shehan nahehs
+                            //Feature 2 Shehan nahehs
                             break;
 
                         case 3:
                             Console.Clear();
-                            //Feature 8 Cihan Nextsuki
+                            //Feature 3 Cihan Nextsuki
                             break;
 
                         case 4:
                             Console.Clear();
-                            //Feature 9 Simon simqn
+                            //Feature 4 Simon simqn
                             break;
                     }
                 }
@@ -88,7 +88,7 @@ namespace PHKlassenBibliothek
                     Console.WriteLine("Um fortzufahren eine beliebige Taste drücken.");
                     Console.ReadKey();
                 }
-            } while (!subexit);            
+            } while (!subexit);
         }
     }
 }
