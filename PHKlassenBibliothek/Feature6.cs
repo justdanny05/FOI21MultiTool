@@ -998,7 +998,7 @@ namespace PHKlassenBibliothek
         //Tabelle mit Planeten im Sonnensystem:
         internal static void Sonnensystem_PlanetenListe()
         {
-            Console.WriteLine("Referenz: Erde = 1\n", 14);
+            Console.WriteLine("Referenz: Erde = 1\n");
             Console.Write("Tabelle: ");
             Console.WriteLine($"{"----------------------------------",35}");
             Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
