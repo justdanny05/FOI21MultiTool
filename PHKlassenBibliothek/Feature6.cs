@@ -252,9 +252,47 @@ namespace PHKlassenBibliothek
                                             Console.Clear();
                                             //Gewicht auf unterschiedlichen Planeten
                                             Anziehungskraft_Rechner();                  //Verweis
-                                            Console.WriteLine("Das wars Sie werden jetzt automatisch zum Untermenü Rechner weitergeleitet.\n" +
-                                                "Viel Spaß :)");
-                                            Console.ReadKey();
+                                            bool abfrage_schleife = false;
+                                            do
+                                            {
+                                                abfrage_schleife = false;
+                                                Console.WriteLine("-----------------------------------------------------------------");
+                                                Console.WriteLine("Wie wollen Sie fortfahren?\n" +
+                                                    "[1] Rechnung wiederholen\n" +
+                                                    "[2] Zurück ins Untermenü Rechner");
+                                                string abfrage_rechnung = Console.ReadLine();
+                                                if (abfrage_rechnung == "1" | abfrage_rechnung == "2")
+                                                {
+                                                    int int_abfrage_rechnung;
+                                                    int.TryParse(abfrage_rechnung, out int_abfrage_rechnung);
+                                                    if (int_abfrage_rechnung == 1)
+                                                    {
+                                                        Anziehungskraft_Rechner();
+                                                        abfrage_schleife|= true;
+                                                    }
+                                                    else if (int_abfrage_rechnung == 2)
+                                                    {
+                                                        //Schleife wird durchbrochen
+                                                    }
+                                                }
+                                                else if (abfrage_rechnung == "subexit")
+                                                {
+                                                    //Ins Untermenü Gravitation zurück
+                                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                                    Feature_6();
+                                                }
+                                                else if (abfrage_rechnung == "exit")
+                                                {
+                                                    Programmbeendet();
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Falsche Eingabe\n" +
+                                                        "Bitte erneut Versuchen...");
+                                                    Console.ReadKey();
+                                                    abfrage_schleife = true;
+                                                }
+                                            } while (abfrage_schleife);
                                             break;
                                     }
                                 }
