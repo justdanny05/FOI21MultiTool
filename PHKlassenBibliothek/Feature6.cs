@@ -931,26 +931,27 @@ namespace PHKlassenBibliothek
             Console.WriteLine($"{"----------------------------------",35}");
             Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
             Console.WriteLine($"{"----------------------------------",44}");
-            Console.WriteLine($"{"-- 1. Sonne                     --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 2. Merkur                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 3. Venus                     --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 4. Mond                      --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 5. Mars                      --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 6. Jupiter                   --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 7. Saturn                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 8. Uranus                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"-- 9. Neptun                    --",44}");
-            Console.WriteLine($"{"--                              --",44}");
-            Console.WriteLine($"{"--10. Pluto                     --",44}");
+            Console.WriteLine($"{"-- 1. Sonne       |     279     --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 2. Merkur      |     0,37    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 3. Venus       |     0,90    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 4. Mond        |     0,16    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 5. Mars        |     0,38    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 6. Jupiter     |     2,53    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 7. Saturn      |     1,07    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 8. Uranus      |     0,91    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"-- 9. Neptun      |     1,14    --",44}");
+            Console.WriteLine($"{"--                |             --",44}");
+            Console.WriteLine($"{"--10. Pluto       |     0,68    --",44}");
             Console.WriteLine($"{"----------------------------------\n",44}");
+            Console.WriteLine("\tReferenz: Erde = 1");
         }
     }
 }
