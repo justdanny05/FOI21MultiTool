@@ -55,6 +55,7 @@ namespace MAKlassenBibliothek
                     case "2":
                         Console.Clear();
                         //Hier Feature schreiben
+                        Feature22.Feature_22();
                         break;
 
                     case "3":
