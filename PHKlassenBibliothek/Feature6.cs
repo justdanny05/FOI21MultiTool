@@ -345,7 +345,7 @@ namespace PHKlassenBibliothek
                         Console.WriteLine("Nun können wir starten.\n");
 
                         Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
-                        Console.Write("Geben Sie zuerst das Gewicht der ersten Masse an: ");
+                        Console.Write("Geben Sie zuerst das Gewicht der ersten Masse in Kilogramm an: ");
                         string m1 = Console.ReadLine();
                         double d_m1;
                         Console.WriteLine("");
@@ -354,7 +354,7 @@ namespace PHKlassenBibliothek
                             b_m2 = true;
                             do
                             {
-                                Console.Write("Nun geben Sie das Gewicht der zweiten Masse an: ");
+                                Console.Write("Nun geben Sie das Gewicht der zweiten Masse in Kilogramm an: ");
                                 string m2 = Console.ReadLine();
                                 double d_m2;
                                 Console.WriteLine("");
@@ -362,7 +362,7 @@ namespace PHKlassenBibliothek
                                 {
                                     do
                                     {
-                                        Console.Write("Jetzt nur noch den Abstand und dann kanns losgehen: ");
+                                        Console.Write("Jetzt nur noch den Abstand in Metern und dann kanns losgehen: ");
                                         string r = Console.ReadLine();
                                         double d_r;
                                         Console.WriteLine("");
@@ -376,7 +376,7 @@ namespace PHKlassenBibliothek
 
                                             //Ausgabe des Ergebnis:
                                             Console.WriteLine($"Die Gravitationskraft zwischen den Massen {m1} kg und {m2} kg bei einem Abstand von {r} m beträgt {F} N (Newton).\n\n");
-                                            Console.ReadKey();
+
                                             bool b_abfrage = true;                                  //Für die Abfrage
                                             do
                                             {
@@ -526,6 +526,7 @@ namespace PHKlassenBibliothek
                 Console.WriteLine("Hier können Sie die Gewichtskraft in Newton ausrechnen. Um dies zu tun müssen Sie einfach nur hier unten das Gewicht eintragen.\n" +
                     "Wenn Sie wieder zurück ins Untermenü Rechner möchten, dann geben Sie 'back' ein.\n");
 
+                Console.Write("Gewicht: ");
                 string gewicht = Console.ReadLine();
                 double d_gewicht;
                 if (double.TryParse(gewicht, out d_gewicht))
@@ -997,8 +998,8 @@ namespace PHKlassenBibliothek
         //Tabelle mit Planeten im Sonnensystem:
         internal static void Sonnensystem_PlanetenListe()
         {
-            Console.WriteLine("\tReferenz: Erde = 1\n");
-            Console.Write("\tTabelle: ");
+            Console.WriteLine("Referenz: Erde = 1\n", 14);
+            Console.Write("Tabelle: ");
             Console.WriteLine($"{"----------------------------------",35}");
             Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
             Console.WriteLine($"{"----------------------------------",44}");
@@ -1021,7 +1022,7 @@ namespace PHKlassenBibliothek
             Console.WriteLine($"{"-- 9. Neptun      |     1,14    --",44}");
             Console.WriteLine($"{"--                |             --",44}");
             Console.WriteLine($"{"--10. Pluto       |     0,68    --",44}");
-            Console.WriteLine($"{"----------------------------------\n",44}");
+            Console.WriteLine($"{"----------------------------------\n",45}");
         }
 
         //Eingabe des Benutzers == 'exit'
