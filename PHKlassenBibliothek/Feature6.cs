@@ -252,37 +252,9 @@ namespace PHKlassenBibliothek
                                             Console.Clear();
                                             //Gewicht auf unterschiedlichen Planeten
                                             Anziehungskraft_Rechner();                  //Verweis
-                                            bool abfrage_schleife = false;
-                                            do
-                                            {
-                                                abfrage_schleife = false;
-                                                Console.WriteLine("-----------------------------------------------------------------");
-                                                Console.WriteLine("Wie wollen Sie fortfahren?\n" +
-                                                    "[1] Rechnung wiederholen\n" +
-                                                    "[2] Zurück ins Untermenü Rechner");
-                                                string abfrage_rechnung = Console.ReadLine();
-                                                if (abfrage_rechnung == "1" | abfrage_rechnung == "2")
-                                                {
-
-                                                }
-                                                else if (abfrage_rechnung == "subexit")
-                                                {
-                                                    //Ins Untermenü Gravitation zurück
-                                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
-                                                    Feature_6();
-                                                }
-                                                else if (abfrage_rechnung == "exit")
-                                                {
-                                                    Programmbeendet();
-                                                }
-                                                else
-                                                {
-                                                    Console.WriteLine("Falsche Eingabe\n" +
-                                                        "Bitte erneut Versuchen...");
+                                            Console.WriteLine("Das wars Sie werden jetzt automatisch zum Untermenü Rechner weitergeleitet.\n" +
+                                                "Viel Spaß :)");
                                             Console.ReadKey();
-                                                    abfrage_schleife = true;
-                                                }
-                                            } while (abfrage_schleife);
                                             break;
                                     }
                                 }
