@@ -24,6 +24,7 @@ namespace PHKlassenBibliothek
                 Console.WriteLine("Das ist der Themenbereich Gravitation und ihre Kräfte.\n" +
                     "Hier können Sie lernen und oder Rechnungen aus diesem Themenbereich durchführen lassen.\n" +
                     "Wenn Sie das Programm verlassen wollen, können Sie dies hier jederzeit mit dem Befehl 'exit' tun!\n" +
+                    "Mit dem Befehl 'back' springen Sie immer einen Schritt zurück.\n" +
                     "Viel Spaß :)\n\n");
 
                 Console.WriteLine("Um zurück ins Untermenü Physik zu kommen geben Sie 'back' ein.\n");
@@ -58,7 +59,7 @@ namespace PHKlassenBibliothek
                                 Console.WriteLine("--                                                   --\n");
                                 Console.WriteLine("-------------------------------------------------------\n");
 
-                                Console.WriteLine("Wenn Sie doch lieber den Rechner benutzen wollen dann geben Sie 'back' ein.\n");
+                                Console.WriteLine("Wenn Sie doch lieber den Rechner benutzen wollen dann geben Sie 'subexit' ein.\n");
 
                                 Console.Write("Eingabe:");
                                 string case1 = Console.ReadLine();
@@ -226,7 +227,7 @@ namespace PHKlassenBibliothek
                                 Console.WriteLine("[-----------------------------------------------------]\n");
 
                                 Console.WriteLine("Um das Untermenü Rechner zu verlassen und zurück zum Menü Gravitation zu kommen,\n" +
-                                    "müssen Sie einfach 'back' eingeben.");                                                                         //'back' um das Menü zu verlassen
+                                    "müssen Sie einfach 'subexit' eingeben.");                                                                         //'back' um das Menü zu verlassen
                                 Console.WriteLine("---------------------------------------------------------------------------------------");
                                 string rechner_eingabe = Console.ReadLine();
 
@@ -257,7 +258,7 @@ namespace PHKlassenBibliothek
                                             break;
                                     }
                                 }
-                                else if (rechner_eingabe == "back")
+                                else if (rechner_eingabe == "back" | rechner_eingabe == "subexit")
                                 {
                                     //Zurück ins Untermenü Gravitation!
                                     Console.WriteLine("Sie werden ins Untermenü Gravitation weitergeleitet.\n" +
