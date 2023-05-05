@@ -12,6 +12,7 @@ using iTextSharp.text.pdf;
 using System.Globalization;
 using static iTextSharp.text.pdf.AcroFields;
 using static WIKlassenBibliothek.Feature20;
+using System.Diagnostics;
 
 namespace WIKlassenBibliothek
 {
@@ -34,6 +35,31 @@ namespace WIKlassenBibliothek
 
         string usersOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "users");
         Directory.CreateDirectory(usersOrdnerPfad);
+
+            string settingsFolder = Path.Combine(usersOrdnerPfad, "settings");
+            string autoLoginPath1 = Path.Combine(settingsFolder, "settings.txt");
+
+
+            if (!Directory.Exists(kassensystemOrdnerPfad))
+            {
+                Directory.CreateDirectory(kassensystemOrdnerPfad);
+            }
+
+            if (!Directory.Exists(usersOrdnerPfad))
+            {
+                Directory.CreateDirectory(usersOrdnerPfad);
+            }
+
+            if (!Directory.Exists(settingsFolder))
+            {
+                Directory.CreateDirectory(settingsFolder);
+            }
+
+            if (!File.Exists(autoLoginPath1))
+            {
+                File.WriteAllText(autoLoginPath1, "autologin=false");
+
+            }
 
         bool loggedIn = false;
         string benutzerName = "";
@@ -104,9 +130,22 @@ namespace WIKlassenBibliothek
 
             }
 
+
+            if (File.Exists(autoLoginPath1))
+            {
+                string settings = File.ReadAllText(autoLoginPath1);
+
+                if (!settings.Contains("readme=true"))
+                {
+                    Feature20.OpenReadmeFile();
+                }
+            }
+
+
+
             while (!loggedIn)
             {
-                Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                 "                              >>> Benutzer Interface <<<\n" +
@@ -142,7 +181,7 @@ namespace WIKlassenBibliothek
                 else if (auswahl == "1" && !autologinEnabled)
                 {
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                       "                              >>> Benutzer Login <<<\n" +
                                       "------------------------------------------------------------------------------------\n\n");
@@ -206,7 +245,7 @@ namespace WIKlassenBibliothek
                 else if (auswahl == "2")
                 {
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                       "                              >>> Neues Konto erstellen <<<\n" +
                                       "------------------------------------------------------------------------------------\n\n");
@@ -261,7 +300,7 @@ namespace WIKlassenBibliothek
                 if (auswahl == "3")
                 {
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                       "                              >>> Benutzer löschen <<<\n" +
                                       "------------------------------------------------------------------------------------\n\n");
@@ -323,7 +362,44 @@ namespace WIKlassenBibliothek
             }
         }
 
+        public static void OpenReadmeFile()
+        {
+            string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+            string readmeDateiPfad = Path.Combine(@".\..\..\..\..\WIKlassenBibliothek\readme\readme.txt");
+            if (File.Exists(readmeDateiPfad))
+            {
+                Process.Start("notepad.exe", readmeDateiPfad);
 
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
+                string usersOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "users");
+                string settingsOrdnerPfad = Path.Combine(usersOrdnerPfad, "settings");
+                string settingsDateiPfad = Path.Combine(settingsOrdnerPfad, "settings.txt");
+
+                if (!Directory.Exists(settingsOrdnerPfad))
+                {
+                    Directory.CreateDirectory(settingsOrdnerPfad);
+                }
+
+                if (File.Exists(settingsDateiPfad))
+                {
+                    string settingsInhalt = File.ReadAllText(settingsDateiPfad);
+                    if (!settingsInhalt.Contains("readme=true"))
+                    {
+                        settingsInhalt += "\nreadme=true";
+                        File.WriteAllText(settingsDateiPfad, settingsInhalt);
+                    }
+                }
+                else
+                {
+                    string settingsInhalt = "readme=true";
+                    File.WriteAllText(settingsDateiPfad, settingsInhalt);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Die readme.txt-Datei existiert nicht.");
+            }
+        }
 
         internal static string GetCurrentUserName1()
         {
@@ -371,10 +447,25 @@ namespace WIKlassenBibliothek
             }
 
             string content = File.ReadAllText(autoLoginPath);
-            bool autoLoginEnabled = content.Trim().ToLower().EndsWith("true");
+            string[] settings = content.Trim().Split(new char[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+
+            bool autoLoginEnabled = false;
+
+            foreach (string setting in settings)
+            {
+                string[] parts = setting.Trim().Split('=');
+                if (parts.Length == 2 && parts[0].Trim().ToLower() == "autologin")
+                {
+                    bool value;
+                    if (bool.TryParse(parts[1].Trim().ToLower(), out value))
+                    {
+                        autoLoginEnabled = value;
+                    }
+                }
+            }
+
             return autoLoginEnabled;
         }
-
 
         public static void ToggleAutoLogin()
         {
@@ -384,37 +475,25 @@ namespace WIKlassenBibliothek
             string settingsFolder = Path.Combine(usersOrdnerPfad, "settings");
             string autoLoginPath = Path.Combine(settingsFolder, "settings.txt");
 
-            if (!Directory.Exists(kassensystemOrdnerPfad))
-            {
-                Directory.CreateDirectory(kassensystemOrdnerPfad);
-            }
-
-            if (!Directory.Exists(usersOrdnerPfad))
-            {
-                Directory.CreateDirectory(usersOrdnerPfad);
-            }
-
-            if (!Directory.Exists(settingsFolder))
-            {
-                Directory.CreateDirectory(settingsFolder);
-            }
-
             bool autoLoginEnabled = IsAutoLoginEnabled();
-            bool newValue = !autoLoginEnabled;
-            File.WriteAllText(autoLoginPath, $"autologin={newValue.ToString().ToLower()}");
 
-            if (newValue)
+            if (autoLoginEnabled)
             {
-                Console.Clear();
-                Console.WriteLine("Auto-Login ist jetzt aktiviert.");
-            }
-            else
-            {
+                string content = File.ReadAllText(autoLoginPath);
+                content = content.Replace("autologin=true", "autologin=false");
+                File.WriteAllText(autoLoginPath, content);
                 Console.Clear();
                 Console.WriteLine("Auto-Login ist jetzt deaktiviert.");
             }
+            else
+            {
+                string content = File.ReadAllText(autoLoginPath);
+                content = content.Replace("autologin=false", "autologin=true");
+                File.WriteAllText(autoLoginPath, content);
+                Console.Clear();
+                Console.WriteLine("Auto-Login ist jetzt aktiviert.");
+            }
         }
-
 
         public static List<string> BenutzerAuflisten()
         {
@@ -425,16 +504,13 @@ namespace WIKlassenBibliothek
             string produktOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Produkte");
             Directory.CreateDirectory(produktOrdnerPfad);
 
-            string quittungOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Quittungen");
-            Directory.CreateDirectory(quittungOrdnerPfad);
-
             string usersOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "users");
             Directory.CreateDirectory(usersOrdnerPfad);
 
             string usersDateiPfad = Path.Combine(usersOrdnerPfad, "users.txt");
 
             List<string> benutzerListe = new List<string>();
-            string header = FiggleFonts.Slant.Render("Wirtschaft");
+            string header = FiggleFonts.Slant.Render("Kassensystem");
 
             if (!File.Exists(usersDateiPfad))
             {
@@ -504,7 +580,7 @@ namespace WIKlassenBibliothek
 
             string usersOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "users");
             Directory.CreateDirectory(usersOrdnerPfad);
-            string header = FiggleFonts.Slant.Render("Wirtschaft");
+            string header = FiggleFonts.Slant.Render("Kassensystem");
 
             BenutzerAuflisten();
 
@@ -574,7 +650,7 @@ namespace WIKlassenBibliothek
 
             Kassensystem.SetConsoleColor(ConsoleColor.Green);
 
-            Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+            Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
 
             Console.WriteLine("------------------------------------------------------------------------------------\n" +
                             "                              >>> Admin-Kassensystem <<<\n" +
@@ -607,7 +683,7 @@ namespace WIKlassenBibliothek
                 case "3":
                     kassensystem.ProdukteAuflisten();
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                             "                              >>> Preis Ändern <<<\n" +
                             "------------------------------------------------------------------------------------\n\n");
@@ -617,7 +693,7 @@ namespace WIKlassenBibliothek
                 case "4":
                     kassensystem.ProdukteAuflisten();
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                             "                              >>> Produkt Löschen <<<\n" +
                             "------------------------------------------------------------------------------------\n\n");
@@ -684,7 +760,7 @@ namespace WIKlassenBibliothek
 
             Kassensystem.SetConsoleColor(ConsoleColor.Green);
 
-            Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+            Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
 
             Console.WriteLine("------------------------------------------------------------------------------------\n" +
                             "                              >>> Kassensystem <<<\n" +
@@ -821,7 +897,7 @@ namespace WIKlassenBibliothek
                 while (true)
                 {
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                       "                              >>> Warenkorb <<<\n" +
                                       "------------------------------------------------------------------------------------\n\n");
@@ -862,7 +938,7 @@ namespace WIKlassenBibliothek
                     if (antwort.ToLower() == "ja")
                     {
                         Console.Clear();
-                        Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                        Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                         Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                           "                              >>> Warenkorb <<<\n" +
                                           "------------------------------------------------------------------------------------\n\n");
@@ -877,7 +953,7 @@ namespace WIKlassenBibliothek
                         if (ant.ToLower() == "ja")
                         {
                             Console.Clear();
-                            Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                            Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                             Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                               "                              >>> Kasse <<<\n" +
                                               "------------------------------------------------------------------------------------\n\n");
@@ -949,7 +1025,7 @@ namespace WIKlassenBibliothek
                         else if (ant.ToLower() == "nein")
                         {
                             Console.Clear();
-                            Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                            Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                             Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                               "                              >>> Kasse <<<\n" +
                                               "------------------------------------------------------------------------------------\n\n");
@@ -1006,7 +1082,7 @@ namespace WIKlassenBibliothek
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                        Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                         Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                           "                              >>> Warenkorb <<<\n" +
                                           "------------------------------------------------------------------------------------\n\n");
@@ -1040,7 +1116,7 @@ namespace WIKlassenBibliothek
                 if (warenkorb.Count == 0)
                 {
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                     "                              >>> Warenkorb <<<\n" +
                                     "------------------------------------------------------------------------------------\n\n");
@@ -1049,7 +1125,7 @@ namespace WIKlassenBibliothek
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                    Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                     Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                     "                              >>> Warenkorb <<<\n" +
                                     "------------------------------------------------------------------------------------\n\n");
@@ -1074,7 +1150,7 @@ namespace WIKlassenBibliothek
                     else
                     {
                         Console.Clear();
-                        Console.WriteLine(FiggleFonts.Slant.Render("Wirtschaft"));
+                        Console.WriteLine(FiggleFonts.Slant.Render("Kassensystem"));
                         Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                           "                              >>> Warenkorb <<<\n" +
                                           "------------------------------------------------------------------------------------\n\n");
@@ -1220,8 +1296,11 @@ namespace WIKlassenBibliothek
                 return false;
             }
 
+
+
             public void QuittungErstellen(produkt produkt, List<string> warenkorbProdukte)
             {
+
                 int quittungsId = GetNextQuittungsID();
 
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -1238,23 +1317,34 @@ namespace WIKlassenBibliothek
                 System.Drawing.Font font = new System.Drawing.Font("Bahnschrift SemiBold", 16, FontStyle.Bold);
                 SolidBrush brush = new SolidBrush(System.Drawing.Color.Black);
 
-                g.DrawString($"{quittungsId}\n", font, brush, new System.Drawing.PointF(443, 387));
-                g.DrawString($" {produkt.Name}", font, brush, new System.Drawing.PointF(160, 464));
-                g.DrawString($" {produkt.Preis}€\n", font, brush, new System.Drawing.PointF(140, 538));
-                g.DrawString($" {datum}\n", font, brush, new System.Drawing.PointF(613, 574));
-                g.DrawString($" {GetCurrentUserName1()}\n", font, brush, new System.Drawing.PointF(200, 574));
+                string warenkorbPfad = Path.Combine(Environment.CurrentDirectory, "warenkorb.txt");
+                string[] warenkorbprodukte = File.ReadAllLines(warenkorbPfad);
 
-                string quittungPdfPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.pdf");
-                using (FileStream fs = new FileStream(quittungPdfPfad, FileMode.Create, FileAccess.Write, FileShare.None))
+                foreach (string produkts in warenkorbProdukte)
                 {
-                    iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(bmp.Width, bmp.Height);
-                    iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(pageSize);
-                    iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, fs);
-                    pdfDoc.Open();
-                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bmp, System.Drawing.Imaging.ImageFormat.Png);
-                    img.ScaleToFit(pageSize.Width, pageSize.Height);
-                    pdfDoc.Add(img);
-                    pdfDoc.Close();
+                    string[] produktsDetails = produkts.Split(',');
+                    string produktsName = produktsDetails[0];
+                    double produktsPreis = Convert.ToDouble(produktsDetails[1]);
+
+                    g.DrawString($"{quittungsId}\n", font, brush, new System.Drawing.PointF(443, 387));
+                    g.DrawString($" {produktsName}", font, brush, new System.Drawing.PointF(160, 464));
+                    g.DrawString($" {produktsPreis}€\n", font, brush, new System.Drawing.PointF(140, 538));
+                    g.DrawString($" {datum}\n", font, brush, new System.Drawing.PointF(613, 574));
+                    g.DrawString($" {GetCurrentUserName1()}\n", font, brush, new System.Drawing.PointF(200, 574));
+
+                    string dateiNames = $"{quittungsId}_{produktsName}";
+                    string quittungPdfPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.pdf");
+                    using (FileStream fs = new FileStream(quittungPdfPfad, FileMode.Create, FileAccess.Write, FileShare.None))
+                    {
+                        iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(bmp.Width, bmp.Height);
+                        iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(pageSize);
+                        iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, fs);
+                        pdfDoc.Open();
+                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bmp, System.Drawing.Imaging.ImageFormat.Png);
+                        img.ScaleToFit(pageSize.Width, pageSize.Height);
+                        pdfDoc.Add(img);
+                        pdfDoc.Close();
+                    }
                 }
 
                 string kategorieDateiPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.txt");
@@ -1356,8 +1446,6 @@ namespace WIKlassenBibliothek
                     adminoberflaeche();
                 }
             }
-
-
 
 
             public List<Feature20.produkt> ProdukteAusDateiLesen(string dateiPfad)
@@ -1465,16 +1553,34 @@ namespace WIKlassenBibliothek
 
             public void ProduktPreisAendern(string name)
             {
+                string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
+                string produktOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Produkte");
+                string produktPfad = Path.Combine(produktOrdnerPfad, "produkte.txt");
+
+                List<Feature20.produkt> produkte = new List<Feature20.produkt>();
+
+                using (StreamReader reader = new StreamReader(produktPfad))
+                {
+                    string line;
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        string[] parts = line.Split(';');
+                        string nameFromFile = parts[0];
+                        decimal preisFromFile = decimal.Parse(parts[1]);
+                        Feature20.produkt produktFromFile = new Feature20.produkt { Name = nameFromFile, Preis = preisFromFile };
+                        produkte.Add(produktFromFile);
+                    }
+                }
+
                 Feature20.produkt produkt = produkte.Find(p => p.Name == name);
 
                 if (produkt == null)
                 {
                     Console.Clear();
                     Console.WriteLine("Produkt nicht gefunden.");
-
                     if (UserHasRole999())
                     {
-                        
                         adminoberflaeche();
                     }
                     else
@@ -1489,29 +1595,40 @@ namespace WIKlassenBibliothek
                 while (true)
                 {
                     Console.Write($"Aktueller Preis von {name}: {produkt.Preis} Euro\n" +
-                                  $"Neuer Preis eingeben: ");
+                                    $"Neuer Preis eingeben: ");
                     string input = Console.ReadLine();
 
                     if (!decimal.TryParse(input, out preis) || preis < 0)
                     {
-                        Console.Clear() ;
+                        Console.Clear();
                         Console.WriteLine(header);
                         Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                                   "                              >>> Preis Ändern <<<\n" +
-                                                   "------------------------------------------------------------------------------------\n");
+                                            "                              >>> Preis Ändern <<<\n" +
+                                            "------------------------------------------------------------------------------------\n");
                         Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine positive Zahl ein.");
                         continue;
                     }
 
                     break;
                 }
+
                 produkt.Preis = preis;
+
+                using (StreamWriter writer = new StreamWriter(produktPfad))
+                {
+                    foreach (Feature20.produkt p in produkte)
+                    {
+                        writer.WriteLine($"{p.Name};{p.Preis}");
+                    }
+                }
+
                 Console.Clear();
                 Console.WriteLine($"Preis von {name} wurde auf {preis} Euro geändert.");
-
                 ProdukteSpeichern();
                 KassensystemBenutzeroberflaeche();
             }
+
+
         }
     }
 }
