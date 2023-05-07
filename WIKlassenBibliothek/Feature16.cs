@@ -34,18 +34,46 @@ namespace WIKlassenBibliothek
                         Console.WriteLine("Taste: e\t->\tbeendet das Programm");
                         Console.WriteLine("\n\nHi " + username + ", ich wurde von Selim programmiert und ich rechne für dich Währungen um.\n\n");
 
-                        string Währung1;
-                        string Währung2;
-                        double betrag;
+                        string Währung1 = "";
+                        string Währung2 = "";
+                        double betrag = 0;
 
+                        do
+                        {
+                            Console.Write("Gebe die erste Währung ein(z.B. USD): ");
+                            Währung1 = Console.ReadLine().ToUpper();
 
-                        Console.WriteLine("Die erste Währung, die du eingibst, wird in die zweite umgerechnet.\n");
-                        Console.Write("Gebe die erste Währung ein(z.B. USD): ");
-                        Währung1 = Console.ReadLine().ToUpper();
-                        Console.Write("Gebe die zweite Währung ein (z.B. EUR): ");
-                        Währung2 = Console.ReadLine().ToUpper();
-                        Console.Write("Gebe den Betrag ein, der umgerechnet werden soll: ");
-                        betrag = Convert.ToDouble(Console.ReadLine());
+                            if (Währung1 == "E")
+                            {
+                                Exit = true;
+                                break;
+                            }
+
+                            Console.Write("Gebe die zweite Währung ein (z.B. EUR): ");
+                            Währung2 = Console.ReadLine().ToUpper();
+
+                            if (Währung2 == "E")
+                            {
+                                Exit = true;
+                                break;
+                            }
+
+                            Console.Write("Gebe den Betrag ein, der umgerechnet werden soll: ");
+                            string inputBetrag = Console.ReadLine();
+
+                            if (inputBetrag == "E")
+                            {
+                                Exit = true;
+                                break;
+                            }
+
+                            if (!double.TryParse(inputBetrag, out betrag))
+                            {
+                                Console.WriteLine("Ungültiger Betrag. Bitte gib einen gültigen Betrag ein.");
+                            }
+
+                        } while (betrag <= 0);
+
 
 
                         var client = new RestClient($"https://api.apilayer.com/fixer/convert?from={Währung1}&to={Währung2}&amount={betrag}");
