@@ -1265,6 +1265,7 @@ namespace WIKlassenBibliothek
             private const string QuittungsIDDateiName = "letzteQuittungsID.txt";
             private int letzteQuittungsID = 0;
 
+
             private void LadeLetzteQuittungsID()
             {
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -1401,7 +1402,6 @@ namespace WIKlassenBibliothek
 
 
                 SpeichereLetzteQuittungsID();
-                Console.WriteLine("TEST");
                 string dateiPfad = Path.Combine(gekauftOrdnerPfad, dateiName);
                 Console.WriteLine($"Quittung wird erstellt...");
                 Console.WriteLine($"Quittung erstellt: {dateiPfad}");
