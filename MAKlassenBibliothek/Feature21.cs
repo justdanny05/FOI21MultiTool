@@ -18,7 +18,7 @@ namespace MAKlassenBibliothek
                               "Wählen Sie eine der folgenden Optionen:\n" +
                               "\t1 - Berechnet das Ergebnis einer Funktion\n" +
                               "\t2 - Berechnet den Wert von x einer linearen Funktion\n" +
-                              "\tExit - Verlässt das Feature");
+                              "\t3 - Verlässt das Feature");
 
                 Console.Write("Eingabe: ");
                 string Eingabe = Console.ReadLine();
@@ -94,10 +94,15 @@ namespace MAKlassenBibliothek
                     Console.ReadKey();
 
                 }
-                else
+                else if (Eingabe == "3")
                 {
                     Console.Clear();
                     exit = true;
+                }
+                else
+                {
+                    Console.WriteLine("Ungültige Eingabe! Drücken sie eine beliebige Taste zum fortfahren:");
+                    Console.ReadKey();
                 }
                 Console.Clear();
 

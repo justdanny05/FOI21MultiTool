@@ -16,6 +16,7 @@ namespace MAKlassenBibliothek
             {
                 double distance, speed, timeInHours, timeInMinutes, timeInSeconds;
 
+                Console.WriteLine("Distanzrechner\n");
                 Console.WriteLine("Geben sie ihre Distanze in Kilometer an:");
                 distance = double.Parse(Console.ReadLine());
 
@@ -30,7 +31,7 @@ namespace MAKlassenBibliothek
                 Console.WriteLine("{0} minuten", timeInMinutes);
                 Console.WriteLine("{0} sekunden", timeInSeconds);
 
-                Console.ReadLine();
+                Console.ReadKey();
 
                 Console.WriteLine("möchten sie das programm wiederholen? (j/n)");
                 wiederholen=Console.ReadLine();

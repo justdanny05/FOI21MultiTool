@@ -25,7 +25,7 @@ namespace MAKlassenBibliothek
                                   "                              >>> Mathematik <<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
-                Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
+                Console.WriteLine("Eingabe: subexit\t->\tbeendet das Programm");
 
                 //Beschreibung der Software.
                 Console.WriteLine("\n\nWilkommen im Mathematik-Submenü!\n" +
@@ -36,11 +36,11 @@ namespace MAKlassenBibliothek
 
                 //Eingabeaufforderung 
                 Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
-                Console.WriteLine("\t1 - Feature 1");
-                Console.WriteLine("\t2 - Feature 2");
-                Console.WriteLine("\t3 - Feature 3");
-                Console.WriteLine("\t4 - Feature 4");
-                Console.WriteLine("\t5 - Feature 5\n");
+                Console.WriteLine("\t1 - Funktionsrechner");
+                Console.WriteLine("\t2 - Mathequiz");
+                Console.WriteLine("\t3 - Distanzrechner");
+                Console.WriteLine("\t4 - Koordinatenbasierter Rechner");
+                Console.WriteLine("\t5 - Geometrischer Formenrechner\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
 
@@ -54,32 +54,29 @@ namespace MAKlassenBibliothek
 
                     case "2":
                         Console.Clear();
-                        //Hier Feature schreiben
                         Feature22.Feature_22();
                         break;
 
                     case "3":
                         Console.Clear();
-                        //Hier Feature3 aufrufen
                         Feature23.Feature_23();
                         break;
 
                     case "4":
-                    
-                        //Hier Feature1 aufrufen
+                        Console.Clear();
                         Feature24.Feature_24();
                         break;
 
                     case "5": 
                         Console.Clear();
                         Feature25.Feature_25();
-                        //Hier Feature schreiben
                         break;
 
                     case "subexit":
                         Console.Clear();
                         Exit = true;
                         break;
+
                     default:
 
                         Console.WriteLine("Ungültige Eingabe");

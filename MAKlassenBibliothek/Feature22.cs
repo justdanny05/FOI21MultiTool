@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,8 +11,6 @@ namespace MAKlassenBibliothek
     {
         internal static void Feature_22()
         {
-            Console.WriteLine("Test Feature 22");
-
             bool weiterSpielen = true;
             int punkte = 0;
             int gesamtFragen = 0;
@@ -24,7 +23,7 @@ namespace MAKlassenBibliothek
                 Console.WriteLine("=== Hauptmenü ===");
                 Console.WriteLine("1. Spiel starten");
                 Console.WriteLine("2. Beenden");
-                Console.WriteLine($"{"Dein punkte :"}{punkte}");
+                Console.WriteLine($"{"Deine Punkte: "}{punkte}");
                 Console.WriteLine("***************Info******************");
                 Console.WriteLine("Wenn Sie Während des Spiels ;exit; eingeben, können Sie das Programm verlassen ");
                 Console.Write("Bitte wählen Sie eine Option: ");
@@ -47,11 +46,14 @@ namespace MAKlassenBibliothek
                             {
 
                                 Console.WriteLine("Auf Wiedersehen!");
+                                Console.ReadKey();
+                                Console.Clear();
                                 return;
                             }
                             else
                             {
                                 Console.WriteLine("Bitte exit oder Nummer schreiben ");
+                                Console.ReadKey();
                                 continue;
                             }
 
@@ -118,6 +120,8 @@ namespace MAKlassenBibliothek
                         {
 
                             Console.WriteLine("Auf Wiedersehen!");
+                            Console.ReadKey();
+                            Console.Clear();
                             return;
                         }
 
@@ -132,11 +136,14 @@ namespace MAKlassenBibliothek
                             if (eingabeAntwort == "exit")
                             {
                                 Console.WriteLine("Auf Wiedersehen!");
+                                Console.ReadKey();
+                                Console.Clear();
                                 return;
                             }
                             else
                             {
                                 Console.WriteLine("Bitte exit oder Nummer schreiben ");
+                                Console.ReadKey();
                                 continue;
                             }
 
@@ -168,11 +175,12 @@ namespace MAKlassenBibliothek
                             punkte += 1;
                             gesamtFragen++;
                             punkte = +2;
+                            Console.ReadKey();
                         }
                         else
                         {
-                            Console.WriteLine($"Falsch. Die richtige Antwort ist :{ergebnis}");
-
+                            Console.WriteLine($"Falsch. Die richtige Antwort ist: {ergebnis}");
+                            Console.ReadKey();
 
 
 
@@ -182,11 +190,19 @@ namespace MAKlassenBibliothek
                     case "2":
                         Console.WriteLine("Programm wird beendet...");
                         weiterSpielen = false;
+                        Console.ReadKey();
+                        Console.Clear();
                         break;
 
-                }
-                Console.ReadKey();
+                    default:
 
+                        Console.WriteLine("Ungültige Eingabe");
+                        Console.ReadKey();
+                        Console.Clear();
+                        break;
+
+
+                }
             }
         }
     }

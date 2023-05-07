@@ -92,6 +92,8 @@
                 else if (Eingabe == "4")
                 {
                     Console.WriteLine("Programm beendet");
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Clear();
                     break;
 
                 }
@@ -100,6 +102,7 @@
                     Console.WriteLine("Ungültige Eingabe. Bitte wählen Sie eine Option aus dem Menü aus.");
                     Console.WriteLine("Drücken Sie eine beliebige Taste, um fortzufahren...");
                     Console.ReadKey();
+                    Console.Clear();
                 }
             }
 
