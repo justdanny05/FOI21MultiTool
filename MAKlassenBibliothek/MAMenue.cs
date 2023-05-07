@@ -60,7 +60,8 @@ namespace MAKlassenBibliothek
 
                     case "3":
                         Console.Clear();
-                        //Hier Feature schreiben
+                        //Hier Feature3 aufrufen
+                        Feature23.Feature_23();
                         break;
 
                     case "4":
