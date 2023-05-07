@@ -821,7 +821,6 @@ namespace WIKlassenBibliothek
             }
         }
 
-
         public class Quittung
         {
             private int ID;
@@ -993,7 +992,7 @@ namespace WIKlassenBibliothek
                                     string neueDateiPfad = Path.Combine(warengekauft, neueDateiName);
                                     File.Copy(warenkorbDateiPfad, neueDateiPfad);
                                     File.WriteAllText(warenkorbDateiPfad, string.Empty);
-                                    QuittungErstellen(produkttt, warenkorbProdukte);
+                                    QuittungErstellen(warenkorbProdukte);
 
                                 }
                             }
@@ -1263,12 +1262,43 @@ namespace WIKlassenBibliothek
                 ProdukteSpeichern();
             }
 
+            private const string QuittungsIDDateiName = "letzteQuittungsID.txt";
+            private int letzteQuittungsID = 0;
+
+            private void LadeLetzteQuittungsID()
+            {
+                string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem", "users", "settings");
+                string quittungsIDDateiPfad = Path.Combine(kassensystemOrdnerPfad, QuittungsIDDateiName);
+
+                if (File.Exists(quittungsIDDateiPfad))
+                {
+                    string quittungsIDText = File.ReadAllText(quittungsIDDateiPfad);
+                    int quittungsID;
+                    if (int.TryParse(quittungsIDText, out quittungsID))
+                    {
+                        letzteQuittungsID = quittungsID;
+                    }
+                }
+            }
+
+            private void SpeichereLetzteQuittungsID()
+            {
+                string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+                string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem", "users", "settings");
+                string quittungsIDDateiPfad = Path.Combine(kassensystemOrdnerPfad, QuittungsIDDateiName);
+
+                File.WriteAllText(quittungsIDDateiPfad, letzteQuittungsID.ToString());
+            }
+
+
             private int GetNextQuittungsID()
             {
-                int nextQuittungsID = 0;
-
-                return nextQuittungsID;
+                letzteQuittungsID++;
+                SpeichereLetzteQuittungsID();
+                return letzteQuittungsID;
             }
+
 
             public bool UserHasRole999()
             {
@@ -1294,66 +1324,85 @@ namespace WIKlassenBibliothek
             }
 
 
-
-            public void QuittungErstellen(produkt produkt, List<string> warenkorbProdukte)
+            public void QuittungErstellen(List<string> warenkorbProdukte)
             {
-
                 int quittungsId = GetNextQuittungsID();
-
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
                 string gekauftOrdnerPfad = Path.Combine(kassensystemOrdnerPfad, "Warenkorb", GetCurrentUserName1(), "gekauft", "Quittung");
                 string datum = DateTime.Now.ToString("yyyy-MM");
-                string neueDateiName = "warenkorb" + (Kassensystem.anzahlWarenkorbDateien + 1).ToString();
+                string neueDateiName = $"warenkorb{Kassensystem.anzahlWarenkorbDateien + 1}";
                 string dateiName = $"{datum}_{neueDateiName}";
-
                 Directory.CreateDirectory(gekauftOrdnerPfad);
 
-                Bitmap bmp = new Bitmap(@".\..\..\..\..\WIKlassenBibliothek\template\temp.PNG");
-                Graphics g = Graphics.FromImage(bmp);
-                System.Drawing.Font font = new System.Drawing.Font("Bahnschrift SemiBold", 16, FontStyle.Bold);
-                SolidBrush brush = new SolidBrush(System.Drawing.Color.Black);
+                string quittungPdfPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.pdf");
+                iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document();
+                iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, new FileStream(quittungPdfPfad, FileMode.Create));
+                pdfDoc.Open();
 
-                string warenkorbPfad = Path.Combine(Environment.CurrentDirectory, "warenkorb.txt");
-                string[] warenkorbprodukte = File.ReadAllLines(warenkorbPfad);
-
-                foreach (string produkts in warenkorbProdukte)
+                foreach (string produkt in warenkorbProdukte)
                 {
-                    string[] produktsDetails = produkts.Split(',');
-                    string produktsName = produktsDetails[0];
-                    double produktsPreis = Convert.ToDouble(produktsDetails[1]);
+                    string[] produktDetails = produkt.Split(',');
+                    string produktName = produktDetails[0];
+                    double produktPreis = Convert.ToDouble(produktDetails[1]);
+
+                    Bitmap bmp = new Bitmap(@".\..\..\..\..\WIKlassenBibliothek\template\temp.PNG");
+                    Graphics g = Graphics.FromImage(bmp);
+                    System.Drawing.Font font = new System.Drawing.Font("Bahnschrift SemiBold", 16, FontStyle.Bold);
+                    SolidBrush brush = new SolidBrush(System.Drawing.Color.Black);
 
                     g.DrawString($"{quittungsId}\n", font, brush, new System.Drawing.PointF(443, 387));
-                    g.DrawString($" {produktsName}", font, brush, new System.Drawing.PointF(160, 464));
-                    g.DrawString($" {produktsPreis}€\n", font, brush, new System.Drawing.PointF(140, 538));
+                    g.DrawString($" {produktName}", font, brush, new System.Drawing.PointF(160, 464));
+                    g.DrawString($" {produktPreis}€\n", font, brush, new System.Drawing.PointF(140, 538));
                     g.DrawString($" {datum}\n", font, brush, new System.Drawing.PointF(613, 574));
                     g.DrawString($" {GetCurrentUserName1()}\n", font, brush, new System.Drawing.PointF(200, 574));
-
-                    string dateiNames = $"{quittungsId}_{produktsName}";
-                    string quittungPdfPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.pdf");
-                    using (FileStream fs = new FileStream(quittungPdfPfad, FileMode.Create, FileAccess.Write, FileShare.None))
-                    {
-                        iTextSharp.text.Rectangle pageSize = new iTextSharp.text.Rectangle(bmp.Width, bmp.Height);
-                        iTextSharp.text.Document pdfDoc = new iTextSharp.text.Document(pageSize);
-                        iTextSharp.text.pdf.PdfWriter writer = iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, fs);
-                        pdfDoc.Open();
-                        iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bmp, System.Drawing.Imaging.ImageFormat.Png);
-                        img.ScaleToFit(pageSize.Width, pageSize.Height);
-                        pdfDoc.Add(img);
-                        pdfDoc.Close();
-                    }
+                    pdfDoc.NewPage();
+                    iTextSharp.text.Image img = iTextSharp.text.Image.GetInstance(bmp, System.Drawing.Imaging.ImageFormat.Png);
+                    img.ScaleToFit(pdfDoc.PageSize.Width, pdfDoc.PageSize.Height);
+                    pdfDoc.Add(img);
                 }
+
+                pdfDoc.Close();
+
+
+                Kassensystem.anzahlWarenkorbDateien++;
+
+
 
                 string kategorieDateiPfad = Path.Combine(gekauftOrdnerPfad, $"{dateiName}.txt");
 
                 if (!File.Exists(kategorieDateiPfad))
                 {
-                    File.WriteAllText(kategorieDateiPfad, $"Quittungen für Artikel {produkt.Name} :\n\n");
+                    File.WriteAllText(kategorieDateiPfad, $"Quittungen für alle Artikel im Warenkorb:\n\n");
                 }
 
+                string quittungText = $"Datum: {datum}\nKäufer: {GetCurrentUserName1()}\n\n";
+                string produktListe = "Produktliste: ";
+                foreach (string produkt in warenkorbProdukte)
+                {
+                    string[] produktDetails = produkt.Split(',');
+                    string produktName = produktDetails[0];
+                    produktListe += produktName + ", ";
+                }
+                produktListe = produktListe.Remove(produktListe.Length - 2);
+                quittungText += produktListe + "\n";
+                foreach (string produkt in warenkorbProdukte)
+                {
+                    string[] produktDetails = produkt.Split(',');
+                    string produktName = produktDetails[0];
+                    double produktPreis = Convert.ToDouble(produktDetails[1]);
+
+                    quittungText += $"Produkt: {produktName}: {produktPreis}€\n";
+                }
+
+                quittungText += "\n";
+
+                File.AppendAllText(kategorieDateiPfad, quittungText);
+
+
+                SpeichereLetzteQuittungsID();
+                Console.WriteLine("TEST");
                 string dateiPfad = Path.Combine(gekauftOrdnerPfad, dateiName);
-                Quittung quittung = new Quittung(GetNextQuittungsID(), DateTime.Now, produkt, GetCurrentUserName1());
-                File.AppendAllText(kategorieDateiPfad, quittung.ToString() + "\n");
                 Console.WriteLine($"Quittung wird erstellt...");
                 Console.WriteLine($"Quittung erstellt: {dateiPfad}");
 
@@ -1366,6 +1415,8 @@ namespace WIKlassenBibliothek
                     KassensystemBenutzeroberflaeche();
                 }
             }
+
+
 
             private void ProdukteSpeichern()
             {
