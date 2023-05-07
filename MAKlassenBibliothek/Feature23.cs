@@ -32,7 +32,7 @@ namespace MAKlassenBibliothek
 
                 Console.ReadLine();
 
-                Console.WriteLine("möchten sie das programm wiederholen ?");
+                Console.WriteLine("möchten sie das programm wiederholen? (j/n)");
                 wiederholen=Console.ReadLine();
                 Console.Clear();
 
