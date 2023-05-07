@@ -817,10 +817,7 @@ namespace WIKlassenBibliothek
 
             public produkt()
             {
-                Name = "";
-                Preis = 0;
-                Kategorie = "";
-                Hersteller = "";
+
             }
         }
 
@@ -1551,7 +1548,7 @@ namespace WIKlassenBibliothek
                 return produkte;
             }
 
-            public void ProduktPreisAendern(string name)
+            public void ProduktPreisAendern(string produktName)
             {
                 string desktopPfad = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
                 string kassensystemOrdnerPfad = Path.Combine(desktopPfad, "Kassensystem");
@@ -1560,21 +1557,28 @@ namespace WIKlassenBibliothek
 
                 List<Feature20.produkt> produkte = new List<Feature20.produkt>();
 
-                using (StreamReader reader = new StreamReader(produktPfad))
+                // Lese alle Produkte aus der Datei und speichere sie in der Liste
+                string[] lines = File.ReadAllLines(produktPfad);
+                foreach (string line in lines)
                 {
-                    string line;
-                    while ((line = reader.ReadLine()) != null)
+                    string[] parts = line.Split(',');
+                    if (parts.Length >= 4)
                     {
-                        string[] parts = line.Split(';');
-                        string nameFromFile = parts[0];
-                        decimal preisFromFile = decimal.Parse(parts[1]);
-                        Feature20.produkt produktFromFile = new Feature20.produkt { Name = nameFromFile, Preis = preisFromFile };
-                        produkte.Add(produktFromFile);
+                        string name = parts[0];
+                        decimal preis = decimal.Parse(parts[1], CultureInfo.InvariantCulture);
+                        string kategorie = parts[2];
+                        string hersteller = parts[3];
+                        produkte.Add(new Feature20.produkt(name, preis, kategorie, hersteller));
                     }
+                    else
+                    {
+                       
+                    }
+
                 }
 
-                Feature20.produkt produkt = produkte.Find(p => p.Name == name);
-
+                // Suche das Produkt in der Liste und ändere den Preis
+                Feature20.produkt produkt = produkte.FirstOrDefault(p => p.Name == produktName);
                 if (produkt == null)
                 {
                     Console.Clear();
@@ -1590,15 +1594,14 @@ namespace WIKlassenBibliothek
                     return;
                 }
 
-                decimal preis;
-
+                decimal neuerPreis;
                 while (true)
                 {
-                    Console.Write($"Aktueller Preis von {name}: {produkt.Preis} Euro\n" +
+                    Console.Write($"Aktueller Preis von {produkt.Name}: {produkt.Preis} Euro\n" +
                                     $"Neuer Preis eingeben: ");
                     string input = Console.ReadLine();
 
-                    if (!decimal.TryParse(input, out preis) || preis < 0)
+                    if (!decimal.TryParse(input, NumberStyles.Number, CultureInfo.InvariantCulture, out neuerPreis) || neuerPreis < 0)
                     {
                         Console.Clear();
                         Console.WriteLine(header);
@@ -1612,21 +1615,31 @@ namespace WIKlassenBibliothek
                     break;
                 }
 
-                produkt.Preis = preis;
+                produkt.Preis = neuerPreis;
 
+                // Schreibe die aktualisierten Produkte in die Datei
                 using (StreamWriter writer = new StreamWriter(produktPfad))
                 {
                     foreach (Feature20.produkt p in produkte)
                     {
-                        writer.WriteLine($"{p.Name};{p.Preis}");
+                        writer.WriteLine($"{p.Name},{p.Preis.ToString(CultureInfo.InvariantCulture)},{p.Kategorie},{p.Hersteller}");
                     }
                 }
 
                 Console.Clear();
-                Console.WriteLine($"Preis von {name} wurde auf {preis} Euro geändert.");
+                Console.WriteLine($"Preis von {produkt.Name} wurde auf {neuerPreis} Euro geändert.");
                 ProdukteSpeichern();
-                KassensystemBenutzeroberflaeche();
+                if (UserHasRole999())
+                {
+                    adminoberflaeche();
+                }
+                else
+                {
+                    KassensystemBenutzeroberflaeche();
+                }
             }
+
+
 
 
         }
