@@ -284,6 +284,7 @@ namespace MAKlassenBibliothek
                         Console.WriteLine("\nDrücken sie eine Beliebige Taste zum wiederholen:");
                         Console.ReadKey();
                         Console.Clear();
+                       
                         break;
 
                     case 12:
@@ -307,6 +308,7 @@ namespace MAKlassenBibliothek
                         Console.WriteLine("\nDrücken sie eine Beliebige Taste zum wiederholen:");
                         Console.ReadKey();
                         Console.Clear();
+                        
                         break;
 
                     case 13:
@@ -324,11 +326,12 @@ namespace MAKlassenBibliothek
                         Console.WriteLine("\nDrücken sie eine Beliebige Taste zum wiederholen:");
                         Console.ReadKey();
                         Console.Clear();
+                        
                         break;
 
                     case 14:
 
-                        Console.WriteLine("\nDrücken sie eine Beliebige Taste zum wiederholen:");
+                        Console.WriteLine("\nDrücken sie eine Beliebige Taste zum beenden:");
                         Console.ReadKey();
                         Console.Clear();
                         exit = false;
