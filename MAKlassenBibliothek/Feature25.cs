@@ -46,8 +46,6 @@ namespace MAKlassenBibliothek
                     Console.Write("Höhe des Rechtecks: ");
                     double rechteckHoehe = Convert.ToDouble(Console.ReadLine());
 
-                    Console.Write("Tiefe des Rechtecks: ");
-                    double rechteckTiefe = Convert.ToDouble(Console.ReadLine());
 
                     double rechteckFlaeche = rechteckBreite * rechteckHoehe;
                     double rechteckUmfang = 2 * (rechteckBreite + rechteckHoehe);
