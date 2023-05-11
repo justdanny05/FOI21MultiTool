@@ -11,8 +11,8 @@ namespace MAKlassenBibliothek
         internal static void Feature_25()
         {
 
-            int exit = 14;
-            while (exit== 14)
+            bool exit = true;
+            while (exit)
             {
 
                 Console.WriteLine("Geometrische Formenberechnung");
@@ -328,7 +328,10 @@ namespace MAKlassenBibliothek
 
                     case 14:
 
-                        Environment.Exit(0);
+                        Console.WriteLine("\nDrücken sie eine Beliebige Taste zum wiederholen:");
+                        Console.ReadKey();
+                        Console.Clear();
+                        exit = false;
                         break;
 
 
