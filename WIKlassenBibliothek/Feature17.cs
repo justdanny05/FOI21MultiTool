@@ -84,7 +84,7 @@ namespace WIKlassenBibliothek
                 for (int i = 0; i < namenswert.Length; i++)
                 {
                     Console.Write(namenswert[i].PadRight(42)+"|");
-
+                    
                     do
                     {
                         
@@ -155,25 +155,40 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("__________________________________________", Console.ForegroundColor = ConsoleColor.Gray, Console.BackgroundColor = ConsoleColor.Gray);
                 Console.ResetColor();
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("Wollen Sie den Vorgang wiederholen? (J/N)".PadRight(42) + "|");
+                bool repeat = true;
 
-                if (Console.ReadLine().ToUpper() == "J")
+                while (repeat)
                 {
-                    Console.Clear();
-                    Run();
-                }
-                else if (Console.ReadLine().ToUpper() == "N")
-                {
-                    Environment.Exit(0);
-                }
-                else if (eingabe == "subexit")
-                {
-                    Console.Clear();
-                    return;
+                    Console.Write("Wollen Sie den Vorgang wiederholen? (J/N) ".PadRight(42) + "|");
 
+                    string input = Console.ReadLine().ToUpper();
+
+                    switch (input)
+                    {
+                        case "J":
+                            Console.Clear();
+                            Run();
+                            break;
+
+                        case "N":
+                        case "EXIT":
+                            Environment.Exit(0);
+                            break;
+
+                        case "SUBEXIT":
+                            Console.Clear();
+                            repeat = false;
+                            break;
+
+                        default:
+                            Console.WriteLine("Ungültige Eingabe. Bitte geben Sie 'J' oder 'N' ein.");
+                            break;
+                    }
                 }
+
+
             }
-        //Bei Subexit ohne anderen Code auszuführen hier hin.
+            //Bei Subexit ohne anderen Code auszuführen hier hin.
         }
 
         private void Formeln()
