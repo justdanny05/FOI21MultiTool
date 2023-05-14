@@ -68,7 +68,7 @@ namespace WIKlassenBibliothek
                                 if (ein1z == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -100,7 +100,7 @@ namespace WIKlassenBibliothek
                                 if (ein1e == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -132,7 +132,7 @@ namespace WIKlassenBibliothek
                                 if (ein1l == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -150,7 +150,10 @@ namespace WIKlassenBibliothek
                         //Berechnung Startkapital
                         double startkapital1 = endkapital1 / Math.Pow(1 + (zinsatz1 / 100), laufzeit1);
 
-                        Console.WriteLine("Das Startkapital beträgt: " + startkapital1);
+                        double value1 = startkapital1;
+                        Console.WriteLine("Das Startkapital beträgt: {0,5:#.###}", value1);
+
+                        
                         break;
 
 
@@ -180,7 +183,7 @@ namespace WIKlassenBibliothek
                                 if (ein2s == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -214,7 +217,7 @@ namespace WIKlassenBibliothek
                                 if (ein2e == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -229,7 +232,7 @@ namespace WIKlassenBibliothek
                             }
                         } while (flag2e);
 
-                       
+
                         //Laufzeit2
                         bool flag2l = true;
                         do
@@ -248,7 +251,7 @@ namespace WIKlassenBibliothek
                                 if (ein2l == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -264,9 +267,10 @@ namespace WIKlassenBibliothek
                         } while (flag2l);
 
                         //Berechnung Zinssatz
-                        double zinssatz2 = Math.Pow(endkapital2 / startkapital2, 1.0 / laufzeit2) - 1;
-
-                        Console.WriteLine("Der Zinssatz beträgt " + (zinssatz2) + " %");
+                        double zinssatz2 = 100 * Math.Pow(endkapital2 / startkapital2, (1 / laufzeit2)) - 100;
+                        double value2 = zinssatz2;
+                        Console.WriteLine("Das Startkapital beträgt: {0,5:#.###}%", value2);
+                        
 
                         break;
 
@@ -279,7 +283,7 @@ namespace WIKlassenBibliothek
                         double zinssatz3 = 0;
                         double endkapital3 = 0;
                         Console.WriteLine(">>LAUFZEIT BERECHNEN<<\n\n");
-                        
+
                         //Startkapital 3
 
                         bool flag3s = true;
@@ -299,7 +303,7 @@ namespace WIKlassenBibliothek
                                 if (ein3s == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -332,7 +336,7 @@ namespace WIKlassenBibliothek
                                 if (ein3z == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -366,7 +370,7 @@ namespace WIKlassenBibliothek
                                 if (ein3e == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -382,8 +386,11 @@ namespace WIKlassenBibliothek
                         } while (flag3e);
 
                         //Berechnung Laufzeit
+                        double laufzeit3 = Math.Log(endkapital3 / startkapital3, (1 + (zinssatz3 / 100)));
+                        double value3 = laufzeit3;
 
-                        //Formel Laufzeit
+                        Console.WriteLine("Die Laufzeit beträgt: {0,5:#.###} Jahre", value3);
+
 
 
                         break;
@@ -415,7 +422,7 @@ namespace WIKlassenBibliothek
                                 if (ein4s == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -448,7 +455,7 @@ namespace WIKlassenBibliothek
                                 if (ein4z == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -474,7 +481,7 @@ namespace WIKlassenBibliothek
                             try
                             {
                                 laufzeit4 = double.Parse(ein4l);
-                                flag2l = false;
+                                flag4l = false;
                             }
                             catch (FormatException ex)
                             {
@@ -482,7 +489,7 @@ namespace WIKlassenBibliothek
                                 if (ein4l == "exit")
                                 {
 
-                                    Console.WriteLine("Bye Bye");
+                                    Console.WriteLine("Auf Wiedersehn");
                                     Console.ReadKey();
                                     Console.Clear();
                                     return;
@@ -496,6 +503,13 @@ namespace WIKlassenBibliothek
                                 }
                             }
                         } while (flag4l);
+
+                        //Berechnung Endkapital
+                        double endkapital4 = startkapital4 * Math.Pow(1 + (zinssatz4 / 100), laufzeit4);
+                        double value4 = endkapital4;
+                        Console.WriteLine("Das Endkapital beträgt: {0,5:#.###}", value4);
+                        
+                        
 
                         break;
 
