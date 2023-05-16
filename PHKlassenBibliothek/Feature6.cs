@@ -600,117 +600,116 @@ namespace PHKlassenBibliothek
                                     Console.Clear();
                                     Console.WriteLine("\t1) Gewichtskraft auf anderen Planeten im Sonnensystem\n");
 
-                                    Sonnensystem_PlanetenListe();
-                                    Console.WriteLine("");
-                                    Console.WriteLine("Wählen Sie einen Planeten aus, mit dem Sie rechnen wollen.");
-                                    string planet1 = Console.ReadLine();
-                                    if (planet1 == "1" | planet1 == "2" | planet1 == "3" | planet1 == "4" | planet1 == "5" | planet1 == "6" | planet1 == "7" | planet1 == "8" | planet1 == "9" | planet1 == "10")
+                                Sonnensystem_PlanetenListe();
+                                Console.WriteLine("");
+                                Console.WriteLine("Wählen Sie einen Planeten aus, mit dem Sie rechnen wollen.");
+                                string planet1 = Console.ReadLine();
+                                if (planet1 == "1" | planet1 == "2" | planet1 == "3" | planet1 == "4" | planet1 == "5" | planet1 == "6" | planet1 == "7" | planet1 == "8" | planet1 == "9" | planet1 == "10")
+                                {
+                                    int i_planet1;
+                                    double planetbeschleunigung;
+                                    double s_gewichtskraft1;
+                                    int.TryParse(planet1, out i_planet1);
+                                    switch (i_planet1)
                                     {
-                                        int i_planet1;
-                                        double planetbeschleunigung;
-                                        double s_gewichtskraft1;
-                                        int.TryParse(planet1, out i_planet1);
-                                        switch (i_planet1)
-                                        {
-                                            case 1:
-                                                //Sonne 247
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 247;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf der Sonne, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 1:
+                                            //Sonne 247
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 247;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf der Sonne, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 2:
-                                                //Merkur 3.7
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 3.7;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Merkur, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 2:
+                                            //Merkur 3.7
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 3.7;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Merkur, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 3:
-                                                //Venus 8.87
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 8.87;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf der Venus, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 3:
+                                            //Venus 8.87
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 8.87;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf der Venus, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 4:
-                                                //Mond 1.62
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 1.62;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Mond, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 4:
+                                            //Mond 1.62
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 1.62;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Mond, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 5:
-                                                //Mars 3.721
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 3.721;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Mars, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 5:
+                                            //Mars 3.721
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 3.721;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Mars, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 6:
-                                                //Jupiter 24.79
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 24.79;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Jupiter, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 6:
+                                            //Jupiter 24.79
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 24.79;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Jupiter, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 7:
-                                                //Saturn 10.44
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 10.44;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Saturn, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 7:
+                                            //Saturn 10.44
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 10.44;   
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Saturn, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 8:
-                                                //Uranus 8.87
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 8.87;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Uranus beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 8:
+                                            //Uranus 8.87
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 8.87;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Uranus beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 9:
-                                                //Neptun 11.15
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 11.15;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Neptun beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 9:
+                                            //Neptun 11.15
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 11.15;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Neptun beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 10:
-                                                //Pluto 0.62
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 0.62;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Zwergplaneten Pluto, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
-                                        }
-                                        bool unterabfrage_schleife = true;
-                                        do
-                                        {
-                                            unterabfrage_schleife = true;
-                                            Console.Clear();
-                                            Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
-                                            Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
-                                            "\t2. Mit einem anderen Planeten rechnen\n" +
-                                            "\t3. Zurück zum Untermenü Rechner\n");
+                                        case 10:
+                                            //Pluto 0.62
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 0.62;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Zwergplaneten Pluto, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
+                                    }
+                                    bool unterabfrage_schleife;
+                                    do
+                                    {
+                                        unterabfrage_schleife = true;
+                                        Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
+                                        Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
+                                        "\t2. Mit einem anderen Planeten rechnen\n" +
+                                        "\t3. Zurück zum Untermenü Rechner\n");
 
                                             Console.WriteLine("---------------------------------------------------------------");
                                             string unterabfrage_eingabe = Console.ReadLine();
