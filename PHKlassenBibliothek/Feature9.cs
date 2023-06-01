@@ -79,6 +79,7 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                 {
                     switch (auswahl)
                     {
+                        /*
                         case 1:
                             double distance;
                             Console.Clear();
@@ -126,26 +127,20 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                                 }
                                 break;
                             }
-
-                            double velocity;
                             
-                            double time;
-                            double time_r;
+                            double velocity;
                             switch (option)
                             {
                                 case 1:
-                                    double distance1;
-                                    velocity = distance1 / time_r;
+                                    velocity = distance / time;
                                     Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " m/s.");
                                     break;
                                 case 2:
-                                    double distance2;
-                                    velocity = distance2 / time * 3.6;
+                                    velocity = distance / time * 3.6;
                                     Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " km/h.");
                                     break;
                                 case 3:
-                                    double distance3;
-                                    velocity = distance3 / time * 2.237;
+                                    velocity = distance / time * 2.237;
                                     Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " mph.");
                                     break;
                                 default:
@@ -153,6 +148,7 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                                     break;
                             }
                             break;
+                            */
                         case 2:
                             Console.Clear();
                             Console.WriteLine("Sie haben Option 📐 2 gewählt.");
