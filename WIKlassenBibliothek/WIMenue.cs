@@ -1,4 +1,4 @@
-﻿using Figgle;
+using Figgle;
 
 namespace WIKlassenBibliothek
 {
@@ -17,30 +17,32 @@ namespace WIKlassenBibliothek
 
                 //ASCII art Logo wird erzeugt.
                 Console.WriteLine
-                    (FiggleFonts.Slant.Render("Wirtschaft"));
+                    (FiggleFonts.Slant.Render("FOIMultiTool"));
 
                 //Konsolentitel wird geändert.
-                Console.Title = "Wirtschaft";
+                Console.Title = "FOIMultiTool";
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                   "                              >>> Wirtschafts Submenu<<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
-                Console.WriteLine("Eingabe: exit\t        ->\tbeendet das Programm");
+                Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
                 Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
-                //Beschreibung der Software
-                Console.WriteLine("\n\nWillkommen im Untermenü 'Wirtschaft' hier findest du coole und spannende Tools.\n\n");
+                //Beschreibung der Software.
+                Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
+                                  "Aufgabenaus dem schulischen Kontext erleichtert oder gelöst werden. Diese Aufgaben\n" +
+                                  "ergeben sich aus den Problemstellungen aus dem Unterricht der Berufsfachschule für Technik.\n\n");
 
                 string HauptAusw;
 
 
                 //Eingabeaufforderung 
-                Console.WriteLine("Wählen Sie eine der folgenden Tools:\n");
+                Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
                 Console.WriteLine("\t1 - Währungsrechner");
                 Console.WriteLine("\t2 - Informatik");
                 Console.WriteLine("\tm - Mathematik");
-                Console.WriteLine("\t4 - Physik");
+                Console.WriteLine("\t4 - Amortisationsrechner");
                 Console.WriteLine("\tw - Wirtschaft\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
@@ -49,6 +51,7 @@ namespace WIKlassenBibliothek
                 {
                     case "1":
                         Console.Clear();
+                        Feature16.Feature_16();
                         break;
 
                     case "i":
