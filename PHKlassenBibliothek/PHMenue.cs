@@ -46,12 +46,13 @@ namespace PHKlassenBibliothek
 
                         case 1:
                             Console.Clear();
-                            //Feature 1 Danny CallmeBabygirl
+                            //Feature 6 Danny CallmeBabygirl
+                            Feature6.Feature_6();
                             break;
 
                         case 2:
                             Console.Clear();
-                            //Feature 2 Shehan nahehs
+                            //Feature 7 Shehan nahehs
                             Feature7.Feature_7();
                             break;
 
@@ -63,7 +64,7 @@ namespace PHKlassenBibliothek
 
                         case 4:
                             Console.Clear();
-                            //Feature 4 Simon simqn
+                            //Feature 9 Simon simqn
                             break;
                     }
                 }
