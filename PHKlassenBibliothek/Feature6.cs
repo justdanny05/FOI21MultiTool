@@ -24,6 +24,7 @@ namespace PHKlassenBibliothek
                 Console.WriteLine("Das ist der Themenbereich Gravitation und ihre Kräfte.\n" +
                     "Hier können Sie lernen und oder Rechnungen aus diesem Themenbereich durchführen lassen.\n" +
                     "Wenn Sie das Programm verlassen wollen, können Sie dies hier jederzeit mit dem Befehl 'exit' tun!\n" +
+                    "Mit dem Befehl 'back' springen Sie immer einen Schritt zurück.\n" +
                     "Viel Spaß :)\n\n");
 
                 Console.WriteLine("Um zurück ins Untermenü Physik zu kommen geben Sie 'back' ein.\n");
@@ -58,7 +59,7 @@ namespace PHKlassenBibliothek
                                 Console.WriteLine("--                                                   --\n");
                                 Console.WriteLine("-------------------------------------------------------\n");
 
-                                Console.WriteLine("Wenn Sie doch lieber den Rechner benutzen wollen dann geben Sie 'back' ein.\n");
+                                Console.WriteLine("Wenn Sie doch lieber den Rechner benutzen wollen dann geben Sie 'subexit' ein.\n");
 
                                 Console.Write("Eingabe:");
                                 string case1 = Console.ReadLine();
@@ -226,7 +227,7 @@ namespace PHKlassenBibliothek
                                 Console.WriteLine("[-----------------------------------------------------]\n");
 
                                 Console.WriteLine("Um das Untermenü Rechner zu verlassen und zurück zum Menü Gravitation zu kommen,\n" +
-                                    "müssen Sie einfach 'back' eingeben.");                                                                         //'back' um das Menü zu verlassen
+                                    "müssen Sie einfach 'subexit' eingeben.");                                                                         //'back' um das Menü zu verlassen
                                 Console.WriteLine("---------------------------------------------------------------------------------------");
                                 string rechner_eingabe = Console.ReadLine();
 
@@ -251,25 +252,57 @@ namespace PHKlassenBibliothek
                                             Console.Clear();
                                             //Gewicht auf unterschiedlichen Planeten
                                             Anziehungskraft_Rechner();                  //Verweis
-                                            Console.WriteLine("Das wars Sie werden jetzt automatisch zum Untermenü Rechner weitergeleitet.\n" +
-                                                "Viel Spaß :)");
-                                            Console.ReadKey();
+                                            bool abfrage_schleife = false;
+                                            do
+                                            {
+                                                abfrage_schleife = false;
+                                                Console.WriteLine("-----------------------------------------------------------------");
+                                                Console.WriteLine("Wie wollen Sie fortfahren?\n" +
+                                                    "[1] Rechnung wiederholen\n" +
+                                                    "[2] Zurück ins Untermenü Rechner");
+                                                string abfrage_rechnung = Console.ReadLine();
+                                                if (abfrage_rechnung == "1" | abfrage_rechnung == "2")
+                                                {
+                                                    int int_abfrage_rechnung;
+                                                    int.TryParse(abfrage_rechnung, out int_abfrage_rechnung);
+                                                    if (int_abfrage_rechnung == 1)
+                                                    {
+                                                        Anziehungskraft_Rechner();
+                                                        abfrage_schleife|= true;
+                                                    }
+                                                    else if (int_abfrage_rechnung == 2)
+                                                    {
+                                                        //Schleife wird durchbrochen
+                                                    }
+                                                }
+                                                else if (abfrage_rechnung == "subexit")
+                                                {
+                                                    //Ins Untermenü Gravitation zurück
+                                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
+                                                    Feature_6();
+                                                }
+                                                else if (abfrage_rechnung == "exit")
+                                                {
+                                                    Programmbeendet();
+                                                }
+                                                else
+                                                {
+                                                    Console.WriteLine("Falsche Eingabe\n" +
+                                                        "Bitte erneut Versuchen...");
+                                                    Console.ReadKey();
+                                                    abfrage_schleife = true;
+                                                }
+                                            } while (abfrage_schleife);
                                             break;
                                     }
                                 }
-                                if (rechner_eingabe == "back")
+                                else if (rechner_eingabe == "back" | rechner_eingabe == "subexit")
                                 {
                                     //Zurück ins Untermenü Gravitation!
                                     Console.WriteLine("Sie werden ins Untermenü Gravitation weitergeleitet.\n" +
                                         "Tschüss");
                                     exit_untermenü_ReUNDIn = true;
                                     Console.ReadKey();
-                                }
-                                else if (rechner_eingabe == "subexit")
-                                {
-                                    //Ins Untermenü Gravitation zurück
-                                    Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
-                                    Feature_6();
                                 }
                                 else if (rechner_eingabe == "exit")
                                 {
@@ -286,7 +319,7 @@ namespace PHKlassenBibliothek
                             break;
                     }
                 }
-                if (eingabe_1 == "back")                                                //Back wird in dem Fall genommen, um das Programm zu verallgemeinern.
+                else if (eingabe_1 == "back")                                                //Back wird in dem Fall genommen, um das Programm zu verallgemeinern.
                 {
                     //Zurück ins Untermenü PH
                     Console.WriteLine("Ich hoffe es hat ihnen gefallen.\n" +
@@ -298,12 +331,19 @@ namespace PHKlassenBibliothek
                 {
                     Programmbeendet();                  //Um nach abbruch des Programmbeendens, wieder beim gleichen Eingabepunkt zu sein.
                 }
+                else if (eingabe_1 == "subexit")
+                {
+                    //Das ist hier noch nicht möglich, erneute Eingabeaufforderung
+                    Console.WriteLine("'subexit' bring ihnen hier nichts, da Sie sich schon im Untermenü Gravitation befinden :)\n" +
+                        "Um fortfahren zu können, geben Sie eine der Angegebenen Zahlen an.");
+                    Console.ReadKey();
+                }
                 else
                 {
                     //Erneute Eingabeaufforderung, wegen falscher Eingabe
                     Console.WriteLine("Eingabe: '" + eingabe_1 + "'");
                     Console.WriteLine("Falsche Eingabe erkannt.\n" +
-                        "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können.\n");
+                        "Bitte eine der Angegebenen Zahlen eingeben um fortfahren zu können.");
                     Console.ReadKey();
                 }
             } while (!exit_gravitation);
@@ -343,7 +383,7 @@ namespace PHKlassenBibliothek
                         Console.WriteLine("Nun können wir starten.\n");
 
                         Console.WriteLine("-----------------------------------------------------------------------------------------------------------------------------");
-                        Console.Write("Geben Sie zuerst das Gewicht der ersten Masse an: ");
+                        Console.Write("Geben Sie zuerst das Gewicht der ersten Masse in Kilogramm an: ");
                         string m1 = Console.ReadLine();
                         double d_m1;
                         Console.WriteLine("");
@@ -352,7 +392,7 @@ namespace PHKlassenBibliothek
                             b_m2 = true;
                             do
                             {
-                                Console.Write("Nun geben Sie das Gewicht der zweiten Masse an: ");
+                                Console.Write("Nun geben Sie das Gewicht der zweiten Masse in Kilogramm an: ");
                                 string m2 = Console.ReadLine();
                                 double d_m2;
                                 Console.WriteLine("");
@@ -360,7 +400,7 @@ namespace PHKlassenBibliothek
                                 {
                                     do
                                     {
-                                        Console.Write("Jetzt nur noch den Abstand und dann kanns losgehen: ");
+                                        Console.Write("Jetzt nur noch den Abstand in Metern und dann kanns losgehen: ");
                                         string r = Console.ReadLine();
                                         double d_r;
                                         Console.WriteLine("");
@@ -374,7 +414,7 @@ namespace PHKlassenBibliothek
 
                                             //Ausgabe des Ergebnis:
                                             Console.WriteLine($"Die Gravitationskraft zwischen den Massen {m1} kg und {m2} kg bei einem Abstand von {r} m beträgt {F} N (Newton).\n\n");
-                                            Console.ReadKey();
+
                                             bool b_abfrage = true;                                  //Für die Abfrage
                                             do
                                             {
@@ -407,7 +447,7 @@ namespace PHKlassenBibliothek
                                                         Console.ReadKey();
                                                     }
                                                 }
-                                                if (abfrage == "subexit")
+                                                else if (abfrage == "subexit")
                                                 {
                                                     //Ins Untermenü Gravitation zurück
                                                     Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
@@ -428,7 +468,7 @@ namespace PHKlassenBibliothek
                                                 }
                                             } while (!b_abfrage);
                                         }
-                                        if (r == "subexit")
+                                        else if (r == "subexit")
                                         {
                                             //Ins Untermenü Gravitation zurück
                                             Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
@@ -449,7 +489,7 @@ namespace PHKlassenBibliothek
 
                                     } while (!b_r);
                                 }
-                                if (m2 == "subexit")
+                                else if (m2 == "subexit")
                                 {
                                     //Ins Untermenü Gravitation zurück
                                     Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
@@ -469,7 +509,7 @@ namespace PHKlassenBibliothek
                                 }
                             } while (!b_m2);
                         }
-                        if (m1 == "subexit")
+                        else if (m1 == "subexit")
                         {
                             //Ins Untermenü Gravitation zurück
                             Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
@@ -489,7 +529,7 @@ namespace PHKlassenBibliothek
                         }
                     } while (!b_m1);
                 }
-                if (eingabe == "subexit")
+                else if (eingabe == "subexit")
                 {
                     //Ins Untermenü Gravitation zurück
                     Console.WriteLine("Sie kehren ins Untermenü Gravitation zurück.");
@@ -506,7 +546,7 @@ namespace PHKlassenBibliothek
                     schleife = false;
                     Console.WriteLine("Das war nicht korrekt '" + eingabe + "' ist nicht gültig.\nVersuchen Sie es nocheinmal...");
                     Console.ReadKey();
-                }                
+                }
             } while (!schleife);
         }
 
@@ -524,6 +564,7 @@ namespace PHKlassenBibliothek
                 Console.WriteLine("Hier können Sie die Gewichtskraft in Newton ausrechnen. Um dies zu tun müssen Sie einfach nur hier unten das Gewicht eintragen.\n" +
                     "Wenn Sie wieder zurück ins Untermenü Rechner möchten, dann geben Sie 'back' ein.\n");
 
+                Console.Write("Gewicht: ");
                 string gewicht = Console.ReadLine();
                 double d_gewicht;
                 if (double.TryParse(gewicht, out d_gewicht))
@@ -559,117 +600,116 @@ namespace PHKlassenBibliothek
                                     Console.Clear();
                                     Console.WriteLine("\t1) Gewichtskraft auf anderen Planeten im Sonnensystem\n");
 
-                                    Sonnensystem_PlanetenListe();
-                                    Console.WriteLine("");
-                                    Console.WriteLine("Wählen Sie einen Planeten aus, mit dem Sie rechnen wollen.");
-                                    string planet1 = Console.ReadLine();
-                                    if (planet1 == "1" | planet1 == "2" | planet1 == "3" | planet1 == "4" | planet1 == "5" | planet1 == "6" | planet1 == "7" | planet1 == "8" | planet1 == "9" | planet1 == "10")
+                                Sonnensystem_PlanetenListe();
+                                Console.WriteLine("");
+                                Console.WriteLine("Wählen Sie einen Planeten aus, mit dem Sie rechnen wollen.");
+                                string planet1 = Console.ReadLine();
+                                if (planet1 == "1" | planet1 == "2" | planet1 == "3" | planet1 == "4" | planet1 == "5" | planet1 == "6" | planet1 == "7" | planet1 == "8" | planet1 == "9" | planet1 == "10")
+                                {
+                                    int i_planet1;
+                                    double planetbeschleunigung;
+                                    double s_gewichtskraft1;
+                                    int.TryParse(planet1, out i_planet1);
+                                    switch (i_planet1)
                                     {
-                                        int i_planet1;
-                                        double planetbeschleunigung;
-                                        double s_gewichtskraft1;
-                                        int.TryParse(planet1, out i_planet1);
-                                        switch (i_planet1)
-                                        {
-                                            case 1:
-                                                //Sonne 247
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 247;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf der Sonne, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 1:
+                                            //Sonne 247
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 247;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf der Sonne, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 2:
-                                                //Merkur 3.7
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 3.7;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Merkur, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 2:
+                                            //Merkur 3.7
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 3.7;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Merkur, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 3:
-                                                //Venus 8.87
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 8.87;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf der Venus, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 3:
+                                            //Venus 8.87
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 8.87;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf der Venus, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 4:
-                                                //Mond 1.62
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 1.62;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Mond, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 4:
+                                            //Mond 1.62
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 1.62;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Mond, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 5:
-                                                //Mars 3.721
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 3.721;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Mars, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 5:
+                                            //Mars 3.721
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 3.721;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Mars, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 6:
-                                                //Jupiter 24.79
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 24.79;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Jupiter, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 6:
+                                            //Jupiter 24.79
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 24.79;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Jupiter, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 7:
-                                                //Saturn 10.44
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 10.44;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Saturn, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 7:
+                                            //Saturn 10.44
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 10.44;   
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Saturn, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 8:
-                                                //Uranus 8.87
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 8.87;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Uranus beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 8:
+                                            //Uranus 8.87
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 8.87;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Uranus beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 9:
-                                                //Neptun 11.15
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 11.15;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Neptun beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
+                                        case 9:
+                                            //Neptun 11.15
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 11.15;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Planeten Neptun beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
 
-                                            case 10:
-                                                //Pluto 0.62
-                                                Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
-                                                planetbeschleunigung = 0.62;
-                                                s_gewichtskraft1 = d_gewicht * erdbeschleunigung;               //Rechnung
-                                                Console.WriteLine($"Die Gewichtskraft, auf dem Zwergplaneten Pluto, beträgt {s_gewichtskraft1} N(Newton).");
-                                                Console.ReadKey();
-                                                break;
-                                        }
-                                        bool unterabfrage_schleife = true;
-                                        do
-                                        {
-                                            unterabfrage_schleife = true;
-                                            Console.Clear();
-                                            Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
-                                            Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
-                                            "\t2. Mit einem anderen Planeten rechnen\n" +
-                                            "\t3. Zurück zum Untermenü Rechner\n");
+                                        case 10:
+                                            //Pluto 0.62
+                                            Console.WriteLine($"Ihr Planet ist die Nr.{i_planet1}");
+                                            planetbeschleunigung = 0.62;
+                                            s_gewichtskraft1 = d_gewicht * planetbeschleunigung;               //Rechnung
+                                            Console.WriteLine($"Die Gewichtskraft, auf dem Zwergplaneten Pluto, beträgt {s_gewichtskraft1} N(Newton).");
+                                            Console.ReadKey();
+                                            break;
+                                    }
+                                    bool unterabfrage_schleife;
+                                    do
+                                    {
+                                        unterabfrage_schleife = true;
+                                        Console.WriteLine("Wie wollen Sie jetzt fortfahren?");
+                                        Console.WriteLine("\t1. Zurück zum Anfang der Rechnung\n" +
+                                        "\t2. Mit einem anderen Planeten rechnen\n" +
+                                        "\t3. Zurück zum Untermenü Rechner\n");
 
                                             Console.WriteLine("---------------------------------------------------------------");
                                             string unterabfrage_eingabe = Console.ReadLine();
@@ -684,7 +724,7 @@ namespace PHKlassenBibliothek
                                                     //Zurück zum Anfang der Rechnung:
                                                     Gewichtskraft_Rechner();
                                                 }
-                                                if (i_unterabfrage_eingabe == 2)
+                                                else if (i_unterabfrage_eingabe == 2)
                                                 {
                                                     //Mit einem anderen Planeten rechnen
                                                     Sonnensystem_schleife = false;
@@ -778,7 +818,7 @@ namespace PHKlassenBibliothek
                         }
                     } while (!schleife_exit);
                 }
-                if (gewicht == "back")
+                else if (gewicht == "back")
                 {
                     //Zurück ins Untermenü Rechner
                 }
@@ -995,7 +1035,8 @@ namespace PHKlassenBibliothek
         //Tabelle mit Planeten im Sonnensystem:
         internal static void Sonnensystem_PlanetenListe()
         {
-            Console.Write("\tTabelle: ");
+            Console.WriteLine("Referenz: Erde = 1\n");
+            Console.Write("Tabelle: ");
             Console.WriteLine($"{"----------------------------------",35}");
             Console.WriteLine($"{"--   Planeten im Sonnensystem:  --",44}");
             Console.WriteLine($"{"----------------------------------",44}");
@@ -1017,10 +1058,10 @@ namespace PHKlassenBibliothek
             Console.WriteLine($"{"--                |             --",44}");
             Console.WriteLine($"{"-- 9. Neptun      |     1,14    --",44}");
             Console.WriteLine($"{"--                |             --",44}");
-            Console.WriteLine($"{"--10. Pluto       |     0,08    --",44}");
-            Console.WriteLine($"{"----------------------------------\n",44}");
+            Console.WriteLine($"{"--10. Pluto       |     0,68    --",44}");
+            Console.WriteLine($"{"----------------------------------\n",45}");
         }
-        
+
         //Eingabe des Benutzers == 'exit'
         internal static void Programmbeendet()
         {
@@ -1049,7 +1090,7 @@ namespace PHKlassenBibliothek
                 {
                     //Erneute Eingaberaufforderung wegen falscher Eingabe
                     schleife = false;
-                    Console.WriteLine("'"+eingabe+"' ist eine falsche Eingabe.\n" +
+                    Console.WriteLine("'" + eingabe + "' ist eine falsche Eingabe.\n" +
                         "Erneute Eingabe erforderlich.");
                 }
             } while (!schleife);

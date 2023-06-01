@@ -22,8 +22,7 @@ namespace PHKlassenBibliothek
                 Console.WriteLine("----------------------------------------------------------------------------------------------------------\n");
 
                 Console.WriteLine("Willkommen im Themenbereich Physik :)\n" +
-                    "Hier sind Sie genau richtig, wenn Sie hilfe beim lösen von ihren Aufgaben in den unten Aufgelisteten Themenbereichen brauchen.\n" +
-                    "Um das Programm beenden zu können, können Sie jederzeit 'exit' eingeben." +
+                    "Hier sind Sie genau richtig, wenn Sie hilfe beim lösen von ihren Aufgaben, in den unten Aufgelisteten Themenbereichen, brauchen.\n" +
                     "Wenn Sie hier raus wollen, können Sie jeder Zeit mit dem Befehl 'subexit' ins Hauptmenü zurückkehren.\n\n");
 
                 Console.WriteLine("----------------------------------------------------");
@@ -66,18 +65,20 @@ namespace PHKlassenBibliothek
                             break;
                     }
                 }
-                else if (eingabe == "exit")
-                {
-                    Console.WriteLine("Das Programm wurde erfolgreich beendet.");
-                    Environment.Exit(0);
-                }
                 else if (eingabe == "subexit")
                 {
                     //Zurück zum Hauptmenü
+                    Console.Clear();
                     Console.WriteLine("Sie kehren jetzt zum Hauptmenü zurück.\nViel Erfolg weiterhin.");
                     subexit = true;
                     Console.WriteLine("Um fortzufahren eine beliebige Taste drücken.");
                     Console.ReadKey();
+                }
+                else if (eingabe == "exit" | eingabe == "Exit")
+                {
+                    //Programm wird beendet, weil der Befehl Exit eingegeben wurde
+                    Console.WriteLine("Das Programm wird beendet\nBis bald :)");
+                    Environment.Exit(0);
                 }
                 else
                 {
@@ -88,7 +89,7 @@ namespace PHKlassenBibliothek
                     Console.WriteLine("Um fortzufahren eine beliebige Taste drücken.");
                     Console.ReadKey();
                 }
-            } while (!subexit);
+            } while (!subexit);            
         }
     }
 }
