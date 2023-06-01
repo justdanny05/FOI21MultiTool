@@ -53,6 +53,7 @@ namespace PHKlassenBibliothek
                         case 2:
                             Console.Clear();
                             //Feature 2 Shehan nahehs
+                            Feature7.Feature_7();
                             break;
 
                         case 3:
