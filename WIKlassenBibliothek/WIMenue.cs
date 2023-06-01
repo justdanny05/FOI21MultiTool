@@ -17,16 +17,16 @@ namespace WIKlassenBibliothek
 
                 //ASCII art Logo wird erzeugt.
                 Console.WriteLine
-                    (FiggleFonts.Slant.Render("Wirtschaft"));
+                    (FiggleFonts.Slant.Render("FOIMultiTool"));
 
                 //Konsolentitel wird geändert.
-                Console.Title = "Wirtschaft";
+                Console.Title = "FOIMultiTool";
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
                                   "                              >>> Wirtschafts Submenu<<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
-                Console.WriteLine("Eingabe: exit\t        ->\tbeendet das Programm");
+                Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
                 Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
                 //Beschreibung der Software.
@@ -37,11 +37,11 @@ namespace WIKlassenBibliothek
                 string HauptAusw;
 
 
-                //Eingabeaufforderung
-                Console.WriteLine("Wählen Sie eine der folgenden Tools:\n");
+                //Eingabeaufforderung 
+                Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
                 Console.WriteLine("\t1 - Währungsrechner");
-                Console.WriteLine("\t2 - Lohnabrechnung");
-                Console.WriteLine("\tm - Mathematik");
+                Console.WriteLine("\t2 - Informatik");
+                Console.WriteLine("\t3 - Zinsrechner");
                 Console.WriteLine("\tp - Physik");
                 Console.WriteLine("\tw - Wirtschaft\n");
                 Console.Write("Eingabe:");
@@ -54,17 +54,14 @@ namespace WIKlassenBibliothek
                         Feature16.Feature_16();
                         break;
 
-                    case "2":
+                    case "i":
                         Console.Clear();
-
-                        Feature17 rechner = new Feature17();
-                        rechner.Run();                       
-           
+                        //Hier das Informationstechnikmenü aufrufen
                         break;
 
-                    case "m":
+                    case "3":
                         Console.Clear();
-                        //Hier das Mathematikmenü aufrufen
+                    Feature18.Feature_18();
                         break;
 
                     case "p":
