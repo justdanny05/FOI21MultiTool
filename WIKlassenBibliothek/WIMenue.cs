@@ -1,4 +1,4 @@
-﻿using Figgle;
+using Figgle;
 
 namespace WIKlassenBibliothek
 {
@@ -29,16 +29,18 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("Eingabe: exit\t        ->\tbeendet das Programm");
                 Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
-                //Beschreibung der Software
-                Console.WriteLine("\n\nWillkommen im Untermenü 'Wirtschaft' hier findest du coole und spannende Tools.\n\n");
+                //Beschreibung der Software.
+                Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
+                                  "Aufgabenaus dem schulischen Kontext erleichtert oder gelöst werden. Diese Aufgaben\n" +
+                                  "ergeben sich aus den Problemstellungen aus dem Unterricht der Berufsfachschule für Technik.\n\n");
 
                 string HauptAusw;
 
 
-                //Eingabeaufforderung 
+                //Eingabeaufforderung
                 Console.WriteLine("Wählen Sie eine der folgenden Tools:\n");
                 Console.WriteLine("\t1 - Währungsrechner");
-                Console.WriteLine("\t2 - Informatik");
+                Console.WriteLine("\t2 - Lohnabrechnung");
                 Console.WriteLine("\tm - Mathematik");
                 Console.WriteLine("\tp - Physik");
                 Console.WriteLine("\tw - Wirtschaft\n");
@@ -49,12 +51,15 @@ namespace WIKlassenBibliothek
                 {
                     case "1":
                         Console.Clear();
-
+                        Feature16.Feature_16();
                         break;
 
-                    case "i":
+                    case "2":
                         Console.Clear();
-                        //Hier das Informationstechnikmenü aufrufen
+
+                        Feature17 rechner = new Feature17();
+                        rechner.Run();                       
+           
                         break;
 
                     case "m":
