@@ -29,8 +29,10 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("Eingabe: exit\t        ->\tbeendet das Programm");
                 Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
-                //Beschreibung der Software
-                Console.WriteLine("\n\nWillkommen im Untermenü 'Wirtschaft' hier findest du coole und spannende Tools.\n\n");
+                //Beschreibung der Software.
+                Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
+                                  "Aufgabenaus dem schulischen Kontext erleichtert oder gelöst werden. Diese Aufgaben\n" +
+                                  "ergeben sich aus den Problemstellungen aus dem Unterricht der Berufsfachschule für Technik.\n\n");
 
                 string HauptAusw;
 
@@ -49,6 +51,7 @@ namespace WIKlassenBibliothek
                 {
                     case "1":
                         Console.Clear();
+                        Feature16.Feature_16();
                         break;
 
                     case "2":
