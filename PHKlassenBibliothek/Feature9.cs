@@ -80,6 +80,7 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                     switch (auswahl)
                     {
                         case 1:
+                            double distance;
                             Console.Clear();
                             Console.WriteLine("Sie haben Option ⚙️ 1 gewählt.");
                             while (true)
@@ -95,8 +96,9 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
 
                             while (true)
                             {
+                                double time_d;
                                 Console.Write("Gib die Zeit in Sekunden ein: ");
-                                if (!double.TryParse(Console.ReadLine(), out time))
+                                if (!double.TryParse(Console.ReadLine(), out time_d))
                                 {
                                     Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl ein.");
                                     continue;
@@ -126,18 +128,24 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                             }
 
                             double velocity;
+                            
+                            double time;
+                            double time_r;
                             switch (option)
                             {
                                 case 1:
-                                    velocity = distance / time;
+                                    double distance1;
+                                    velocity = distance1 / time_r;
                                     Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " m/s.");
                                     break;
                                 case 2:
-                                    velocity = distance / time * 3.6;
+                                    double distance2;
+                                    velocity = distance2 / time * 3.6;
                                     Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " km/h.");
                                     break;
                                 case 3:
-                                    velocity = distance / time * 2.237;
+                                    double distance3;
+                                    velocity = distance3 / time * 2.237;
                                     Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " mph.");
                                     break;
                                 default:
@@ -149,12 +157,12 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                             Console.Clear();
                             Console.WriteLine("Sie haben Option 📐 2 gewählt.");
                             Console.WriteLine("Bitte geben Sie die Strecke in Kilometern ein: ");
-                            double distance = double.Parse(Console.ReadLine());
+                            double distance_2 = double.Parse(Console.ReadLine());
 
                             Console.WriteLine("Bitte geben Sie die Zeit in Stunden ein: ");
-                            double time = double.Parse(Console.ReadLine());
+                            double time_2 = double.Parse(Console.ReadLine());
 
-                            double speed = distance / time;
+                            double speed = distance_2 / time_2;
                             Console.WriteLine("Die Geschwindigkeit beträgt: " + speed + " km/h");
 
                             if (speed < 30)
@@ -188,18 +196,18 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                             Console.Clear();
                             Console.WriteLine("Sie haben Option 📝 3 gewählt.");
 
-                            Console.WriteLine("              / \                 ");
-                            Console.WriteLine("             /   \                ");
-                            Console.WriteLine("            /     \               ");
-                            Console.WriteLine("           /   s   \              ");
-                            Console.WriteLine("          /         \             ");
-                            Console.WriteLine("         /- - - - - -\            ");
-                            Console.WriteLine("        /      |      \           ");
-                            Console.WriteLine("       /       |       \          ");
-                            Console.WriteLine("      /   v    |    t   \         ");
-                            Console.WriteLine("     /         |         \        ");
-                            Console.WriteLine("    /          |          \       ");
-                            Console.WriteLine("    - - - - - - - - - - - -       ");
+                            Console.WriteLine(@"              / \                 ");
+                            Console.WriteLine(@"             /   \                ");
+                            Console.WriteLine(@"            /     \               ");
+                            Console.WriteLine(@"           /   s   \              ");
+                            Console.WriteLine(@"          /         \             ");
+                            Console.WriteLine(@"         /- - - - - -\            ");
+                            Console.WriteLine(@"        /      |      \           ");
+                            Console.WriteLine(@"       /       |       \          ");
+                            Console.WriteLine(@"      /   v    |    t   \         ");
+                            Console.WriteLine(@"     /         |         \        ");
+                            Console.WriteLine(@"    /          |          \       ");
+                            Console.WriteLine(@"    - - - - - - - - - - - -       ");
 
                             Console.WriteLine();
                             Console.WriteLine();
@@ -300,7 +308,9 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                     }
 
                     Console.ReadKey();
+                }
+
+            }
         }
-       
     }
 }

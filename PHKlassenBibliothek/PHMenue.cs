@@ -66,7 +66,6 @@ namespace PHKlassenBibliothek
                             Console.Clear();
                             //Feature 9 Simon simqn
                             Feature9.Feature_9();
-
                             break;
                     }
                 }
