@@ -41,8 +41,8 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
                 Console.WriteLine("\t1 - Währungsrechner");
                 Console.WriteLine("\t2 - Informatik");
-                Console.WriteLine("\t3 - Zinsrechner");
-                Console.WriteLine("\tp - Physik");
+                Console.WriteLine("\tm - Mathematik");
+                Console.WriteLine("\t4 - Amortisationsrechner");
                 Console.WriteLine("\tw - Wirtschaft\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
@@ -59,14 +59,14 @@ namespace WIKlassenBibliothek
                         //Hier das Informationstechnikmenü aufrufen
                         break;
 
-                    case "3":
+                    case "m":
                         Console.Clear();
-                    Feature18.Feature_18();
+                        //Hier das Mathematikmenü aufrufen
                         break;
 
-                    case "p":
+                    case "4":
                         Console.Clear();
-                        //Hier das Physikmenü aufrufen
+                        Feature19.Feature_19();
                         break;
 
                     case "w":
