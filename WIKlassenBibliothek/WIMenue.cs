@@ -42,8 +42,8 @@ namespace WIKlassenBibliothek
                 Console.WriteLine("\t1 - Währungsrechner");
                 Console.WriteLine("\t2 - Informatik");
                 Console.WriteLine("\tm - Mathematik");
-                Console.WriteLine("\t4 - Amortisationsrechner");
-                Console.WriteLine("\tw - Wirtschaft\n");
+                Console.WriteLine("\tp - Physik");
+                Console.WriteLine("\t5 - Kassensystem\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
 
@@ -64,14 +64,14 @@ namespace WIKlassenBibliothek
                         //Hier das Mathematikmenü aufrufen
                         break;
 
-                    case "4":
+                    case "p":
                         Console.Clear();
-                        Feature19.Feature_19();
+                        //Hier das Physikmenü aufrufen
                         break;
 
-                    case "w":
+                    case "5":
                         Console.Clear();
-                        //Hier das Wirtschaftsmenü aufrufen
+                        Feature20.Feature_20();
                         break;
                     case "subexit":
                         Exit = true;
