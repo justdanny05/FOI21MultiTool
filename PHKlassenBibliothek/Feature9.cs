@@ -10,52 +10,18 @@ namespace PHKlassenBibliothek
     {
         internal static void Feature_9()
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(@"
-_________                 ______           _____       _____________        ______      __________ 
-__  ____/____________________  /____      ____(_)____________  /__(_)______ ___  /_________(_)_  /_
-_  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  //_/  _ \_  /_  __/
-/ /_/ / /  __/(__  )/ /__ _  / / /_ |/ |/ /_  / _  / / / /_/ / _  / _  /_/ /_  ,<  /  __/  / / /_  
-\____/  \___//____/ \___/ /_/ /_/____/|__/ /_/  /_/ /_/\__,_/  /_/  _\__, / /_/|_| \___//_/  \__/  
-                                                                    /____/                         ");
-
-
-
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("╔═══════════════════════════════════╗");
-            Console.WriteLine("║      Willkommen im Hauptmenü      ║");
-            Console.WriteLine("║                                   ║");
-            Console.WriteLine("║                                   ║");
-            Console.WriteLine("║ Bitte wählen Sie eine             ║");
-            Console.WriteLine("║ Option aus:                       ║");
-            Console.WriteLine("║                                   ║");
-            Console.WriteLine("║ 1. ⚙️ Berechnung                  ║");
-            Console.WriteLine("║ 2. 📐 Messung                     ║");
-            Console.WriteLine("║ 3. 📝 Merkhilfe Formel            ║");
-            Console.WriteLine("║ 4. ℹ️ Informationen               ║");
-            Console.WriteLine("║                                   ║");
-            Console.WriteLine("║ Drücken Sie eine beliebige Taste, ║");
-            Console.WriteLine("║ um fortzufahren...                ║");
-            Console.WriteLine("║                                   ║");
-            Console.WriteLine("╚═══════════════════════════════════╝");
-
-            Console.ReadKey();
-            Console.Clear();
-
-            int auswahl;
-            while (true)
+            bool haupt_schleife = false;
+            do
             {
-                Console.WriteLine(@"
-_________                 ______           _____       _____________        ______      __________ 
-__  ____/____________________  /____      ____(_)____________  /__(_)______ ___  /_________(_)_  /_
-_  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  //_/  _ \_  /_  __/
-/ /_/ / /  __/(__  )/ /__ _  / / /_ |/ |/ /_  / _  / / / /_/ / _  / _  /_/ /_  ,<  /  __/  / / /_  
-\____/  \___//____/ \___/ /_/ /_/____/|__/ /_/  /_/ /_/\__,_/  /_/  _\__, / /_/|_| \___//_/  \__/  
-                                                                    /____/                         ");
-
-
-
+                haupt_schleife = false;
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(@"	_________                 ______           _____       _____________        ______      __________ 				");
+                Console.WriteLine(@"	__  ____/____________________  /____      ____(_)____________  /__(_)______ ___  /_________(_)_  /_             ");
+                Console.WriteLine(@"	_  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  //_/  _ \_  /_  __/				");
+                Console.WriteLine(@"	/ /_/ / /  __/(__  )/ /__ _  / / /_ |/ |/ /_  / _  / / / /_/ / _  / _  /_/ /_  ,<  /  __/  / / /_  				");
+                Console.WriteLine(@"	\____/  \___//____/ \___/ /_/ /_/____/|__/ /_/  /_/ /_/\__,_/  /_/  _\__, / /_/|_| \___//_/  \__/ 				");
+                Console.WriteLine(@"                                                                        /____/            							");
                 Console.WriteLine();
                 Console.WriteLine();
                 Console.WriteLine("╔═══════════════════════════════════╗");
@@ -70,85 +36,115 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                 Console.WriteLine("║ 3. 📝 Merkhilfe Formel            ║");
                 Console.WriteLine("║ 4. ℹ️ Informationen               ║");
                 Console.WriteLine("║                                   ║");
+                Console.WriteLine("║ subexit = Zurück zum Menü Physik  ║");
+                Console.WriteLine("║                                   ║");
                 Console.WriteLine("║ Geben Sie die Nummer der Option   ║");
                 Console.WriteLine("║ ein und drücken Sie die Eingabe   ║");
                 Console.WriteLine("║ Taste...                          ║");
                 Console.WriteLine("╚═══════════════════════════════════╝");
-
-                if (int.TryParse(Console.ReadLine(), out auswahl))
+                string haupt_auswahl = Console.ReadLine();
+                if (int.TryParse(haupt_auswahl, out int auswahl))
                 {
+                    double time;
+                    double distance;
                     switch (auswahl)
                     {
-                        /*
                         case 1:
-                            double distance;
-                            Console.Clear();
-                            Console.WriteLine("Sie haben Option ⚙️ 1 gewählt.");
-                            while (true)
+                            bool schleife = true;
+                            do
                             {
-                                Console.Write("Gib die zurückgelegte Entfernung in Metern ein: ");
-                                if (!double.TryParse(Console.ReadLine(), out distance))
-                                {
-                                    Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl ein.");
-                                    continue;
-                                }
-                                break;
-                            }
+                                schleife = true;
+                                Console.Clear();
+                                Console.WriteLine("Sie haben Option ⚙️ 1 gewählt.");
 
-                            while (true)
-                            {
-                                double time_d;
-                                Console.Write("Gib die Zeit in Sekunden ein: ");
-                                if (!double.TryParse(Console.ReadLine(), out time_d))
+                                while (true)
                                 {
-                                    Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl ein.");
-                                    continue;
+                                    Console.Write("Geben Sie die zurückgelegte Entfernung in Metern ein: ");
+                                    if (!double.TryParse(Console.ReadLine(), out distance))
+                                    {
+                                        Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine Zahl ein.");
+                                        continue;
+                                    }
+                                    break;
                                 }
-                                break;
-                            }
 
-                            Console.WriteLine("Möchtest du die Geschwindigkeit in:");
-                            Console.WriteLine("1. Metern pro Sekunde");
-                            Console.WriteLine("2. Kilometern pro Stunde");
-                            Console.WriteLine("3. Meilen pro Stunde");
+                                while (true)
+                                {
+                                    Console.Write("Geben Sie die Zeit in Sekunden ein: ");
+                                    if (!double.TryParse(Console.ReadLine(), out time))
+                                    {
+                                        Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine Zahl ein.");
+                                        continue;
+                                    }
+                                    break;
+                                }
 
-                            int option;
-                            while (true)
-                            {
-                                if (!int.TryParse(Console.ReadLine(), out option))
+                                Console.WriteLine("Möchten Sie die Geschwindigkeit in:");
+                                Console.WriteLine("1. Metern pro Sekunde");
+                                Console.WriteLine("2. Kilometern pro Stunde");
+                                Console.WriteLine("3. Meilen pro Stunde");
+
+                                int option;
+                                while (true)
                                 {
-                                    Console.WriteLine("Ungültige Eingabe. Bitte gib eine Zahl zwischen 1 und 3 ein.");
-                                    continue;
+                                    if (!int.TryParse(Console.ReadLine(), out option))
+                                    {
+                                        Console.WriteLine("Ungültige Eingabe. Bitte geben Sie eine Zahl zwischen 1 und 3 ein.");
+                                        continue;
+                                    }
+                                    if (option < 1 || option > 3)
+                                    {
+                                        Console.WriteLine("Ungültige Option. Bitte wählen Sie 1, 2 oder 3.");
+                                        continue;
+                                    }
+                                    break;
                                 }
-                                if (option < 1 || option > 3)
+
+                                double velocity;
+                                switch (option)
                                 {
-                                    Console.WriteLine("Ungültige Option. Bitte wähle 1, 2 oder 3.");
-                                    continue;
+                                    case 1:
+                                        velocity = distance / time;
+                                        Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " m/s.");
+                                        break;
+                                    case 2:
+                                        velocity = distance / time * 3.6;
+                                        Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " km/h.");
+                                        break;
+                                    case 3:
+                                        velocity = distance / time * 2.237;
+                                        Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " mph.");
+                                        break;
                                 }
-                                break;
-                            }
-                            
-                            double velocity;
-                            switch (option)
-                            {
-                                case 1:
-                                    velocity = distance / time;
-                                    Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " m/s.");
-                                    break;
-                                case 2:
-                                    velocity = distance / time * 3.6;
-                                    Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " km/h.");
-                                    break;
-                                case 3:
-                                    velocity = distance / time * 2.237;
-                                    Console.WriteLine("Die Geschwindigkeit beträgt " + velocity + " mph.");
-                                    break;
-                                default:
-                                    Console.WriteLine("Ungültige Option.");
-                                    break;
-                            }
+                                bool schleife2 = true;
+                                do
+                                {
+                                    schleife2 = true;
+                                    Console.WriteLine("Wollen Sie zurück zum Auswahlmenü oder wollen Sie eine neue Rechnung durchführen lassen?\n");
+                                    Console.WriteLine("1. Auswahlmenü\n" +
+                                        "2. Rechnung");
+                                    if (int.TryParse(Console.ReadLine(), out int eingabe))
+                                    {
+                                        if (eingabe == 1)
+                                        {
+                                            //Zurück ins Auswahlmenü
+                                        }
+                                        else if (eingabe == 2)
+                                        {
+                                            //Rechnung wiederholen
+                                            schleife = false;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        schleife2 = false;
+                                        //Falsche Eingabe
+                                        Console.WriteLine("Falsche Eingabe, bitte eine der zwei Optionen wählen.");
+                                        Console.ReadKey();
+                                    }
+                                } while (!schleife2);
+                            } while (!schleife);
                             break;
-                            */
                         case 2:
                             Console.Clear();
                             Console.WriteLine("Sie haben Option 📐 2 gewählt.");
@@ -186,7 +182,7 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                                 Console.WriteLine(" " + speed + " km/h");
                             }
 
-                            Console.WriteLine();
+                            Console.ReadKey();
                             break;
                         case 3:
                             Console.Clear();
@@ -239,6 +235,7 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                                     t = double.Parse(Console.ReadLine());
                                     v = s / t;
                                     Console.WriteLine("Die Geschwindigkeit beträgt {0:F2} m/s", v);
+                                    Console.ReadKey();
                                     break;
                                 case 2:
                                     Console.Write("Geschwindigkeit (v) in Metern pro Sekunde: ");
@@ -247,6 +244,7 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                                     t = double.Parse(Console.ReadLine());
                                     s = v * t;
                                     Console.WriteLine("Die Strecke beträgt {0:F2} Meter", s);
+                                    Console.ReadKey();
                                     break;
                                 case 3:
                                     Console.Write("Strecke (s) in Metern: ");
@@ -256,6 +254,7 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                                     alpha = Math.Acos(s / v);
                                     t = s / (v * Math.Cos(alpha));
                                     Console.WriteLine("Die Zeit beträgt {0:F2} Sekunden", t);
+                                    Console.ReadKey();
                                     break;
                                 default:
                                     Console.WriteLine("Ungültige Auswahl");
@@ -296,17 +295,28 @@ _  / __ _  _ \_  ___/  ___/_  __ \_ | /| / /_  /__  __ \  __  /__  /__  __ `/_  
                             Console.WriteLine("In der Alltagssprache wird Geschwindigkeit oft als Synonym für Schnelligkeit verwendet. ");
                             Console.WriteLine("Hierbei geht es meist um die Geschwindigkeit von menschlichen Handlungen, wie zum ");
                             Console.WriteLine("Beispiel bei der Arbeit oder im Sport.");
+                            Console.ReadKey();
                             break;
                         default:
                             Console.Clear();
                             Console.WriteLine("Ungültige Auswahl. Bitte wählen Sie eine Option zwischen 1 und 4.");
                             break;
                     }
-
+                }
+                else if (haupt_auswahl == "subexit")
+                {
+                    Console.WriteLine("Sie kehren jetzt ins Menü Physik zurück...");
+                    Console.ReadKey();
+                    haupt_schleife = true;
+                }
+                else
+                {
+                    //Falsche Eingabe
+                    Console.WriteLine("Falsche Eingabe.\n" +
+                        "Versuchen Sie es erneut mit den gegebenen Auswahlmöglichkeiten...");
                     Console.ReadKey();
                 }
-
-            }
+            } while (!haupt_schleife);
         }
     }
 }
