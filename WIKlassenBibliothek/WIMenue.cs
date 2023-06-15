@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Figgle;
 
-namespace MultiTool
+namespace WIKlassenBibliothek
 {
-    internal class Hauptmenue
+    public class WIMenue
     {
-        public static void HauptmenueAufruf()
+        public static void WI_Menue()
         {
             bool Exit = false;
 
@@ -21,16 +16,18 @@ namespace MultiTool
                 Console.WriteLine();
 
                 //ASCII art Logo wird erzeugt.
-                Console.WriteLine(FiggleFonts.Slant.Render("FOIMultiTool"));
+                Console.WriteLine
+                    (FiggleFonts.Slant.Render("FOIMultiTool"));
 
                 //Konsolentitel wird geändert.
                 Console.Title = "FOIMultiTool";
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                  "                              >>> Hauptmenü <<<\n" +
+                                  "                              >>> Wirtschafts Submenu<<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
                 Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
+                Console.WriteLine("Eingabe: subexit\t->\tbeendet das Submenu");
 
                 //Beschreibung der Software.
                 Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
@@ -42,20 +39,19 @@ namespace MultiTool
 
                 //Eingabeaufforderung 
                 Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
-                Console.WriteLine("\te - Elektrotechnik");
-                Console.WriteLine("\ti - Informatik");
+                Console.WriteLine("\t1 - Währungsrechner");
+                Console.WriteLine("\t2 - Informatik");
                 Console.WriteLine("\tm - Mathematik");
                 Console.WriteLine("\tp - Physik");
-                Console.WriteLine("\tw - Wirtschaft\n");
+                Console.WriteLine("\t5 - Kassensystem\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
 
                 switch (HauptAusw)
                 {
-                    case "e":
+                    case "1":
                         Console.Clear();
-                        //Hier das Etechnikmenü aufrufen
-                        ETKlassenBibliothek.ETMenu.ET_Menu();
+                        Feature16.Feature_16();
                         break;
 
                     case "i":
@@ -73,13 +69,17 @@ namespace MultiTool
                         //Hier das Physikmenü aufrufen
                         break;
 
-                    case "w":
+                    case "5":
                         Console.Clear();
-                        WIKlassenBibliothek.WIMenue.WI_Menue();
+                        Feature20.Feature_20();
+                        break;
+                    case "subexit":
+                        Exit = true;
+                        Console.Clear();
                         break;
 
                     case "exit":
-                        Exit = true;
+                        Environment.Exit(0);
                         break;
                     default:
 
@@ -94,8 +94,6 @@ namespace MultiTool
                 }
 
             } while (!Exit);
-
-
         }
     }
 }

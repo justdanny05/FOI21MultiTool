@@ -7,6 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultiTool", "MultiTool\Mult
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonsolenExtrasBibliothek", "KonsolenExtrasBibliothek\KonsolenExtrasBibliothek.csproj", "{1430939F-89DE-4A48-AE68-12C82E1DD471}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WIKlassenBibliothek", "WIKlassenBibliothek\WIKlassenBibliothek.csproj", "{8ACF6837-807C-419E-BA75-676E6824B3D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonsolenExtrasBibliothek", "KonsolenExtrasBibliothek\KonsolenExtrasBibliothek.csproj", "{1430939F-89DE-4A48-AE68-12C82E1DD471}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETKlassenBibliothek", "ETKlassenBibliothek\ETKlassenBibliothek.csproj", "{9E75A998-6620-4ADB-B6B0-D894922C3D06}"
 EndProject
 Global
