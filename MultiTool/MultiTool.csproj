@@ -16,6 +16,7 @@
     <ProjectReference Include="..\KonsolenExtrasBibliothek\KonsolenExtrasBibliothek.csproj" />
     <ProjectReference Include="..\WIKlassenBibliothek\WIKlassenBibliothek.csproj" />
     <ProjectReference Include="..\MAKlassenBibliothek\MAKlassenBibliothek.csproj" />
+    <ProjectReference Include="..\PHKlassenBibliothek\PHKlassenBibliothek.csproj" />
   </ItemGroup>
 
 </Project>
