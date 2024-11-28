@@ -58,11 +58,7 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |		                |	          |Entwickler       |  	kilian1008      |Feature14             |			
 |		                |	          |Entwickler       |         |Feature15             |			
 |		                |	          |	                |		      |		                   |				
-|**Wirtschaft**	    |Menü WI    |Teamkoordinator / Währungsrechner  |selimAP       |WIEntwicklung,Feature16|				
-|		                |Lohnsteuerberechnung           |Entwickler       |bezo786       |Feature17             |		
-|		                |Zins und Zinseszins	          |Entwickler       |Garuk13       |Feature18             |		
-|		                |Amortisatiobsrechner	          |Entwickler       |MaryamAmiri20 |Feature19             |	
-|		                |Kassensystem	          |Entwickler       |Knochiii91    |Feature20             |	
+
 |		                |	          |	              	|		      |                        	 |					
 |**Mathematik**	    |Menü MT    |Teamkoordinator  | WireWale        |MAEntwicklung,Feature21|				
 |		                |           |Entwickler       | Kohano        |Feature22             |		
