@@ -1,25 +1,23 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Figgle;
+﻿using Figgle;
 
-namespace MultiTool
+
+namespace ETKlassenBibliothek
 {
-    internal class Hauptmenue
+    public class ETMenu
     {
-        public static void HauptmenueAufruf()
+        public static void ET_Menu()
         {
             bool Exit = false;
 
             do
             {
 
-                (int, int) cPosBM = Console.GetCursorPosition();
+                
 
                 Console.WriteLine();
-
+                Console.Clear();
+                (int, int) cPosBM = Console.GetCursorPosition();
+                Console.SetCursorPosition(0, 0);
                 //ASCII art Logo wird erzeugt.
                 Console.WriteLine(FiggleFonts.Slant.Render("FOIMultiTool"));
 
@@ -27,57 +25,52 @@ namespace MultiTool
                 Console.Title = "FOIMultiTool";
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                  "                              >>> Hauptmenü <<<\n" +
+                                  "                              >>> ETMenü <<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
                 Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
 
-                //Beschreibung der Software.
-                Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
-                                  "Aufgabenaus dem schulischen Kontext erleichtert oder gelöst werden. Diese Aufgaben\n" +
-                                  "ergeben sich aus den Problemstellungen aus dem Unterricht der Berufsfachschule für Technik.\n\n");
 
-                string HauptAusw;
+                string SubAusw;
 
 
                 //Eingabeaufforderung 
-                Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
-                Console.WriteLine("\te - Elektrotechnik");
-                Console.WriteLine("\ti - Informatik");
-                Console.WriteLine("\tm - Mathematik");
-                Console.WriteLine("\tp - Physik");
-                Console.WriteLine("\tw - Wirtschaft\n");
+                Console.WriteLine("Wählen Sie eines der folgenden Features:\n");
+                Console.WriteLine("\t1 - Voltage, Current, Resistance Calculator");
+                Console.WriteLine("\t2 - Spannungsfallberechner");
+                Console.WriteLine("\t3 - Quiz");
+                Console.WriteLine("\t4 - Physik");
+                Console.WriteLine("\t5 - Wirtschaft\n");
+                int LOL = Console.CursorTop;
                 Console.Write("Eingabe:");
-                HauptAusw = Console.ReadLine().ToLower();
+                SubAusw = Console.ReadLine().ToLower();
 
-                switch (HauptAusw)
+                switch (SubAusw)
                 {
-                    case "e":
+                    case "1":
                         Console.Clear();
                         //Hier das Etechnikmenü aufrufen
-                        ETKlassenBibliothek.ETMenu.ET_Menu();
                         break;
 
-                    case "i":
+                    case "2":
                         Console.Clear();
                         //Hier das Informationstechnikmenü aufrufen
                         break;
 
-                    case "m":
+                    case "3":
                         Console.Clear();
                         //Hier das Mathematikmenü aufrufen
-                        MAKlassenBibliothek.MAMenue.MA_Menue();
+                        Feature5.Feature_5();
                         break;
 
                     case "p":
                         Console.Clear();
                         //Hier das Physikmenü aufrufen
-                        PHKlassenBibliothek.PHMenue.PH_Menue();
                         break;
 
                     case "w":
                         Console.Clear();
-                        WIKlassenBibliothek.WIMenue.WI_Menue();
+                        //Hier das Wirtschaftsmenü aufrufen
                         break;
 
                     case "exit":
@@ -96,8 +89,6 @@ namespace MultiTool
                 }
 
             } while (!Exit);
-
-
         }
     }
 }
