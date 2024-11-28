@@ -46,29 +46,25 @@ Alle Teilnehmer die noch kein Feature eingereicht haben, sind dazu angehalten, z
 |                   |           |Entwickler       |         |Feature4              |
 |                   |           |Entwickler       |         |Feature5              |
 |		                |	          |              		|		      |		                   |		
-|**Physik**	        |Menü PY 	  |Teamkoordinator  |CallmeBabygirl|PHEntwicklung	,Feature6|
-|		                |           |Entwickler	      |CallmeBabygirl|Feature7              |		
-|		                |	          |Entwickler	      |nahehs        |Feature8              |
-|		                |           |Entwickler	      |Nextsuki      |Feature9              |
-|		                |           |Entwickler       |simoqn        |Feature10             |		
+|**Physik**	        |Menü PY / Gravitation 	  |Teamkoordinator  |CallmeBabygirl|PHEntwicklung	,Feature6|
+|		                |           |Entwickler	      |nahehs   |Feature7              |		
+|		                |	          |Entwickler	      |Nextsuki |Feature8              |
+|		                |           |Entwickler	      |simqn    |Feature9              |
+|		                |           |Entwickler       |         |Feature10             |		
 |		                |	          |                 |         |                      |				
 |**Informatik**	    |Menü IT    |Teamkoordinator  |   snwster      |ITEntwicklung,Feature11|				
-|		                |	          |Entwickler       |		nacelol      |Feature12             |		
-|		                |	          |Entwickler       |   K923ai      |Feature13             |	
+|		                |Passwortgenerator	          |Entwickler       |		nacelol      |Feature12             |		
+|		                |Byterechner	          |Entwickler       |   K923ai      |Feature13             |	
 |		                |	          |Entwickler       |  	kilian1008      |Feature14             |			
 |		                |	          |Entwickler       |         |Feature15             |			
 |		                |	          |	                |		      |		                   |				
-|**Wirtschaft**	    |Menü WI / Währungsrechner    |Teamkoordinator  |selimAP       |WIEntwicklung,Feature16|				
-|		                |           |Entwickler       |bezo786       |Feature17             |		
-|		                |	          |Entwickler       |Garuk13       |Feature18             |		
-|		                |	          |Entwickler       |MaryamAmiri20 |Feature19             |	
-|		                |	          |Entwickler       |Knochiii91    |Feature20             |	
+
 |		                |	          |	              	|		      |                        	 |					
 |**Mathematik**	    |Menü MT    |Teamkoordinator  | WireWale        |MAEntwicklung,Feature21|				
 |		                |           |Entwickler       | Kohano        |Feature22             |		
 |		                |           |Entwickler       | JonathanJostar05        |Feature23             |		
 |		                |           |Entwickler       | qwni 	      |Feature24             |
-|		                |           |Entwickler	      |       	|Feature25             |
+|		                |           |Entwickler	      | eleinads      	|Feature25             |
 
 
 ---
@@ -92,7 +88,7 @@ Einstellungen oder Dateien dieser bereits in den Branches existierenden Projekte
 1. Der Teamkoordinator euren Pull-Request nicht merged (Code des Entwicklers wird nicht in das Projekt eingebunden).
 2. Der Admin euren Team-Pull-Request nicht merged (Code des Teams wird nicht in das Projekt eingebunden).
 
-@GSO-SW/teamkoordinatorenbft12  achtet darauf das die Richtlinien eingehalten werden. 🦅 
+Die Teamkoordinatoren achten darauf, dass die Richtlinien eingehalten werden. 🦅 
 
 
 ### Organisation

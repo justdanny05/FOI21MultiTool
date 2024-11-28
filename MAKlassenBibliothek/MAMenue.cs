@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Figgle;
-
-namespace MultiTool
+﻿using Figgle;
+namespace MAKlassenBibliothek
 {
-    internal class Hauptmenue
+    public class MAMenue
     {
-        public static void HauptmenueAufruf()
+        public static void MA_Menue()
         {
             bool Exit = false;
 
@@ -28,61 +22,61 @@ namespace MultiTool
                 Console.Title = "FOIMultiTool";
 
                 Console.WriteLine("------------------------------------------------------------------------------------\n" +
-                                  "                              >>> Hauptmenü <<<\n" +
+                                  "                              >>> Mathematik <<<\n" +
                                   "------------------------------------------------------------------------------------\n\n");
 
-                Console.WriteLine("Eingabe: exit\t->\tbeendet das Programm");
+                Console.WriteLine("Eingabe: subexit\t->\tbeendet das Programm");
 
                 //Beschreibung der Software.
-                Console.WriteLine("\n\nMit der Software 'FOIMulti-Tool' sollen wiederkehrende oder besonders aufwendige\n" +
-                                  "Aufgabenaus dem schulischen Kontext erleichtert oder gelöst werden. Diese Aufgaben\n" +
-                                  "ergeben sich aus den Problemstellungen aus dem Unterricht der Berufsfachschule für Technik.\n\n");
+                Console.WriteLine("\n\nWilkommen im Mathematik-Submenü!\n" +
+                                  "Hier können sie verschiedene Features aufrufen und diese benutzen\n\n");
 
                 string HauptAusw;
 
 
                 //Eingabeaufforderung 
                 Console.WriteLine("Wählen Sie eine der folgenden Themenbereiche:\n");
-                Console.WriteLine("\te - Elektrotechnik");
-                Console.WriteLine("\ti - Informatik");
-                Console.WriteLine("\tm - Mathematik");
-                Console.WriteLine("\tp - Physik");
-                Console.WriteLine("\tw - Wirtschaft\n");
+                Console.WriteLine("\t1 - Funktionsrechner");
+                Console.WriteLine("\t2 - Mathequiz");
+                Console.WriteLine("\t3 - Distanzrechner");
+                Console.WriteLine("\t4 - Koordinatenbasierter Rechner");
+                Console.WriteLine("\t5 - Geometrischer Formenrechner\n");
                 Console.Write("Eingabe:");
                 HauptAusw = Console.ReadLine().ToLower();
 
                 switch (HauptAusw)
                 {
-                    case "e":
+
+                    case "1":
                         Console.Clear();
-                        //Hier das Etechnikmenü aufrufen
+                        Feature21.Feature_21();
                         break;
 
-                    case "i":
+                    case "2":
                         Console.Clear();
-                        //Hier das Informationstechnikmenü aufrufen
+                        Feature22.Feature_22();
                         break;
 
-                    case "m":
+                    case "3":
                         Console.Clear();
-                        //Hier das Mathematikmenü aufrufen
-                        MAKlassenBibliothek.MAMenue.MA_Menue();
+                        Feature23.Feature_23();
                         break;
 
-                    case "p":
+                    case "4":
                         Console.Clear();
-                        //Hier das Physikmenü aufrufen
-                        PHKlassenBibliothek.PHMenue.PH_Menue();
+                        Feature24.Feature_24();
                         break;
 
-                    case "w":
+                    case "5": 
                         Console.Clear();
-                        WIKlassenBibliothek.WIMenue.WI_Menue();
+                        Feature25.Feature_25();
                         break;
 
-                    case "exit":
+                    case "subexit":
+                        Console.Clear();
                         Exit = true;
                         break;
+
                     default:
 
                         Console.WriteLine("Ungültige Eingabe");
